@@ -1,62 +1,39 @@
-# WIP: Inferno Suite Template
+# PH Core Test Kit
 
-A starter template for building [Inferno](https://inferno-framework.github.io/) test kits against a FHIR Implementation Guide. It ships with a configuration wizard that replaces all placeholders in one go, so you can go from clone to a working test kit in minutes.
+An [Inferno](https://inferno-framework.github.io/) test kit for testing FHIR server conformance to the [PH Core Implementation Guide](https://fhir.doh.gov.ph/phcore/ImplementationGuide/fhir.ph.core).
+
+- **IG package ID:** `fhir.ph.core`
+- **IG version:** `0.2.0-ci-build`
+- **CapabilityStatement:** `https://fhir.doh.gov.ph/phcore/CapabilityStatement/ph-core-server`
+- **Terminology server:** `https://tx.fhir.org/r4`
+
+## What is tested
+
+The suite is auto-generated from the PH Core IG using the [InfernoSuiteGenerator](https://github.com/hl7au/inferno_suite_generator) gem. It covers the following resource groups:
+
+| Resource group | Notes |
+|---|---|
+| Patient | First-class profile with search tests |
+| Condition | |
+| Encounter | |
+| Observation | |
+| Organization | |
+| Practitioner | |
+| PractitionerRole | |
+
+Resources skipped by configuration: `Medication`, `DiagnosticReport`, `Bundle`, `Parameters`.
 
 ## Quick start
 
-### Option 1 — Bootstrap script (recommended)
+### Prerequisites
 
-Download [create.sh](create.sh) once, then run it from any directory:
+- Docker and Docker Compose
 
-```sh
-curl -fsSL https://raw.githubusercontent.com/beda-software/inferno-suite-template/main/create.sh -o create.sh
-chmod +x create.sh
-./create.sh my-test-kit          # clones template, strips history, runs wizard
-./create.sh my-test-kit --no-wizard  # skip the wizard
-```
-
-The script clones the template, reinitialises git, and (optionally) launches the configuration wizard. It auto-detects Docker or a local Ruby installation for the wizard step.
-
-### Option 2 — Manual clone + Docker wizard
-
-```sh
-git clone https://github.com/beda-software/inferno-suite-template my-test-kit
-cd my-test-kit
-./bin/setup.sh          # interactive wizard (requires Docker)
-# ./bin/setup.sh --dry-run  # preview without writing files
-```
-
-### Option 3 — Manual clone + local Ruby wizard
-
-```sh
-git clone https://github.com/beda-software/inferno-suite-template my-test-kit
-cd my-test-kit
-gem install thor
-ruby bin/wizard          # interactive wizard
-# ruby bin/wizard --dry-run
-```
-
-The wizard walks through five sections and then updates all files in one step:
-
-| Section | What it configures |
-|---|---|
-| Implementation Guide | Package ID, name, version, URLs, CapabilityStatement URL |
-| Kit identity | Gem name (snake_case) and Ruby module name (CamelCase) |
-| Author & gem metadata | Author, email, summary, GitHub URL |
-| Suite | Display title, terminology server URL |
-| Default constants | Pre-filled FHIR server URL, patient/encounter/practitioner IDs |
-
-After the wizard finishes:
-
-1. Place your IG package at `lib/<kit_name>/igs/<version>.tgz`
-2. Run `make generate` to generate tests from the IG (or `MODE=local make generate` to run without Docker)
-3. Run `make run` to start the stack
-
-## Running the stack
+### Running the stack
 
 ```sh
 make setup    # pull images, build, run DB migrations
-make run      # build + start all services
+make run      # build + start all services (available at http://localhost)
 make tests    # run the RSpec suite
 make stop     # stop containers
 make down     # stop and remove containers
@@ -65,6 +42,8 @@ make down     # stop and remove containers
 Other useful targets:
 
 ```sh
+make generate            # regenerate tests from the IG (inside Docker)
+MODE=local make generate # regenerate tests using local Ruby
 make migrate             # run DB migrations only
 make rubocop             # lint via RuboCop
 make rubocop-fix         # lint and auto-fix
@@ -73,31 +52,23 @@ make start_from_zero     # stop + down + setup + run
 make full_develop_restart  # stop + down + generate + setup + run
 ```
 
-### Aidbox variant
+## Suite inputs
 
-Set your Aidbox license in `.env`:
-
-```
-AIDBOX_LICENSE=your-license-key
-```
-
-Then pass `MODE=aidbox` to any make target:
-
-```sh
-MODE=aidbox make run
-```
+| Input | Required | Default | Description |
+|---|---|---|---|
+| `url` | Yes | `https://hapi.fhir.org/baseR4` | FHIR endpoint URL |
+| `smart_credentials` | No | — | OAuth credentials |
+| `header_name` / `header_value` | No | — | Optional HTTP header to pass with every request |
 
 ## Configuration
 
 `config.json` is the single source of truth for suite configuration. Key sections:
 
-- **`ig`** — IG package metadata and CapabilityStatement URLs
-- **`suite`** — display title, terminology server, outer groups, sidebar links
+- **`ig`** — IG package ID, name, version, and CapabilityStatement URLs
+- **`suite`** — display title, terminology server, sidebar links
 - **`constants`** — default values pre-filled in the Inferno UI
-- **`configs.profiles`** — per-profile options (filters, search params, must-support exclusions)
+- **`configs.profiles`** — per-profile options (e.g. `first_class_profile`)
 - **`configs.resources`** — per-resource options (e.g. `"skip": true`)
-
-See [TEMPLATE_PLACEHOLDERS.txt](TEMPLATE_PLACEHOLDERS.txt) for a full list of every placeholder and which files it appears in.
 
 ## Project structure
 
@@ -114,22 +85,48 @@ env/
   app               # app environment variables
   aidbox            # Aidbox-specific environment variables
 lib/
-  my_test_kit.rb    # main kit entry point
-  my_test_kit/
-    version.rb      # gem version
-    igs/            # place your IG .tgz packages here
-    generated/      # auto-generated tests (do not edit)
+  ph_core_test_kit.rb         # main kit entry point
+  ph_core_test_kit/
+    version.rb                # gem version
+    igs/                      # IG .tgz packages
+    generated/v0.2.0-ci-build/ # auto-generated tests (do not edit)
 spec/               # RSpec test suite
-.env                # local secrets (e.g. AIDBOX_LICENSE)
-Makefile            # common dev tasks
-Procfile            # process definitions for foreman/overmind
-Rakefile            # Rake task definitions
 compose.yaml        # default Docker Compose stack
 compose.aidbox.yaml # Aidbox variant
 Dockerfile
+Makefile            # common dev tasks
+Procfile            # process definitions for foreman/overmind
+Rakefile            # Rake task definitions
 worker.rb           # background worker entry point
 ```
 
+## Aidbox variant
+
+Set your Aidbox license in `.env`:
+
+```
+AIDBOX_LICENSE=your-license-key
+```
+
+Then pass `MODE=aidbox` to any make target:
+
+```sh
+MODE=aidbox make run
+```
+
+## Regenerating tests
+
+If you update the IG package or `config.json`, regenerate the test suite:
+
+1. Place the updated IG package at `lib/ph_core_test_kit/igs/<version>.tgz`
+2. Run `make generate` (or `MODE=local make generate` to run without Docker)
+
+## Links
+
+- [Report an issue](https://github.com/projkov/ph-inferno-test-kit/issues)
+- [Source code](https://github.com/projkov/ph-inferno-test-kit)
+- [PH Core Implementation Guide](https://fhir.doh.gov.ph/phcore/ImplementationGuide/fhir.ph.core)
+
 ## License
 
-See [LICENSE](LICENSE).
+[Apache-2.0](LICENSE)
