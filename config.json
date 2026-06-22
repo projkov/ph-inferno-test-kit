@@ -56,6 +56,9 @@
       ]
     },
     "profiles": {
+      "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient": {
+        "first_class_profile": "search"
+      }
     },
     "resources": {
       "Medication": {

@@ -30,6 +30,11 @@ requirement of PH Core v0.2.0-ci-build.
 
       id :ph_core_v020_ci_build_patient__id_search_test
 
+      input :patient_ids,
+            title: 'Patient IDs',
+            description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',
+            default: 'example-patient-id'
+
       def self.demodata
         @demodata ||= InfernoSuiteGenerator::Generator::IGDemodata.new(
           YAML.load_file(File.join(File.dirname(__dir__), 'demodata.yml'), aliases: true)
