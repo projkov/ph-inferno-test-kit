@@ -1,0 +1,74 @@
+{
+  "ig": {
+    "id": "example.fhir.ig.id",
+    "name": "My Implementation Guide",
+    "version": "0.1.0",
+    "link": "https://example.com/ig/0.1.0/index.html",
+    "package_archive_path": "lib/my_test_kit/igs/0.1.0.tgz",
+    "cs_profile_url": "https://example.com/ig/CapabilityStatement/MyCapabilityStatement",
+    "cs_version_specific_url": "https://example.com/ig/CapabilityStatement/MyCapabilityStatement"
+  },
+  "suite": {
+    "title": "My Test Suite",
+    "rewrite_igs": "/home/igs/0.1.0.tgz",
+    "extra_json_paths": [
+      "search-params.json"
+    ],
+    "tx_server_url": "https://tx.fhir.org/r4",
+    "extra_imports": [],
+    "outer_groups": [],
+    "links": [
+      {
+        "label": "Report Issue",
+        "url": "https://github.com/example/my-test-kit/issues"
+      },
+      {
+        "label": "Source Code",
+        "url": "https://github.com/example/my-test-kit"
+      },
+      {
+        "label": "Implementation Guide",
+        "url": "https://example.com/ig/index.html"
+      }
+    ]
+  },
+  "constants": {
+    "default_fhir_server": "https://example.com/fhir",
+    "read_ids.patient": "example-patient-id",
+    "read_ids.encounter": "example-encounter-id",
+    "read_ids.practitioner": "example-practitioner-id"
+  },
+  "configs": {
+    "generic": {
+      "expectation": ["SHALL", "SHOULD", "MAY"],
+      "search_params_to_ignore": ["_count", "_sort", "_include"]
+    },
+    "profiles": {
+      "https://example.com/ig/StructureDefinition/MyProfile": {
+        "keep_all_search_results": true,
+        "filter_set": [
+          [
+            {
+              "expression": "code.coding.where(system = 'http://loinc.org').code",
+              "value": "00000-0"
+            }
+          ]
+        ]
+      }
+    },
+    "resources": {
+      "Medication": {
+        "skip": true
+      },
+      "DiagnosticReport": {
+        "skip": true
+      },
+      "Bundle": {
+        "skip": true
+      },
+      "Parameters": {
+        "skip": true
+      }
+    }
+  }
+}
