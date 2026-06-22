@@ -1,0 +1,3099 @@
+---
+:resource_ids:
+  AllergyIntolerance:
+  - allergy-single-example
+  - example-allergy
+  Claim:
+  - claim-single-example
+  Composition:
+  - composition-ed-note-example
+  Condition:
+  - condition-acs-example
+  - condition-single-example
+  - condition-t2dm-example
+  - example-condition
+  Coverage:
+  - philhealth-coverage-example
+  Encounter:
+  - encounter-ed-example
+  - encounter-single-example
+  - example-encounter
+  HealthcareService:
+  - healthcareservice-single-example
+  Immunization:
+  - example-immunization
+  - immunization-single-example
+  Location:
+  - location-single-example
+  Medication:
+  - example-medication
+  - medication-single-example
+  MedicationAdministration:
+  - medicationadministration-single-example
+  MedicationDispense:
+  - medicationdispense-single-example
+  MedicationRequest:
+  - medicationrequest-single-example
+  MedicationStatement:
+  - medicationstatement-single-example
+  NamingSystem:
+  - DOHNHFRCodeNS
+  - DOHProcedureIDNS
+  - HCPNCodeNS
+  - PhilHealthIDNS
+  - PhilHealthPANNS
+  - PhilHealthPENNS
+  - PhilHealthProcedureIDNS
+  - PhilSysIDNS
+  Observation:
+  - observation-based-on-service-example
+  - observation-bp-acs
+  - observation-bp-example
+  - observation-cholesterol-ldl-acs
+  - observation-cholesterol-total-acs
+  - observation-derived-bmi-example
+  - observation-ecg-acs
+  - observation-environmental-temp-example
+  - observation-glucose-acs
+  - observation-glucose-example
+  - observation-hba1c-acs
+  - observation-height-example
+  - observation-hr-acs
+  - observation-lab-panel-example
+  - observation-pain-acs
+  - observation-part-of-procedure-example
+  - observation-performer-role-example
+  - observation-potassium-example
+  - observation-rr-acs
+  - observation-sodium-example
+  - observation-spo2-acs
+  - observation-temp-acs
+  - observation-troponin-acs
+  - observation-vitals-encounter-example
+  - observation-weight-example
+  Organization:
+  - organization-pgh-example
+  - organization-single-example
+  Patient:
+  - example-patient
+  - patient-acs-example
+  - patient-single-example
+  Practitioner:
+  - example-practitioner
+  - practitioner-ed-example
+  - practitioner-single-example
+  PractitionerRole:
+  - practitionerrole-ed-example
+  - practitionerrole-single-example
+  Procedure:
+  - procedure-single-example
+  Provenance:
+  - provenance-single-example
+  RelatedPerson:
+  - relatedperson-single-example
+  ServiceRequest:
+  - servicerequest-single-example
+  Task:
+  - task-single-example
+:resource_body_list:
+  AllergyIntolerance:
+  - resourceType: AllergyIntolerance
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-allergyintolerance
+    clinicalStatus:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical
+        code: active
+        display: Active
+      text: Active
+    verificationStatus:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/allergyintolerance-verification
+        code: confirmed
+        display: Confirmed
+      text: Confirmed
+    criticality: high
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '294494002'
+        display: Benethamine penicillin allergy
+      text: Benethamine penicillin allergy
+    patient:
+      reference: Patient/patient-single-example
+    onsetDateTime: '2023-01-15'
+    note:
+    - text: Patient reported rash and swelling after penicillin administration.
+    reaction:
+    - manifestation:
+      - coding:
+        - system: http://snomed.info/sct
+          code: '271807003'
+          display: Eruption of skin
+        text: Skin rash
+      severity: severe
+  - resourceType: AllergyIntolerance
+    clinicalStatus:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical
+        code: active
+        display: Active
+    criticality: high
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '294494002'
+        display: Benethamine penicillin allergy
+    patient:
+      reference: Patient/example-patient
+  Claim:
+  - resourceType: Claim
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-claim
+    status: active
+    type:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/claim-type
+        code: professional
+        display: Professional
+    use: claim
+    patient:
+      reference: Patient/patient-single-example
+    created: '2024-03-15'
+    insurer:
+      reference: Organization/organization-single-example
+    provider:
+      reference: Practitioner/practitioner-single-example
+    priority:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/processpriority
+        code: normal
+        display: Normal
+    payee:
+      type:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/payeetype
+          code: provider
+          display: Provider
+      party:
+        reference: Practitioner/practitioner-single-example
+    careTeam:
+    - sequence: 1
+      provider:
+        reference: Practitioner/practitioner-single-example
+      responsible: true
+      role:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/claimcareteamrole
+          code: primary
+          display: Primary Provider
+    diagnosis:
+    - sequence: 1
+      diagnosisReference:
+        reference: Condition/condition-single-example
+      type:
+      - coding:
+        - system: http://terminology.hl7.org/CodeSystem/ex-diagnosistype
+          code: principal
+          display: Principal Diagnosis
+    insurance:
+    - sequence: 1
+      focal: true
+      identifier:
+        system: http://philhealth.gov.ph/fhir/Identifier/philhealth-id
+        value: 63-584789845-5
+      coverage:
+        reference: Coverage/philhealth-coverage-example
+    item:
+    - sequence: 1
+      careTeamSequence:
+      - 1
+      diagnosisSequence:
+      - 1
+      productOrService:
+        coding:
+        - system: http://snomed.info/sct
+          code: '11429006'
+          display: Consultation
+        text: Outpatient Consultation
+      servicedDate: '2024-03-15'
+      quantity:
+        value: 1
+      unitPrice:
+        value: 500
+        currency: PHP
+      net:
+        value: 500
+        currency: PHP
+  Composition:
+  - resourceType: Composition
+    status: final
+    type:
+      coding:
+      - system: http://loinc.org
+        code: 18842-5
+        display: Discharge summary
+      text: ED Clinical Note
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    date: '2026-06-12T10:30:00+08:00'
+    author:
+    - reference: Practitioner/practitioner-ed-example
+    title: Emergency Department Clinical Note — Acute Coronary Syndrome
+    confidentiality: "N"
+    attester:
+    - mode: legal
+      time: '2026-06-12T10:30:00+08:00'
+      party:
+        reference: Practitioner/practitioner-ed-example
+    custodian:
+      reference: Organization/organization-pgh-example
+    section:
+    - title: Chief Complaint
+      code:
+        coding:
+        - system: http://loinc.org
+          code: 10154-3
+          display: Chief complaint Reported
+      text:
+        status: generated
+        div: <div xmlns="http://www.w3.org/1999/xhtml"><p>45-year-old male with 2-hour
+          history of crushing substernal chest pain radiating to left arm, associated
+          with dyspnea and diaphoresis.</p></div>
+      entry:
+      - reference: Condition/condition-acs-example
+    - title: History of Present Illness
+      code:
+        coding:
+        - system: http://loinc.org
+          code: 10164-2
+          display: History of present illness Narrative
+      text:
+        status: generated
+        div: <div xmlns="http://www.w3.org/1999/xhtml"><p>Patient Juan Dela Cruz,
+          45M, Filipino, presented to PGH ED at 08:30 with acute chest pain. Pain
+          described as crushing, 8/10 severity, substernal with radiation to left
+          arm. Associated with shortness of breath and sweating. No relief with rest.
+          Known T2DM since 2020. Current smoker (1 pack/day x 20 years).</p></div>
+    - title: Vital Signs
+      code:
+        coding:
+        - system: http://loinc.org
+          code: 8716-3
+          display: Vital signs note
+      text:
+        status: generated
+        div: '<div xmlns="http://www.w3.org/1999/xhtml"><ul><li>BP: 160/95 mmHg (elevated)</li><li>HR:
+          110 bpm (tachycardic)</li><li>RR: 24/min (tachypneic)</li><li>SpO2: 92%
+          RA (hypoxemic)</li><li>Temp: 37.2°C</li><li>Pain: 8/10</li></ul></div>'
+      entry:
+      - reference: Observation/observation-bp-acs
+      - reference: Observation/observation-hr-acs
+      - reference: Observation/observation-rr-acs
+      - reference: Observation/observation-spo2-acs
+      - reference: Observation/observation-temp-acs
+      - reference: Observation/observation-pain-acs
+    - title: Assessment and Plan
+      code:
+        coding:
+        - system: http://loinc.org
+          code: 18776-5
+          display: Plan of care note
+      text:
+        status: generated
+        div: <div xmlns="http://www.w3.org/1999/xhtml"><p><strong>Assessment:</strong>
+          Acute Coronary Syndrome — Anterior STEMI (ST-elevation V1-V4 on ECG, elevated
+          troponin 2.5 ng/mL).</p><p><strong>Plan:</strong> 1) Aspirin 325mg chewed,
+          Clopidogrel 600mg loading, Metoprolol 25mg PO. 2) Cardiology consult for
+          emergent PCI. 3) Admit to CCU post-PCI.</p></div>
+      entry:
+      - reference: Condition/condition-acs-example
+    - title: Active Conditions
+      code:
+        coding:
+        - system: http://loinc.org
+          code: 11493-4
+          display: Hospital discharge studies summary Narrative
+      text:
+        status: generated
+        div: <div xmlns="http://www.w3.org/1999/xhtml"><ul><li>Type 2 Diabetes Mellitus
+          (diagnosed 2020, on Metformin)</li><li>Acute Coronary Syndrome — Anterior
+          STEMI (diagnosed today)</li></ul></div>
+      entry:
+      - reference: Condition/condition-t2dm-example
+      - reference: Condition/condition-acs-example
+  Condition:
+  - resourceType: Condition
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-condition
+    clinicalStatus:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/condition-clinical
+        code: active
+        display: Active
+    verificationStatus:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/condition-ver-status
+        code: confirmed
+        display: Confirmed
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/condition-category
+        code: encounter-diagnosis
+        display: Encounter Diagnosis
+      text: Acute Diagnosis
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '401303003'
+        display: Acute ST segment elevation myocardial infarction
+      text: Acute Coronary Syndrome - STEMI
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    onsetDateTime: '2026-06-12T08:30:00+08:00'
+    recordedDate: '2026-06-12T08:45:00+08:00'
+    recorder:
+      reference: Practitioner/practitioner-ed-example
+    note:
+    - text: 45-year-old male with 2-hour history of crushing substernal chest pain
+        radiating to left arm. 12-lead ECG shows ST-elevation in leads V1-V4 consistent
+        with anterior STEMI. Troponin I elevated at 2.5 ng/mL.
+  - resourceType: Condition
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-condition
+    clinicalStatus:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/condition-clinical
+        code: active
+        display: Active
+    verificationStatus:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/condition-ver-status
+        code: confirmed
+        display: Confirmed
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/condition-category
+        code: problem-list-item
+        display: Problem List Item
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '44054006'
+        display: Diabetes mellitus type 2
+      text: Type 2 Diabetes Mellitus
+    subject:
+      reference: Patient/patient-single-example
+    encounter:
+      reference: Encounter/encounter-single-example
+    onsetDateTime: '2020-03-15'
+    recordedDate: '2020-03-15T10:30:00Z'
+    note:
+    - text: Patient advised on diet and exercise management.
+  - resourceType: Condition
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-condition
+    clinicalStatus:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/condition-clinical
+        code: active
+        display: Active
+    verificationStatus:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/condition-ver-status
+        code: confirmed
+        display: Confirmed
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/condition-category
+        code: problem-list-item
+        display: Problem List Item
+      text: Chronic Condition
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '44054006'
+        display: Diabetes mellitus type 2
+      text: Type 2 Diabetes Mellitus
+    subject:
+      reference: Patient/patient-acs-example
+    onsetDateTime: '2020-03-15'
+    recordedDate: '2020-03-15T10:30:00+08:00'
+    note:
+    - text: 'Patient diagnosed with T2DM during routine health screening. Currently
+        on Metformin 500mg twice daily. Last HbA1c: 8.2% (poor control). Advised on
+        diet and exercise management.'
+  - resourceType: Condition
+    clinicalStatus:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/condition-clinical
+        code: active
+        display: Active
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '44054006'
+        display: Diabetes mellitus type 2
+    subject:
+      reference: Patient/example-patient
+    encounter:
+      reference: Encounter/example-encounter
+  Coverage:
+  - resourceType: Coverage
+    status: active
+    subscriber:
+      reference: Patient/patient-single-example
+    subscriberId: 63-584789845-5
+    beneficiary:
+      reference: Patient/patient-single-example
+    payor:
+    - reference: Organization/organization-single-example
+  Encounter:
+  - resourceType: Encounter
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+    identifier:
+    - system: http://pgh.gov.ph/fhir/Identifier/encounter-id
+      value: ENC-2026-0612-001
+    status: finished
+    class:
+      system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+      code: EMER
+      display: emergency
+    type:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+        code: EMER
+        display: emergency
+      text: Emergency Department Visit
+    priority:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ActPriority
+        code: EM
+        display: emergency
+    subject:
+      reference: Patient/patient-acs-example
+    participant:
+    - type:
+      - coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-ParticipationType
+          code: ATND
+          display: attender
+      individual:
+        reference: Practitioner/practitioner-ed-example
+    - type:
+      - coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-ParticipationType
+          code: ADM
+          display: admitter
+      individual:
+        reference: PractitionerRole/practitionerrole-ed-example
+    period:
+      start: '2026-06-12T08:30:00+08:00'
+      end: '2026-06-12T10:30:00+08:00'
+    reasonReference:
+    - reference: Condition/condition-acs-example
+    diagnosis:
+    - condition:
+        reference: Condition/condition-acs-example
+      use:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/diagnosis-role
+          code: AD
+          display: Admission diagnosis
+      rank: 1
+    - condition:
+        reference: Condition/condition-t2dm-example
+      use:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/diagnosis-role
+          code: CC
+          display: Chief complaint
+      rank: 2
+    hospitalization:
+      admitSource:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/admit-source
+          code: emd
+          display: From accident/emergency department
+    serviceProvider:
+      reference: Organization/organization-pgh-example
+  - resourceType: Encounter
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+    identifier:
+    - system: http://example.org/encounter-id
+      value: ENC-12345
+    status: finished
+    class:
+      system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+      code: AMB
+      display: ambulatory
+    type:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+        code: AMB
+        display: ambulatory
+    subject:
+      reference: Patient/patient-single-example
+    participant:
+    - type:
+      - coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-ParticipationType
+          code: ATND
+          display: attender
+      individual:
+        reference: Practitioner/practitioner-single-example
+    period:
+      start: '2023-01-01T10:00:00Z'
+      end: '2023-01-01T11:00:00Z'
+    reasonReference:
+    - reference: Condition/condition-single-example
+    diagnosis:
+    - condition:
+        reference: Condition/condition-single-example
+    serviceProvider:
+      reference: Organization/organization-single-example
+  - resourceType: Encounter
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+    status: finished
+    class:
+      system: http://terminology.hl7.org/CodeSystem/v3-ActCode
+      code: AMB
+      display: ambulatory
+    subject:
+      reference: Patient/example-patient
+  HealthcareService:
+  - resourceType: HealthcareService
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-healthcareservice
+    identifier:
+    - system: http://pgh.gov.ph/fhir/Identifier/service-id
+      value: PGH-OPD-GMED-001
+    active: true
+    providedBy:
+      reference: Organization/organization-single-example
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/service-category
+        code: '27'
+        display: Specialist Medical
+      text: Specialist Medical
+    type:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/service-type
+        code: '124'
+        display: General Practice
+      text: General Practice
+    specialty:
+    - coding:
+      - system: http://snomed.info/sct
+        code: '394802001'
+        display: General medicine
+      text: General medicine
+    location:
+    - reference: Location/location-single-example
+    name: Outpatient Department - General Medicine
+    telecom:
+    - system: phone
+      value: "+63-2-5548-0000"
+      use: work
+    - system: email
+      value: opd.gmed@pgh.gov.ph
+      use: work
+    availableTime:
+    - daysOfWeek:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      availableStartTime: '08:00:00'
+      availableEndTime: '17:00:00'
+    notAvailable:
+    - description: Closed on public holidays
+  Immunization:
+  - resourceType: Immunization
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-immunization
+    identifier:
+    - system: urn:ietf:rfc:3986
+      value: urn:oid:1.3.6.1.4.1.21367.2005.3.7.1234
+    status: completed
+    vaccineCode:
+      coding:
+      - system: http://hl7.org/fhir/sid/cvx
+        code: '123'
+      text: influenza, H5N1-1203
+    patient:
+      reference: Patient/example-patient
+    encounter:
+      reference: Encounter/encounter-single-example
+    occurrenceDateTime: '2013-01-10'
+    primarySource: true
+    lotNumber: AAJN11K
+    expirationDate: '2015-02-15'
+    site:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ActSite
+        code: LA
+        display: left arm
+    route:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration
+        code: IM
+        display: Injection, intramuscular
+    doseQuantity:
+      value: 5
+      system: http://unitsofmeasure.org
+      code: mg
+    performer:
+    - function:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v2-0443
+          code: OP
+      actor:
+        reference: Practitioner/example-practitioner
+    note:
+    - text: Notes on adminstration of vaccine
+    isSubpotent: true
+    fundingSource:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/immunization-funding-source
+        code: private
+  - resourceType: Immunization
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-immunization
+    extension:
+    - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/batch-number
+      valueString: AAJN11K
+    - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/administered-product
+      valueReference:
+        reference: Medication/medication-single-example
+    identifier:
+    - system: urn:ietf:rfc:3986
+      value: urn:oid:1.3.6.1.4.1.21367.2005.3.7.1234
+    status: completed
+    vaccineCode:
+      coding:
+      - system: http://hl7.org/fhir/sid/cvx
+        code: '123'
+        display: influenza, H5N1-1203
+      text: Influenza H5N1-1203 Vaccine
+    patient:
+      reference: Patient/patient-single-example
+    encounter:
+      reference: Encounter/encounter-single-example
+    occurrenceDateTime: '2013-01-10'
+    primarySource: true
+    location:
+      reference: Location/location-single-example
+    lotNumber: AAJN11K
+    expirationDate: '2015-02-15'
+    site:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ActSite
+        code: LA
+        display: left arm
+      text: Left arm
+    route:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration
+        code: IM
+        display: Injection, intramuscular
+      text: Intramuscular injection
+    doseQuantity:
+      value: 5
+      system: http://unitsofmeasure.org
+      code: mg
+    performer:
+    - function:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v2-0443
+          code: OP
+          display: Ordering Provider
+        text: Ordering Provider
+      actor:
+        reference: Practitioner/practitioner-single-example
+        display: Dr. Maria Clara Santos
+    note:
+    - text: Notes on administration of vaccine
+    isSubpotent: true
+    fundingSource:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/immunization-funding-source
+        code: private
+        display: Private
+      text: Private
+    protocolApplied:
+    - targetDisease:
+      - coding:
+        - system: http://snomed.info/sct
+          code: '772828001'
+          display: Influenza caused by Influenza A virus subtype H5N1
+        text: Influenza H5N1
+      doseNumberPositiveInt: 1
+  Location:
+  - resourceType: Location
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+    status: active
+    name: Philippine General Hospital
+    type:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-RoleCode
+        code: HOSP
+        display: Hospital
+      text: Hospital
+    address:
+      extension:
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/region
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1300000000'
+          display: National Capital Region (NCR)
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380600000'
+          display: City of Manila
+      use: work
+      line:
+      - Taft Avenue
+      postalCode: '1000'
+      country: PH
+    physicalType:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/location-physical-type
+        code: bu
+        display: Building
+      text: Building
+    position:
+      longitude: 120.9856
+      latitude: 14.5764
+    managingOrganization:
+      reference: Organization/organization-single-example
+  Medication:
+  - resourceType: Medication
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medication
+  - resourceType: Medication
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medication
+    code:
+      coding:
+      - system: https://verification.fda.gov.ph
+        code: DRP-10144
+        display: Twinact
+      text: Twinact 40mg/5mg tablet
+    form:
+      coding:
+      - system: http://snomed.info/sct
+        code: '385055001'
+        display: Tablet
+  MedicationAdministration:
+  - resourceType: MedicationAdministration
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medicationadministration
+    status: completed
+    medicationCodeableConcept:
+      coding:
+      - system: https://verification.fda.gov.ph
+        code: DRP-10144
+        display: Twinact
+      text: Twinact 40mg/5mg tablet
+    subject:
+      reference: Patient/patient-single-example
+    context:
+      reference: Encounter/encounter-single-example
+    effectiveDateTime: '2025-03-15T14:00:00+08:00'
+    performer:
+    - function:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v2-0443
+          code: PP
+          display: Primary Care Provider
+      actor:
+        reference: Patient/patient-single-example
+    request:
+      reference: MedicationRequest/medicationrequest-single-example
+    dosage:
+      text: 1 tablet taken orally
+      route:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration
+          code: PO
+          display: Swallow, oral
+      dose:
+        value: 1
+        unit: tablet
+        system: http://unitsofmeasure.org
+        code: '1'
+  MedicationDispense:
+  - resourceType: MedicationDispense
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medicationdispense
+    status: completed
+    medicationCodeableConcept:
+      coding:
+      - system: https://verification.fda.gov.ph
+        code: DRP-10144
+        display: Twinact
+      text: Twinact 40mg/5mg tablet
+    subject:
+      reference: Patient/patient-single-example
+    context:
+      reference: Encounter/encounter-single-example
+    performer:
+    - function:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/medicationdispense-performer-function
+          code: finalchecker
+          display: Final Checker
+      actor:
+        reference: Practitioner/practitioner-single-example
+    authorizingPrescription:
+    - reference: MedicationRequest/medicationrequest-single-example
+    type:
+      coding:
+      - system: http://snomed.info/sct
+        code: '373784005'
+        display: Dispensing medication
+    quantity:
+      value: 30
+      unit: Tablet
+      system: http://snomed.info/sct
+      code: '732936001'
+    daysSupply:
+      value: 7
+      unit: days
+      system: http://unitsofmeasure.org
+      code: d
+    whenPrepared: '2025-03-15T10:30:00+08:00'
+    whenHandedOver: '2025-03-15T11:00:00+08:00'
+    dosageInstruction:
+    - sequence: 1
+      text: Take 1 tablet once daily
+  MedicationRequest:
+  - resourceType: MedicationRequest
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medicationrequest
+    status: active
+    intent: order
+    priority: routine
+    medicationCodeableConcept:
+      coding:
+      - system: https://verification.fda.gov.ph
+        code: DRP-10144
+        display: Twinact
+      text: Twinact 40mg/5mg tablet
+    subject:
+      reference: Patient/patient-single-example
+    encounter:
+      reference: Encounter/encounter-single-example
+    authoredOn: '2025-03-15T09:00:00+08:00'
+    requester:
+      reference: Practitioner/practitioner-single-example
+    reasonCode:
+    - coding:
+      - system: http://snomed.info/sct
+        code: '38341003'
+        display: Hypertensive disorder
+    note:
+    - text: Take complete course of antibiotics as prescribed
+    dosageInstruction:
+    - sequence: 1
+      text: Take 1 tablet once daily
+      timing:
+        repeat:
+          frequency: 1
+          period: 1
+          periodUnit: d
+      route:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration
+          code: PO
+          display: Swallow, oral
+      doseAndRate:
+      - doseQuantity:
+          value: 1
+          unit: tablet
+          system: http://unitsofmeasure.org
+          code: '1'
+    dispenseRequest:
+      numberOfRepeatsAllowed: 0
+      quantity:
+        value: 30
+        unit: Tablet
+        system: http://snomed.info/sct
+        code: '732936001'
+  MedicationStatement:
+  - resourceType: MedicationStatement
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medicationstatement
+    status: active
+    medicationCodeableConcept:
+      coding:
+      - system: https://verification.fda.gov.ph
+        code: DRP-10144
+        display: Twinact
+      text: Twinact 40mg/5mg tablet
+    subject:
+      reference: Patient/patient-single-example
+    context:
+      reference: Encounter/encounter-single-example
+    effectivePeriod:
+      start: '2025-03-10'
+      end: '2025-03-15'
+    dateAsserted: '2025-03-10T10:30:00+08:00'
+    informationSource:
+      reference: Patient/patient-single-example
+    reasonCode:
+    - coding:
+      - system: http://snomed.info/sct
+        code: '38341003'
+        display: Hypertensive disorder
+    note:
+    - text: Patient reports taking medication once daily for hypertension
+    dosage:
+    - sequence: 1
+      text: Take 1 tablet once daily
+      timing:
+        repeat:
+          frequency: 1
+          period: 1
+          periodUnit: d
+      route:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration
+          code: PO
+          display: Swallow, oral
+  NamingSystem:
+  - resourceType: NamingSystem
+    extension:
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.url
+      valueUri: https://fhir.doh.gov.ph/phcore/NamingSystem/DOHNHFRCodeNS
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.version
+      valueString: 0.2.0
+    name: DOHNHFRCode
+    status: draft
+    kind: identifier
+    date: '2025-06-18'
+    publisher: UP Manila National TeleHealth Center
+    contact:
+    - name: UP Manila National TeleHealth Center
+      telecom:
+      - system: url
+        value: https://github.com/UP-NTHC
+    description: Health Facility Code (HFC) from the National Health Facility Registry.
+    jurisdiction:
+    - coding:
+      - system: urn:iso:std:iso:3166
+        code: PH
+        display: Philippines
+    uniqueId:
+    - type: uri
+      value: https://fhir.doh.gov.ph/phcore/Identifier/doh-nhfr-code
+  - resourceType: NamingSystem
+    extension:
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.url
+      valueUri: https://fhir.doh.gov.ph/phcore/NamingSystem/DOHProcedureIDNS
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.version
+      valueString: 0.2.0
+    name: DOHProcedureID
+    status: draft
+    kind: identifier
+    date: '2025-06-01'
+    publisher: UP Manila National TeleHealth Center
+    contact:
+    - name: UP Manila National TeleHealth Center
+      telecom:
+      - system: url
+        value: https://github.com/UP-NTHC
+    description: Identifier system for procedures assigned by the Department of Health
+      (DOH) health facilities.
+    jurisdiction:
+    - coding:
+      - system: urn:iso:std:iso:3166
+        code: PH
+        display: Philippines
+    uniqueId:
+    - type: uri
+      value: https://fhir.doh.gov.ph/phcore/NamingSystem/procedure-id
+  - resourceType: NamingSystem
+    extension:
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.url
+      valueUri: https://fhir.doh.gov.ph/phcore/NamingSystem/HCPNCodeNS
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.version
+      valueString: 0.2.0
+    name: HCPNCode
+    status: draft
+    kind: identifier
+    date: '2025-06-18'
+    publisher: UP Manila National TeleHealth Center
+    contact:
+    - name: UP Manila National TeleHealth Center
+      telecom:
+      - system: url
+        value: https://github.com/UP-NTHC
+    description: Health Care Provider Network (HCPN) code uniquely identifying an
+      organization within its Health Care Provider Network in the Philippines.
+    jurisdiction:
+    - coding:
+      - system: urn:iso:std:iso:3166
+        code: PH
+        display: Philippines
+    uniqueId:
+    - type: uri
+      value: https://fhir.doh.gov.ph/phcore/Identifier/hcpn-code
+  - resourceType: NamingSystem
+    extension:
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.url
+      valueUri: https://fhir.doh.gov.ph/phcore/NamingSystem/PhilHealthIDNS
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.version
+      valueString: 0.2.0
+    name: PhilHealthID
+    status: draft
+    kind: identifier
+    date: '2025-06-01'
+    publisher: UP Manila National TeleHealth Center
+    contact:
+    - name: UP Manila National TeleHealth Center
+      telecom:
+      - system: url
+        value: https://github.com/UP-NTHC
+    description: The permanent and unique number issued by PhilHealth to individual
+      members and to each and every dependent.
+    jurisdiction:
+    - coding:
+      - system: urn:iso:std:iso:3166
+        code: PH
+        display: Philippines
+    uniqueId:
+    - type: uri
+      value: http://philhealth.gov.ph/fhir/Identifier/philhealth-id
+  - resourceType: NamingSystem
+    extension:
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.url
+      valueUri: https://fhir.doh.gov.ph/phcore/NamingSystem/PhilHealthPANNS
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.version
+      valueString: 0.2.0
+    name: PhilHealthPAN
+    status: draft
+    kind: identifier
+    date: '2025-06-01'
+    publisher: UP Manila National TeleHealth Center
+    contact:
+    - name: UP Manila National TeleHealth Center
+      telecom:
+      - system: url
+        value: https://github.com/UP-NTHC
+    description: The unique number issued by PhilHealth to accredited institutions.
+    jurisdiction:
+    - coding:
+      - system: urn:iso:std:iso:3166
+        code: PH
+        display: Philippines
+    uniqueId:
+    - type: uri
+      value: http://nhdr.gov.ph/fhir/Identifier/philhealthaccreditationnumber
+  - resourceType: NamingSystem
+    extension:
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.url
+      valueUri: https://fhir.doh.gov.ph/phcore/NamingSystem/PhilHealthPENNS
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.version
+      valueString: 0.2.0
+    name: PhilHealthPEN
+    status: draft
+    kind: identifier
+    date: '2025-06-01'
+    publisher: UP Manila National TeleHealth Center
+    contact:
+    - name: UP Manila National TeleHealth Center
+      telecom:
+      - system: url
+        value: https://github.com/UP-NTHC
+    description: The unique number issued by PhilHealth to employers.
+    jurisdiction:
+    - coding:
+      - system: urn:iso:std:iso:3166
+        code: PH
+        display: Philippines
+    uniqueId:
+    - type: uri
+      value: http://nhdr.gov.ph/fhir/Identifier/philhealthemployernumber
+  - resourceType: NamingSystem
+    extension:
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.url
+      valueUri: https://fhir.doh.gov.ph/phcore/NamingSystem/PhilHealthProcedureIDNS
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.version
+      valueString: 0.2.0
+    name: PhilHealthProcedureID
+    status: draft
+    kind: identifier
+    date: '2025-06-01'
+    publisher: UP Manila National TeleHealth Center
+    contact:
+    - name: UP Manila National TeleHealth Center
+      telecom:
+      - system: url
+        value: https://github.com/UP-NTHC
+    description: Identifier system for procedures assigned by PhilHealth for claims
+      and reimbursement purposes.
+    jurisdiction:
+    - coding:
+      - system: urn:iso:std:iso:3166
+        code: PH
+        display: Philippines
+    uniqueId:
+    - type: uri
+      value: http://philhealth.gov.ph/procedure
+  - resourceType: NamingSystem
+    extension:
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.url
+      valueUri: https://fhir.doh.gov.ph/phcore/NamingSystem/PhilSysIDNS
+    - url: http://hl7.org/fhir/5.0/StructureDefinition/extension-NamingSystem.version
+      valueString: 0.2.0
+    name: PhilSysID
+    status: draft
+    kind: identifier
+    date: '2025-06-13'
+    publisher: UP Manila National TeleHealth Center
+    contact:
+    - name: UP Manila National TeleHealth Center
+      telecom:
+      - system: url
+        value: https://github.com/UP-NTHC
+    description: The National ID Number issued to all Filipino citizens and resident
+      aliens in the Philippines, as part of the Philippine Identification System (PhilSys)
+      program.
+    jurisdiction:
+    - coding:
+      - system: urn:iso:std:iso:3166
+        code: PH
+        display: Philippines
+    uniqueId:
+    - type: uri
+      value: http://philsys.gov.ph/fhir/Identifier/philsys-id
+  Observation:
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    basedOn:
+    - reference: ServiceRequest/servicerequest-single-example
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 4548-4
+        display: Hemoglobin A1c/Hemoglobin.total in Blood
+    subject:
+      reference: Patient/patient-single-example
+    effectiveDateTime: '2024-03-10T10:00:00Z'
+    performer:
+    - reference: Organization/organization-single-example
+    valueQuantity:
+      value: 6.2
+      unit: "%"
+      system: http://unitsofmeasure.org
+      code: "%"
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: "N"
+        display: Normal
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: vital-signs
+        display: Vital Signs
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 85354-9
+        display: Blood pressure panel with all children optional
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    effectiveDateTime: '2026-06-12T08:30:00+08:00'
+    performer:
+    - reference: Practitioner/practitioner-ed-example
+    bodySite:
+      coding:
+      - system: http://snomed.info/sct
+        code: '368209003'
+        display: Right arm
+    component:
+    - code:
+        coding:
+        - system: http://loinc.org
+          code: 8480-6
+          display: Systolic blood pressure
+      valueQuantity:
+        value: 160
+        unit: mmHg
+        system: http://unitsofmeasure.org
+        code: mm[Hg]
+      interpretation:
+      - coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+          code: H
+          display: High
+    - code:
+        coding:
+        - system: http://loinc.org
+          code: 8462-4
+          display: Diastolic blood pressure
+      valueQuantity:
+        value: 95
+        unit: mmHg
+        system: http://unitsofmeasure.org
+        code: mm[Hg]
+      interpretation:
+      - coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+          code: H
+          display: High
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    identifier:
+    - system: urn:ietf:rfc:3986
+      value: urn:uuid:187e0c12-8dd2-67e2-99b2-bf273c878281
+    basedOn:
+    - identifier:
+        system: https://acme.org/identifiers
+        value: '1234'
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: vital-signs
+        display: Vital Signs
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 85354-9
+        display: Blood pressure panel with all children optional
+      text: Blood pressure systolic & diastolic
+    subject:
+      reference: Patient/patient-single-example
+    effectiveDateTime: '2012-09-17'
+    performer:
+    - reference: Practitioner/practitioner-single-example
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: L
+        display: Low
+      text: Below low normal
+    bodySite:
+      coding:
+      - system: http://snomed.info/sct
+        code: '368209003'
+        display: Right arm
+    component:
+    - code:
+        coding:
+        - system: http://loinc.org
+          code: 8480-6
+          display: Systolic blood pressure
+      valueQuantity:
+        value: 107
+        unit: mmHg
+        system: http://unitsofmeasure.org
+        code: mm[Hg]
+      interpretation:
+      - coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+          code: "N"
+          display: Normal
+        text: Normal
+    - code:
+        coding:
+        - system: http://loinc.org
+          code: 8462-4
+          display: Diastolic blood pressure
+      valueQuantity:
+        value: 60
+        unit: mmHg
+        system: http://unitsofmeasure.org
+        code: mm[Hg]
+      interpretation:
+      - coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+          code: L
+          display: Low
+        text: Below low normal
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 2089-1
+        display: Cholesterol in LDL [Mass/volume] in Serum or Plasma
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    effectiveDateTime: '2026-06-12T08:45:00+08:00'
+    performer:
+    - reference: Organization/organization-pgh-example
+    valueQuantity:
+      value: 160
+      unit: mg/dL
+      system: http://unitsofmeasure.org
+      code: mg/dL
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: H
+        display: High
+    referenceRange:
+    - low:
+        value: 0
+        unit: mg/dL
+        system: http://unitsofmeasure.org
+        code: mg/dL
+      high:
+        value: 100
+        unit: mg/dL
+        system: http://unitsofmeasure.org
+        code: mg/dL
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 2093-3
+        display: Cholesterol [Mass/volume] in Serum or Plasma
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    effectiveDateTime: '2026-06-12T08:45:00+08:00'
+    performer:
+    - reference: Organization/organization-pgh-example
+    valueQuantity:
+      value: 240
+      unit: mg/dL
+      system: http://unitsofmeasure.org
+      code: mg/dL
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: H
+        display: High
+    referenceRange:
+    - low:
+        value: 0
+        unit: mg/dL
+        system: http://unitsofmeasure.org
+        code: mg/dL
+      high:
+        value: 200
+        unit: mg/dL
+        system: http://unitsofmeasure.org
+        code: mg/dL
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: vital-signs
+        display: Vital Signs
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 39156-5
+        display: Body mass index (BMI) [Ratio]
+    subject:
+      reference: Patient/patient-single-example
+    effectiveDateTime: '2023-06-15T09:00:00Z'
+    performer:
+    - reference: PractitionerRole/practitionerrole-single-example
+    valueQuantity:
+      value: 23.5
+      unit: kg/m2
+      system: http://unitsofmeasure.org
+      code: kg/m2
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: "N"
+        display: Normal
+    derivedFrom:
+    - reference: Observation/observation-weight-example
+    - reference: Observation/observation-height-example
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: procedure
+        display: Procedure
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 11524-6
+        display: EKG study
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    effectiveDateTime: '2026-06-12T08:35:00+08:00'
+    performer:
+    - reference: Practitioner/practitioner-ed-example
+    valueString: 'ST-elevation in leads V1-V4, reciprocal ST-depression in leads II,
+      III, aVF. Rhythm: sinus tachycardia at 110 bpm.'
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: HH
+        display: Critical high
+    note:
+    - text: ECG findings consistent with acute anterior ST-elevation myocardial infarction.
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: survey
+        display: Survey
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 60832-3
+        display: Room temperature
+      text: Environmental temperature
+    subject:
+      reference: Location/location-single-example
+    effectiveDateTime: '2024-03-15T14:00:00Z'
+    performer:
+    - reference: Organization/organization-single-example
+    valueQuantity:
+      value: 22
+      unit: degrees Celsius
+      system: http://unitsofmeasure.org
+      code: Cel
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 2345-7
+        display: Glucose [Mass/volume] in Serum or Plasma
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    effectiveDateTime: '2026-06-12T08:45:00+08:00'
+    performer:
+    - reference: Organization/organization-pgh-example
+    valueQuantity:
+      value: 180
+      unit: mg/dL
+      system: http://unitsofmeasure.org
+      code: mg/dL
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: H
+        display: High
+    note:
+    - text: Elevated glucose consistent with stress hyperglycemia and known T2DM.
+    referenceRange:
+    - low:
+        value: 70
+        unit: mg/dL
+        system: http://unitsofmeasure.org
+        code: mg/dL
+      high:
+        value: 140
+        unit: mg/dL
+        system: http://unitsofmeasure.org
+        code: mg/dL
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 1558-6
+        display: Fasting glucose [Mass/volume] in Serum or Plasma
+    subject:
+      reference: Patient/patient-single-example
+    effectiveDateTime: '2024-01-15T08:00:00Z'
+    performer:
+    - reference: Organization/organization-single-example
+    valueQuantity:
+      value: 95
+      unit: mg/dL
+      system: http://unitsofmeasure.org
+      code: mg/dL
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: "N"
+        display: Normal
+    referenceRange:
+    - low:
+        value: 70
+        unit: mg/dL
+        system: http://unitsofmeasure.org
+        code: mg/dL
+      high:
+        value: 100
+        unit: mg/dL
+        system: http://unitsofmeasure.org
+        code: mg/dL
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 4548-4
+        display: Hemoglobin A1c/Hemoglobin.total in Blood
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    effectiveDateTime: '2026-06-12T08:45:00+08:00'
+    performer:
+    - reference: Organization/organization-pgh-example
+    valueQuantity:
+      value: 8.2
+      unit: "%"
+      system: http://unitsofmeasure.org
+      code: "%"
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: H
+        display: High
+    note:
+    - text: HbA1c indicates poor glycemic control over past 3 months.
+    referenceRange:
+    - low:
+        value: 4
+        unit: "%"
+        system: http://unitsofmeasure.org
+        code: "%"
+      high:
+        value: 5.7
+        unit: "%"
+        system: http://unitsofmeasure.org
+        code: "%"
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: vital-signs
+        display: Vital Signs
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 8302-2
+        display: Body height
+    subject:
+      reference: Patient/patient-single-example
+    effectiveDateTime: '2023-06-15T09:00:00Z'
+    performer:
+    - reference: Practitioner/practitioner-single-example
+    valueQuantity:
+      value: 173
+      unit: cm
+      system: http://unitsofmeasure.org
+      code: cm
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: vital-signs
+        display: Vital Signs
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 8867-4
+        display: Heart rate
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    effectiveDateTime: '2026-06-12T08:30:00+08:00'
+    performer:
+    - reference: Practitioner/practitioner-ed-example
+    valueQuantity:
+      value: 110
+      unit: beats/minute
+      system: http://unitsofmeasure.org
+      code: "/min"
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: H
+        display: High
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 24326-1
+        display: Electrolytes 1998 panel - Serum or Plasma
+    subject:
+      reference: Patient/patient-single-example
+    encounter:
+      reference: Encounter/encounter-single-example
+    effectiveDateTime: '2024-01-15T08:00:00Z'
+    performer:
+    - reference: Practitioner/practitioner-single-example
+    hasMember:
+    - reference: Observation/observation-glucose-example
+    - reference: Observation/observation-sodium-example
+    - reference: Observation/observation-potassium-example
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: survey
+        display: Survey
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 72514-3
+        display: Pain severity - 0-10 verbal numeric rating [Score] - Reported
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    effectiveDateTime: '2026-06-12T08:30:00+08:00'
+    performer:
+    - reference: Practitioner/practitioner-ed-example
+    valueQuantity:
+      value: 8
+      unit: score
+      system: http://unitsofmeasure.org
+      code: "{score}"
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: HH
+        display: Critical high
+    note:
+    - text: Patient reports crushing substernal chest pain radiating to left arm.
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    partOf:
+    - reference: Procedure/procedure-single-example
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: vital-signs
+        display: Vital Signs
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 85354-9
+        display: Blood pressure panel with all children optional
+    subject:
+      reference: Patient/patient-single-example
+    effectiveDateTime: '2024-02-20T14:30:00Z'
+    performer:
+    - reference: Practitioner/practitioner-single-example
+    component:
+    - code:
+        coding:
+        - system: http://loinc.org
+          code: 8480-6
+          display: Systolic blood pressure
+      valueQuantity:
+        value: 120
+        unit: mmHg
+        system: http://unitsofmeasure.org
+        code: mm[Hg]
+    - code:
+        coding:
+        - system: http://loinc.org
+          code: 8462-4
+          display: Diastolic blood pressure
+      valueQuantity:
+        value: 80
+        unit: mmHg
+        system: http://unitsofmeasure.org
+        code: mm[Hg]
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: vital-signs
+        display: Vital Signs
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 8867-4
+        display: Heart rate
+    subject:
+      reference: Patient/patient-single-example
+    effectiveDateTime: '2024-01-20T08:30:00Z'
+    performer:
+    - reference: PractitionerRole/practitionerrole-single-example
+    valueQuantity:
+      value: 72
+      unit: beats/minute
+      system: http://unitsofmeasure.org
+      code: "/min"
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: "N"
+        display: Normal
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 2823-3
+        display: Potassium [Moles/volume] in Serum or Plasma
+    subject:
+      reference: Patient/patient-single-example
+    effectiveDateTime: '2024-01-15T08:00:00Z'
+    performer:
+    - reference: Organization/organization-single-example
+    valueQuantity:
+      value: 4
+      unit: mmol/L
+      system: http://unitsofmeasure.org
+      code: mmol/L
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: "N"
+        display: Normal
+    referenceRange:
+    - low:
+        value: 3.5
+        unit: mmol/L
+        system: http://unitsofmeasure.org
+        code: mmol/L
+      high:
+        value: 5
+        unit: mmol/L
+        system: http://unitsofmeasure.org
+        code: mmol/L
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: vital-signs
+        display: Vital Signs
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 9279-1
+        display: Respiratory rate
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    effectiveDateTime: '2026-06-12T08:30:00+08:00'
+    performer:
+    - reference: Practitioner/practitioner-ed-example
+    valueQuantity:
+      value: 24
+      unit: breaths/minute
+      system: http://unitsofmeasure.org
+      code: "/min"
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: H
+        display: High
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 2951-2
+        display: Sodium [Moles/volume] in Serum or Plasma
+    subject:
+      reference: Patient/patient-single-example
+    effectiveDateTime: '2024-01-15T08:00:00Z'
+    performer:
+    - reference: Organization/organization-single-example
+    valueQuantity:
+      value: 140
+      unit: mmol/L
+      system: http://unitsofmeasure.org
+      code: mmol/L
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: "N"
+        display: Normal
+    referenceRange:
+    - low:
+        value: 135
+        unit: mmol/L
+        system: http://unitsofmeasure.org
+        code: mmol/L
+      high:
+        value: 145
+        unit: mmol/L
+        system: http://unitsofmeasure.org
+        code: mmol/L
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: vital-signs
+        display: Vital Signs
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 2708-6
+        display: Oxygen saturation in Arterial blood
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    effectiveDateTime: '2026-06-12T08:30:00+08:00'
+    performer:
+    - reference: Practitioner/practitioner-ed-example
+    valueQuantity:
+      value: 92
+      unit: "%"
+      system: http://unitsofmeasure.org
+      code: "%"
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: L
+        display: Low
+    referenceRange:
+    - low:
+        value: 95
+        unit: "%"
+        system: http://unitsofmeasure.org
+        code: "%"
+      high:
+        value: 100
+        unit: "%"
+        system: http://unitsofmeasure.org
+        code: "%"
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: vital-signs
+        display: Vital Signs
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 8310-5
+        display: Body temperature
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    effectiveDateTime: '2026-06-12T08:30:00+08:00'
+    performer:
+    - reference: Practitioner/practitioner-ed-example
+    valueQuantity:
+      value: 37.2
+      unit: degrees Celsius
+      system: http://unitsofmeasure.org
+      code: Cel
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: "N"
+        display: Normal
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: laboratory
+        display: Laboratory
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 10839-9
+        display: Troponin I.cardiac [Mass/volume] in Serum or Plasma
+    subject:
+      reference: Patient/patient-acs-example
+    encounter:
+      reference: Encounter/encounter-ed-example
+    effectiveDateTime: '2026-06-12T08:45:00+08:00'
+    performer:
+    - reference: Organization/organization-pgh-example
+    valueQuantity:
+      value: 2.5
+      unit: ng/mL
+      system: http://unitsofmeasure.org
+      code: ng/mL
+    interpretation:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation
+        code: H
+        display: High
+    note:
+    - text: Elevated troponin consistent with acute myocardial infarction.
+    referenceRange:
+    - low:
+        value: 0
+        unit: ng/mL
+        system: http://unitsofmeasure.org
+        code: ng/mL
+      high:
+        value: 0.04
+        unit: ng/mL
+        system: http://unitsofmeasure.org
+        code: ng/mL
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: vital-signs
+        display: Vital Signs
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 8310-5
+        display: Body temperature
+    subject:
+      reference: Patient/patient-single-example
+    encounter:
+      reference: Encounter/encounter-single-example
+    effectiveDateTime: '2023-01-01T10:30:00Z'
+    performer:
+    - reference: Practitioner/practitioner-single-example
+    valueQuantity:
+      value: 37
+      unit: degrees Celsius
+      system: http://unitsofmeasure.org
+      code: Cel
+  - resourceType: Observation
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    status: final
+    category:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/observation-category
+        code: vital-signs
+        display: Vital Signs
+    code:
+      coding:
+      - system: http://loinc.org
+        code: 29463-7
+        display: Body weight
+    subject:
+      reference: Patient/patient-single-example
+    effectiveDateTime: '2023-06-15T09:00:00Z'
+    performer:
+    - reference: Practitioner/practitioner-single-example
+    valueQuantity:
+      value: 70
+      unit: kg
+      system: http://unitsofmeasure.org
+      code: kg
+  Organization:
+  - resourceType: Organization
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    identifier:
+    - system: https://fhir.doh.gov.ph/phcore/Identifier/doh-nhfr-code
+      value: '1234567890'
+    - system: http://nhdr.gov.ph/fhir/Identifier/philhealthaccreditationnumber
+      value: PAN-2024-56789
+    - system: http://nhdr.gov.ph/fhir/Identifier/philhealthemployernumber
+      value: PEN-987654321
+    active: true
+    type:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/organization-type
+        code: prov
+        display: Healthcare Provider
+    name: Philippine General Hospital
+    telecom:
+    - system: phone
+      value: "+63-2-8651-7800"
+      use: work
+    - system: email
+      value: contact@pgh.gov.ph
+      use: work
+    address:
+    - extension:
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/region
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1300000000'
+          display: National Capital Region (NCR)
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380600000'
+          display: City of Manila
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1339000003'
+          display: Ermita
+      use: work
+      type: both
+      line:
+      - Taft Avenue
+      city: Manila
+      district: NCR
+      postalCode: '1000'
+      country: PH
+    contact:
+    - name:
+        text: Hospital Administrator
+      telecom:
+      - system: phone
+        value: "+63-2-8651-7801"
+      address:
+        extension:
+        - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/region
+          valueCoding:
+            system: https://psa.gov.ph/classification/psgc
+            code: '1300000000'
+            display: National Capital Region (NCR)
+        - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality
+          valueCoding:
+            system: https://psa.gov.ph/classification/psgc
+            code: '1380600000'
+            display: City of Manila
+        - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay
+          valueCoding:
+            system: https://psa.gov.ph/classification/psgc
+            code: '1339000003'
+            display: Ermita
+        use: work
+        line:
+        - Taft Avenue
+        city: Manila
+        postalCode: '1000'
+        country: PH
+  - resourceType: Organization
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    identifier:
+    - system: https://fhir.doh.gov.ph/phcore/Identifier/doh-nhfr-code
+      value: '1234567890'
+    - system: https://fhir.doh.gov.ph/phcore/Identifier/hcpn-code
+      value: Baguio City Health Care Provider Network
+    - system: http://nhdr.gov.ph/fhir/Identifier/philhealthaccreditationnumber
+      value: PAN-2024-56789
+    - system: http://nhdr.gov.ph/fhir/Identifier/philhealthemployernumber
+      value: PEN-987654321
+    - system: http://my-hospital.org/internal-id
+      value: HOSP-INT-12345
+    active: true
+    name: Department of Health - Sattelite Office
+    telecom:
+    - system: phone
+      value: "+63-2-8651-7800"
+      use: work
+    - system: email
+      value: contact@doh.gov.ph
+      use: work
+    address:
+    - extension:
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/region
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1401100000'
+          display: Benguet
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380200000'
+          display: City of Las Piñas
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380100001'
+          display: Barangay 1
+      use: work
+      line:
+      - 123 Hospital Street
+      postalCode: '1740'
+      country: PH
+    contact:
+    - name:
+        text: Health Facility Contact
+      telecom:
+      - system: phone
+        value: "+63-2-8651-7800"
+      address:
+        extension:
+        - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/region
+          valueCoding:
+            system: https://psa.gov.ph/classification/psgc
+            code: '1401100000'
+            display: Benguet
+        - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality
+          valueCoding:
+            system: https://psa.gov.ph/classification/psgc
+            code: '1380200000'
+            display: City of Las Piñas
+        - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay
+          valueCoding:
+            system: https://psa.gov.ph/classification/psgc
+            code: '1380100001'
+            display: Barangay 1
+        use: work
+        line:
+        - 125 Central Office Street
+        postalCode: '1740'
+        country: PH
+  Patient:
+  - resourceType: Patient
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    extension:
+    - extension:
+      - url: code
+        valueCodeableConcept:
+          coding:
+          - system: urn:iso:std:iso:3166
+            code: PH
+            display: Philippines
+      - url: period
+        valuePeriod:
+          start: '2020-01-01'
+          end: '2023-01-01'
+      url: http://hl7.org/fhir/StructureDefinition/patient-nationality
+    - url: http://hl7.org/fhir/StructureDefinition/patient-religion
+      valueCodeableConcept:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-ReligiousAffiliation
+          code: '1007'
+          display: Atheism
+    - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/race
+      valueCodeableConcept:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-Race
+          code: 2036-2
+          display: Filipino
+    identifier:
+    - system: http://philhealth.gov.ph/fhir/Identifier/philhealth-id
+      value: 63-584789845-5
+    active: true
+    name:
+    - family: Dela Cruz
+      given:
+      - Juan Jane
+      - Dela Fuente
+    gender: male
+    birthDate: '1980-01-01'
+    address:
+    - extension:
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380100001'
+          display: Barangay 1
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380200000'
+          display: City of Las Piñas
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/province
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '0402100000'
+          display: Cavite
+      line:
+      - 123 Mabini Street
+      - Barangay Malinis
+      city: Quezon City
+      district: NCR
+      postalCode: '1100'
+      country: PH
+  - resourceType: Patient
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    extension:
+    - extension:
+      - url: code
+        valueCodeableConcept:
+          coding:
+          - system: urn:iso:std:iso:3166
+            code: PH
+            display: Philippines
+      - url: period
+        valuePeriod:
+          start: '1981-03-15'
+      url: http://hl7.org/fhir/StructureDefinition/patient-nationality
+    - url: http://hl7.org/fhir/StructureDefinition/patient-religion
+      valueCodeableConcept:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-ReligiousAffiliation
+          code: '1041'
+          display: Roman Catholic Church
+    - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/indigenous-people
+      valueBoolean: false
+    - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/race
+      valueCodeableConcept:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-Race
+          code: 2036-2
+          display: Filipino
+    - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/educational-attainment
+      valueCodeableConcept:
+        coding:
+        - system: https://psa.gov.ph/classification/psced/level
+          code: C201301
+          display: Elementary Graduate
+    - extension:
+      - url: occupationClassification
+        valueCodeableConcept:
+          coding:
+          - system: https://psa.gov.ph/classification/psoc/unit
+            code: '911102'
+            display: Street Food Vendor
+      - url: occupationLength
+        valuePeriod:
+          start: '2015-01-01'
+      url: https://fhir.doh.gov.ph/phcore/StructureDefinition/occupation
+    identifier:
+    - system: http://philhealth.gov.ph/fhir/Identifier/philhealth-id
+      value: 63-584789845-5
+    active: true
+    name:
+    - use: official
+      family: Dela Cruz
+      given:
+      - Juan
+      - Carlos
+    telecom:
+    - system: phone
+      value: "+63-917-123-4567"
+      use: mobile
+    gender: male
+    birthDate: '1981-03-15'
+    address:
+    - extension:
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380200000'
+          display: City of Las Piñas
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/region
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1300000000'
+          display: National Capital Region (NCR)
+      use: home
+      type: both
+      line:
+      - 123 Mabini Street
+      - Barangay Malinis
+      city: City of Las Piñas
+      district: NCR
+      postalCode: '1740'
+      country: PH
+    generalPractitioner:
+    - reference: Practitioner/practitioner-ed-example
+    managingOrganization:
+      reference: Organization/organization-pgh-example
+  - resourceType: Patient
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    extension:
+    - extension:
+      - url: code
+        valueCodeableConcept:
+          coding:
+          - system: urn:iso:std:iso:3166
+            code: PH
+            display: Philippines
+      - url: period
+        valuePeriod:
+          start: '2020-01-01'
+          end: '2023-01-01'
+      url: http://hl7.org/fhir/StructureDefinition/patient-nationality
+    - url: http://hl7.org/fhir/StructureDefinition/patient-religion
+      valueCodeableConcept:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-ReligiousAffiliation
+          code: '1007'
+          display: Atheism
+    - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/indigenous-people
+      valueBoolean: true
+    - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/indigenous-group
+      valueCodeableConcept:
+        coding:
+        - system: https://fhir.doh.gov.ph/phcore/CodeSystem/indigenous-groups-cs
+          code: Aetas
+          display: Aetas
+    - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/race
+      valueCodeableConcept:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v3-Race
+          code: 2036-2
+          display: Filipino
+    - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/educational-attainment
+      valueCodeableConcept:
+        coding:
+        - system: https://psa.gov.ph/classification/psced/level
+          code: C201301
+          display: Elementary Graduate
+    - extension:
+      - url: occupationClassification
+        valueCodeableConcept:
+          coding:
+          - system: https://psa.gov.ph/classification/psoc/unit
+            code: '111102'
+            display: Hospital Administrator
+      - url: occupationLength
+        valuePeriod:
+          start: '2020-01-01'
+      url: https://fhir.doh.gov.ph/phcore/StructureDefinition/occupation
+    identifier:
+    - system: http://philhealth.gov.ph/fhir/Identifier/philhealth-id
+      value: 63-584789845-5
+    active: true
+    name:
+    - family: Dela Cruz
+      given:
+      - Juan Jane
+      - Dela Fuente
+    gender: male
+    birthDate: '1980-01-01'
+    address:
+    - extension:
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380100001'
+          display: Barangay 1
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380200000'
+          display: City of Las Piñas
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/province
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '0402100000'
+          display: Cavite
+      line:
+      - 123 Mabini Street
+      - Barangay Malinis
+      city: Quezon City
+      district: NCR
+      postalCode: '1100'
+      country: PH
+  Practitioner:
+  - resourceType: Practitioner
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    name:
+    - family: Santos
+      given:
+      - Maria
+      - Clara
+    telecom:
+    - system: phone
+      value: "+63-912-345-6789"
+      use: mobile
+    - system: email
+      value: maria.santos@example.ph
+      use: work
+    address:
+    - use: home
+      line:
+      - 1234 Mabini Street
+      city: Manila
+      state: NCR
+      postalCode: '1000'
+      country: PH
+    gender: female
+    birthDate: '1985-05-15'
+  - resourceType: Practitioner
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    extension:
+    - extension:
+      - url: value
+        valueCodeableConcept:
+          coding:
+          - system: http://snomed.info/sct
+            code: '248152002'
+            display: Female (finding)
+      - url: type
+        valueCodeableConcept:
+          coding:
+          - system: http://loinc.org
+            code: 76689-9
+            display: Sex Assigned at Birth
+      url: http://hl7.org/fhir/StructureDefinition/individual-recordedSexOrGender
+    - extension:
+      - url: value
+        valueCodeableConcept:
+          coding:
+          - system: http://loinc.org
+            code: LA22879-3
+            display: Identifies as female
+      url: http://hl7.org/fhir/StructureDefinition/individual-genderIdentity
+    - extension:
+      - url: value
+        valueCodeableConcept:
+          coding:
+          - system: http://loinc.org
+            code: LA29519-8
+            display: she/her/her/hers/herself
+      url: http://hl7.org/fhir/StructureDefinition/individual-pronouns
+    name:
+    - use: official
+      family: Santos
+      given:
+      - Maria
+      - Clara
+      suffix:
+      - MD
+    telecom:
+    - system: phone
+      value: "+63-912-345-6789"
+      use: mobile
+    - system: email
+      value: maria.santos@pgh.gov.ph
+      use: work
+    address:
+    - extension:
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1339000003'
+          display: Ermita
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380600000'
+          display: City of Manila
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/region
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1300000000'
+          display: National Capital Region (NCR)
+      use: home
+      type: both
+      line:
+      - 1234 Mabini Street
+      city: Manila
+      district: NCR
+      postalCode: '1000'
+      country: PH
+    gender: female
+    birthDate: '1985-05-15'
+    qualification:
+    - identifier:
+      - system: http://prc.gov.ph/fhir/Identifier/prc-license
+        value: '0123456'
+      code:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v2-0360
+          code: MD
+          display: Doctor of Medicine
+      period:
+        start: '2010-07-15'
+      issuer:
+        reference: Organization/organization-pgh-example
+    communication:
+    - coding:
+      - system: urn:ietf:bcp:47
+        code: fil
+        display: Filipino
+    - coding:
+      - system: urn:ietf:bcp:47
+        code: en
+        display: English
+  - resourceType: Practitioner
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    extension:
+    - extension:
+      - url: value
+        valueCodeableConcept:
+          coding:
+          - system: http://snomed.info/sct
+            code: '248152002'
+            display: Female (finding)
+      - url: type
+        valueCodeableConcept:
+          coding:
+          - system: http://loinc.org
+            code: 76689-9
+            display: Sex Assigned at Birth
+      url: http://hl7.org/fhir/StructureDefinition/individual-recordedSexOrGender
+    - extension:
+      - url: value
+        valueCodeableConcept:
+          coding:
+          - system: http://loinc.org
+            code: LA22879-3
+            display: Identifies as female
+      url: http://hl7.org/fhir/StructureDefinition/individual-genderIdentity
+    - extension:
+      - url: value
+        valueCodeableConcept:
+          coding:
+          - system: http://loinc.org
+            code: LA29519-8
+            display: she/her/her/hers/herself
+      url: http://hl7.org/fhir/StructureDefinition/individual-pronouns
+    name:
+    - use: official
+      family: Santos
+      given:
+      - Maria
+      - Clara
+      suffix:
+      - MD
+    telecom:
+    - system: phone
+      value: "+63-912-345-6789"
+      use: mobile
+    - system: email
+      value: maria.santos@example.ph
+      use: work
+    address:
+    - extension:
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380608000'
+          display: Ermita
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380600000'
+          display: City of Manila
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/region
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1300000000'
+          display: National Capital Region (NCR)
+      use: home
+      line:
+      - 1234 Mabini Street
+      postalCode: '1000'
+      country: PH
+    gender: female
+    birthDate: '1985-05-15'
+    qualification:
+    - identifier:
+      - system: http://prc.gov.ph/fhir/Identifier/prc-license
+        value: '0123456'
+      code:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v2-0360
+          code: MD
+          display: Doctor of Medicine
+      period:
+        start: '2010-07-15'
+      issuer:
+        reference: Organization/organization-single-example
+    communication:
+    - coding:
+      - system: urn:ietf:bcp:47
+        code: fil
+        display: Filipino
+    - coding:
+      - system: urn:ietf:bcp:47
+        code: en
+        display: English
+  PractitionerRole:
+  - resourceType: PractitionerRole
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    identifier:
+    - system: http://doh.gov.ph/fhir/Identifier/practitioner-role-id
+      value: PR-ED-001
+    active: true
+    practitioner:
+      reference: Practitioner/practitioner-ed-example
+    organization:
+      reference: Organization/organization-pgh-example
+    code:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/practitioner-role
+        code: doctor
+        display: Doctor
+    specialty:
+    - coding:
+      - system: http://snomed.info/sct
+        code: '773568002'
+        display: Emergency medicine
+    telecom:
+    - system: phone
+      value: "+63-2-8651-7802"
+      use: work
+    - system: email
+      value: ed.attending@pgh.gov.ph
+      use: work
+  - resourceType: PractitionerRole
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    identifier:
+    - system: http://doh.gov.ph/fhir/Identifier/practitioner-role-id
+    active: true
+    practitioner:
+      reference: Practitioner/practitioner-single-example
+    organization:
+      reference: Organization/organization-single-example
+    code:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/practitioner-role
+        code: doctor
+        display: Doctor
+    specialty:
+    - coding:
+      - system: http://snomed.info/sct
+        code: '394802001'
+        display: General medicine
+    location:
+    - reference: Location/location-single-example
+    telecom:
+    - system: phone
+      value: "+63-2-8651-7800"
+    - system: email
+      value: maria.santos@doh.gov.ph
+  Procedure:
+  - resourceType: Procedure
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-procedure
+    identifier:
+    - use: usual
+      system: https://fhir.doh.gov.ph/phcore/NamingSystem/procedure-id
+      value: PROC-2024-000123
+    - use: secondary
+      system: http://philhealth.gov.ph/procedure
+      value: PH-APP-789456
+    basedOn:
+    - display: ServiceRequest for emergency appendectomy
+    partOf:
+    - display: Episode of care for acute abdomen treatment
+    status: completed
+    statusReason:
+      coding:
+      - system: http://snomed.info/sct
+        code: '385669000'
+        display: Successful
+    category:
+      coding:
+      - system: http://snomed.info/sct
+        code: '387713003'
+        display: Surgical procedure
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '80146002'
+        display: Appendectomy
+      text: Laparoscopic appendectomy
+    subject:
+      reference: Patient/patient-single-example
+    encounter:
+      reference: Encounter/encounter-single-example
+    performedPeriod:
+      start: '2024-01-15T08:30:00+08:00'
+      end: '2024-01-15T10:15:00+08:00'
+    recorder:
+      reference: Practitioner/practitioner-single-example
+    asserter:
+      reference: RelatedPerson/relatedperson-single-example
+    performer:
+    - function:
+        coding:
+        - system: http://snomed.info/sct
+          code: '223366009'
+          display: Healthcare professional
+      actor:
+        reference: Practitioner/practitioner-single-example
+      onBehalfOf:
+        reference: Organization/organization-single-example
+    - function:
+        coding:
+        - system: http://snomed.info/sct
+          code: '133932002'
+          display: Caregiver
+      actor:
+        reference: RelatedPerson/relatedperson-single-example
+    reasonCode:
+    - coding:
+      - system: http://snomed.info/sct
+        code: '74400008'
+        display: Appendicitis
+      text: Acute appendicitis with peritonitis
+    reasonReference:
+    - reference: Condition/condition-single-example
+    bodySite:
+    - coding:
+      - system: http://snomed.info/sct
+        code: '66754008'
+        display: Appendix structure
+      text: Right lower quadrant abdomen
+    outcome:
+      coding:
+      - system: http://snomed.info/sct
+        code: '385669000'
+        display: Successful
+      text: Procedure completed without complications
+    followUp:
+    - coding:
+      - system: http://snomed.info/sct
+        code: '226007004'
+        display: Post-surgical wound care
+      text: Follow-up visit in 7 days for wound check
+    note:
+    - time: '2024-01-15T10:30:00+08:00'
+      text: Patient tolerated procedure well. Minimal blood loss. Appendix was inflamed
+        but intact. No perforation noted.
+    usedCode:
+    - coding:
+      - system: http://snomed.info/sct
+        code: '261424001'
+        display: Primary operation
+      text: Laparoscopic instruments
+  Provenance:
+  - resourceType: Provenance
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-provenance
+    target:
+    - reference: Observation/observation-bp-example
+    occurredDateTime: '2012-09-17T08:30:00+08:00'
+    recorded: '2012-09-17T08:30:15+08:00'
+    reason:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-ActReason
+        code: TREAT
+        display: treatment
+    activity:
+      coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-DataOperation
+        code: CREATE
+        display: create
+    agent:
+    - type:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/provenance-participant-type
+          code: author
+          display: Author
+      who:
+        reference: Practitioner/practitioner-single-example
+      onBehalfOf:
+        reference: Organization/organization-single-example
+    signature:
+    - type:
+      - system: urn:iso-astm:E1762-95:2013
+        code: 1.2.840.10065.1.12.1.1
+        display: Author's Signature
+      when: '2012-09-17T08:30:15+08:00'
+      who:
+        reference: Practitioner/practitioner-single-example
+      targetFormat: xml
+      sigFormat: xml
+      data: dGhpcyBibG9iIGlzIHNuZWFrZWQ=
+  RelatedPerson:
+  - resourceType: RelatedPerson
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    identifier:
+    - use: official
+      type:
+        coding:
+        - system: http://terminology.hl7.org/CodeSystem/v2-0203
+          code: NI
+      system: http://philsys.gov.ph/fhir/Identifier/philsys-id
+      value: 1234-1234567-1
+    patient:
+      reference: Patient/patient-single-example
+    relationship:
+    - coding:
+      - system: http://terminology.hl7.org/CodeSystem/v3-RoleCode
+        code: MTH
+        display: mother
+      text: Mother
+    name:
+    - use: official
+      text: Maria Cruz Santos
+      family: Santos
+      given:
+      - Maria
+      - Cruz
+    telecom:
+    - system: phone
+      value: "+63-912-345-6789"
+      use: mobile
+    gender: female
+    birthDate: '1955-01-01'
+    address:
+    - extension:
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/barangay
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380608000'
+          display: Ermita
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/city-municipality
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1380600000'
+          display: City of Manila
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/province
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '0402100000'
+          display: Cavite
+      - url: https://fhir.doh.gov.ph/phcore/StructureDefinition/region
+        valueCoding:
+          system: https://psa.gov.ph/classification/psgc
+          code: '1300000000'
+          display: National Capital Region (NCR)
+      line:
+      - 123 Mabini Street
+      postalCode: '1100'
+      country: PH
+  ServiceRequest:
+  - resourceType: ServiceRequest
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-serviceRequest
+    status: active
+    intent: order
+    category:
+    - coding:
+      - system: http://snomed.info/sct
+        code: '108252007'
+        display: Laboratory procedure
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '33747003'
+        display: Glucose measurement, blood
+      text: Fasting blood glucose test
+    subject:
+      reference: Patient/patient-single-example
+    encounter:
+      reference: Encounter/encounter-single-example
+    occurrenceDateTime: '2024-03-15T10:00:00+08:00'
+    authoredOn: '2024-03-15T09:30:00+08:00'
+    requester:
+      reference: Practitioner/practitioner-single-example
+    supportingInfo:
+    - reference: Condition/condition-single-example
+  Task:
+  - resourceType: Task
+    meta:
+      profile:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-task
+    status: requested
+    intent: order
+    priority: routine
+    code:
+      coding:
+      - system: http://snomed.info/sct
+        code: '82078001'
+        display: Collection of blood specimen for laboratory
+      text: Blood sample collection
+    description: Collect blood sample for complete blood count (CBC) testing
+    for:
+      reference: Patient/patient-single-example
+    encounter:
+      reference: Encounter/encounter-single-example
+    executionPeriod:
+      start: '2024-03-15T09:00:00+08:00'
+      end: '2024-03-15T10:00:00+08:00'
+    authoredOn: '2024-03-15T08:30:00+08:00'
+    lastModified: '2024-03-15T08:30:00+08:00'
+    requester:
+      reference: Practitioner/practitioner-single-example
+    owner:
+      reference: Organization/organization-single-example
+    note:
+    - authorReference:
+        reference: Practitioner/practitioner-single-example
+      time: '2024-03-15T08:30:00+08:00'
+      text: Patient has confirmed appointment. Please ensure fasting status is verified
+        before sample collection.
+:patch_body_list:
+  :FHIRPATHPatchJson: {}
+  :JSONPatch: {}
+:resource_types_to_search:
+- Organization
+- Practitioner
+- PractitionerRole
+- Patient
+- RelatedPerson
+- Location
+- Encounter
+- Observation
+- Procedure
+- ServiceRequest
+- MedicationAdministration
+- MedicationDispense
+- MedicationStatement
+- Immunization

@@ -1,0 +1,166 @@
+---
+:name: ph_core_practitionerrole
+:class_name: PhCorePractitionerroleSequence
+:version: v0.2.0-ci-build
+:reformatted_version: v020_ci_build
+:resource: PractitionerRole
+:profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+:profile_name: PH Core PractitionerRole
+:profile_version: 0.2.0
+:title: PractitionerRole
+:short_description: Verify support for the server capabilities required by the PH
+  Core PractitionerRole.
+:interactions:
+- :code: read
+  :expectation: SHALL
+- :code: search-type
+  :expectation: SHALL
+:operations: []
+:searches:
+- :names:
+  - _id
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - practitioner
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - organization
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - specialty
+  :expectation: MAY
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :_id:
+    :paths:
+    - id
+    :full_paths:
+    - PractitionerRole.id
+    :comparators: {}
+    :values: []
+    :type: http://hl7.org/fhirpath/System.String
+    :contains_multiple: false
+  :practitioner:
+    :paths:
+    - practitioner
+    :full_paths:
+    - PractitionerRole.practitioner
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :target_resource: Practitioner
+  :organization:
+    :paths:
+    - organization
+    :full_paths:
+    - PractitionerRole.organization
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :target_resource: Organization
+  :specialty:
+    :paths:
+    - specialty
+    :full_paths:
+    - PractitionerRole.specialty
+    :comparators: {}
+    :values: []
+    :type: CodeableConcept
+    :contains_multiple: true
+:include_params: []
+:revincludes: []
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices: []
+  :elements:
+  - :path: identifier
+  - :path: practitioner
+    :types:
+    - Reference
+    :target_profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+  - :path: organization
+    :types:
+    - Reference
+    :target_profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+  - :path: code
+  - :path: code.coding
+  - :path: code.text
+  - :path: specialty
+  - :path: telecom
+  - :path: telecom.system
+  - :path: telecom.value
+:mandatory_elements:
+- PractitionerRole.notAvailable.description
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/contact-point-system
+  :path: telecom.system
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/contact-point-use
+  :path: telecom.use
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/days-of-week
+  :path: availableTime.daysOfWeek
+:references:
+- :path: PractitionerRole.practitioner
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+  :resource_types:
+  - Practitioner
+- :path: PractitionerRole.organization
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+  :resource_types:
+  - Organization
+- :path: PractitionerRole.location
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+  :resource_types:
+  - Location
+- :path: PractitionerRole.healthcareService
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/HealthcareService|4.0.1
+- :path: PractitionerRole.endpoint
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Endpoint|4.0.1
+:tests:
+- :id: ph_core_v020_ci_build_practitioner_role_read_test
+  :file_name: practitioner_role_read_test.rb
+- :id: ph_core_v020_ci_build_practitioner_role__id_search_test
+  :file_name: practitioner_role_id_search_test.rb
+- :id: ph_core_v020_ci_build_practitioner_role_practitioner_search_test
+  :file_name: practitioner_role_practitioner_search_test.rb
+- :id: ph_core_v020_ci_build_practitioner_role_organization_search_test
+  :file_name: practitioner_role_organization_search_test.rb
+- :id: ph_core_v020_ci_build_practitioner_role_specialty_search_test
+  :file_name: practitioner_role_specialty_search_test.rb
+- :id: ph_core_v020_ci_build_practitioner_role_validation_test
+  :file_name: practitioner_role_validation_test.rb
+- :id: ph_core_v020_ci_build_practitioner_role_must_support_test
+  :file_name: practitioner_role_must_support_test.rb
+- :id: ph_core_v020_ci_build_practitioner_role_reference_resolution_test
+  :file_name: practitioner_role_reference_resolution_test.rb
+:id: ph_core_v020_ci_build_practitioner_role
+:file_name: practitioner_role_group.rb
+:delayed_references:
+- :path: practitioner
+  :resources:
+  - Practitioner
+- :path: organization
+  :resources:
+  - Organization

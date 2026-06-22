@@ -1,0 +1,1383 @@
+---
+:ig_id: fhir.ph.core
+:ig_title: PH Core
+:ig_module_name_prefix: PHCore
+:ig_test_id_prefix: ph_core
+:ig_version: v0.2.0-ci-build
+:groups:
+- :name: ph_core_patient
+  :class_name: PhCorePatientSequence
+  :version: v0.2.0-ci-build
+  :reformatted_version: v020_ci_build
+  :resource: Patient
+  :profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+  :profile_name: PH Core Patient
+  :profile_version: 0.2.0
+  :title: Patient
+  :short_description: Verify support for the server capabilities required by the PH
+    Core Patient.
+  :interactions:
+  - :code: read
+    :expectation: SHALL
+  - :code: search-type
+    :expectation: SHALL
+  :operations: []
+  :searches:
+  - :names:
+    - _id
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - identifier
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory:
+    - identifier
+    :must_support_or_mandatory: false
+  - :names:
+    - name
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - birthdate
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - gender
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  :search_definitions:
+    :_id:
+      :paths:
+      - id
+      :full_paths:
+      - Patient.id
+      :comparators: {}
+      :values: []
+      :type: http://hl7.org/fhirpath/System.String
+      :contains_multiple: false
+    :identifier:
+      :paths:
+      - identifier
+      :full_paths:
+      - Patient.identifier
+      :comparators: {}
+      :values: []
+      :type: Identifier
+      :contains_multiple: true
+    :name:
+      :paths:
+      - name
+      :full_paths:
+      - Patient.name
+      :comparators: {}
+      :values: []
+      :type: HumanName
+      :contains_multiple: true
+    :birthdate:
+      :paths:
+      - birthDate
+      :full_paths:
+      - Patient.birthDate
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
+      :values: []
+      :type: date
+      :contains_multiple: false
+    :gender:
+      :paths:
+      - gender
+      :full_paths:
+      - Patient.gender
+      :comparators: {}
+      :values: []
+      :type: code
+      :contains_multiple: false
+  :include_params: []
+  :revincludes: []
+  :required_concepts:
+  - maritalStatus
+  - contact.relationship
+  :must_supports:
+    :extensions: []
+    :slices:
+    - :slice_id: Patient.identifier:PHCorePhilHealthID
+      :slice_name: PHCorePhilHealthID
+      :path: identifier
+      :discriminator:
+        :type: value
+        :values: []
+    - :slice_id: Patient.identifier:PHCorePhilSysID
+      :slice_name: PHCorePhilSysID
+      :path: identifier
+      :discriminator:
+        :type: value
+        :values: []
+    :elements:
+    - :path: name
+    - :path: telecom
+    - :path: gender
+    - :path: birthDate
+    - :path: address
+    - :path: maritalStatus
+    - :path: maritalStatus.coding
+    - :path: maritalStatus.text
+    - :path: contact.relationship
+    - :path: contact.relationship.coding
+    - :path: contact.relationship.text
+    - :path: contact.address
+    - :path: communication.language
+    - :path: communication.language.coding
+    - :path: communication.language.text
+  :mandatory_elements:
+  - Patient.communication.language
+  - Patient.link.other
+  - Patient.link.type
+  :bindings:
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/administrative-gender
+    :path: gender
+  - :type: CodeableConcept
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/marital-status
+    :path: maritalStatus
+  - :type: CodeableConcept
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/relatedperson-relationshiptype
+    :path: contact.relationship
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/administrative-gender
+    :path: contact.gender
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/link-type
+    :path: link.type
+  - :type: CodeableConcept
+    :strength: required
+    :system: https://fhir.doh.gov.ph/phcore/ValueSet/indigenous-groups-vs
+    :path: value
+    :extensions:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/indigenous-group
+  - :type: CodeableConcept
+    :strength: extensible
+    :system: https://fhir.doh.gov.ph/phcore/ValueSet/occupational-classifications
+    :path: value
+    :extensions:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/occupation
+    - occupationClassification
+  - :type: CodeableConcept
+    :strength: required
+    :system: http://terminology.hl7.org/ValueSet/v3-Race
+    :path: value
+    :extensions:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/race
+  - :type: CodeableConcept
+    :strength: extensible
+    :system: https://fhir.doh.gov.ph/phcore/ValueSet/educational-attainments
+    :path: value
+    :extensions:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/educational-attainment
+  - :type: CodeableConcept
+    :strength: extensible
+    :system: https://fhir.doh.gov.ph/phcore/ValueSet/ph-core-disability-type-vs
+    :path: value
+    :extensions:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-pwd-disability
+    - disabilityType
+  - :type: CodeableConcept
+    :strength: extensible
+    :system: https://fhir.doh.gov.ph/phcore/ValueSet/barangays
+    :path: value
+    :extensions:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-pwd-disability
+    - issuingLGU
+  :references:
+  - :path: Patient.contact.organization
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    :resource_types:
+    - Organization
+  - :path: Patient.generalPractitioner
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    :resource_types:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+  - :path: Patient.managingOrganization
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    :resource_types:
+    - Organization
+  - :path: Patient.link.other
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    :resource_types:
+    - Patient
+    - RelatedPerson
+  :delayed_references:
+  - :path: contact.organization
+    :resources:
+    - Organization
+  - :path: generalPractitioner
+    :resources:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+  - :path: managingOrganization
+    :resources:
+    - Organization
+- :name: ph_core_organization
+  :class_name: PhCoreOrganizationSequence
+  :version: v0.2.0-ci-build
+  :reformatted_version: v020_ci_build
+  :resource: Organization
+  :profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+  :profile_name: PH Core Organization
+  :profile_version: 0.2.0
+  :title: Organization
+  :short_description: Verify support for the server capabilities required by the PH
+    Core Organization.
+  :interactions:
+  - :code: read
+    :expectation: SHALL
+  - :code: search-type
+    :expectation: SHALL
+  :operations: []
+  :searches:
+  - :names:
+    - _id
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - identifier
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory:
+    - identifier
+    :must_support_or_mandatory: false
+  - :names:
+    - name
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - active
+    :expectation: MAY
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  :search_definitions:
+    :_id:
+      :paths:
+      - id
+      :full_paths:
+      - Organization.id
+      :comparators: {}
+      :values: []
+      :type: http://hl7.org/fhirpath/System.String
+      :contains_multiple: false
+    :identifier:
+      :paths:
+      - identifier
+      :full_paths:
+      - Organization.identifier
+      :comparators: {}
+      :values: []
+      :type: Identifier
+      :contains_multiple: true
+    :name:
+      :paths:
+      - name
+      - alias
+      :full_paths:
+      - Organization.name
+      - Organization.alias
+      :comparators: {}
+      :values: []
+      :type: string
+      :contains_multiple: false
+    :active:
+      :paths:
+      - active
+      :full_paths:
+      - Organization.active
+      :comparators: {}
+      :values: []
+      :type: boolean
+      :contains_multiple: false
+  :include_params: []
+  :revincludes: []
+  :required_concepts: []
+  :must_supports:
+    :extensions: []
+    :slices:
+    - :slice_id: Organization.identifier:NhfrCode
+      :slice_name: NhfrCode
+      :path: identifier
+      :discriminator:
+        :type: value
+        :values: []
+    - :slice_id: Organization.identifier:HcpnCode
+      :slice_name: HcpnCode
+      :path: identifier
+      :discriminator:
+        :type: value
+        :values: []
+    - :slice_id: Organization.identifier:PAN
+      :slice_name: PAN
+      :path: identifier
+      :discriminator:
+        :type: value
+        :values: []
+    - :slice_id: Organization.identifier:PEN
+      :slice_name: PEN
+      :path: identifier
+      :discriminator:
+        :type: value
+        :values: []
+    :elements:
+    - :path: active
+    - :path: type
+    - :path: type.coding
+    - :path: type.text
+    - :path: name
+    - :path: telecom
+    - :path: address
+    - :path: contact.purpose
+    - :path: contact.purpose.coding
+    - :path: contact.purpose.text
+    - :path: contact.address
+  :mandatory_elements: []
+  :bindings: []
+  :references:
+  - :path: Organization.partOf
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    :resource_types:
+    - Organization
+  - :path: Organization.endpoint
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Endpoint|4.0.1
+  :delayed_references:
+  - :path: partOf
+    :resources:
+    - Organization
+- :name: ph_core_practitioner
+  :class_name: PhCorePractitionerSequence
+  :version: v0.2.0-ci-build
+  :reformatted_version: v020_ci_build
+  :resource: Practitioner
+  :profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+  :profile_name: PH Core Practitioner
+  :profile_version: 0.2.0
+  :title: Practitioner
+  :short_description: Verify support for the server capabilities required by the PH
+    Core Practitioner.
+  :interactions:
+  - :code: read
+    :expectation: SHALL
+  - :code: search-type
+    :expectation: SHALL
+  :operations: []
+  :searches:
+  - :names:
+    - _id
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - identifier
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory:
+    - identifier
+    :must_support_or_mandatory: false
+  - :names:
+    - name
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - active
+    :expectation: MAY
+    :names_not_must_support_or_mandatory:
+    - active
+    :must_support_or_mandatory: false
+  :search_definitions:
+    :_id:
+      :paths:
+      - id
+      :full_paths:
+      - Practitioner.id
+      :comparators: {}
+      :values: []
+      :type: http://hl7.org/fhirpath/System.String
+      :contains_multiple: false
+    :identifier:
+      :paths:
+      - identifier
+      :full_paths:
+      - Practitioner.identifier
+      :comparators: {}
+      :values: []
+      :type: Identifier
+      :contains_multiple: true
+    :name:
+      :paths:
+      - name
+      :full_paths:
+      - Practitioner.name
+      :comparators: {}
+      :values: []
+      :type: HumanName
+      :contains_multiple: true
+    :active:
+      :paths:
+      - active
+      :full_paths:
+      - Practitioner.active
+      :comparators: {}
+      :values: []
+      :type: boolean
+      :contains_multiple: false
+  :include_params: []
+  :revincludes: []
+  :required_concepts: []
+  :must_supports:
+    :extensions: []
+    :slices: []
+    :elements:
+    - :path: name
+    - :path: name.family
+    - :path: name.given
+    - :path: telecom
+    - :path: address
+    - :path: gender
+    - :path: birthDate
+    - :path: qualification.code
+    - :path: qualification.code.coding
+    - :path: qualification.code.text
+    - :path: communication
+    - :path: communication.coding
+    - :path: communication.text
+  :mandatory_elements:
+  - Practitioner.qualification.code
+  :bindings:
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/name-use
+    :path: name.use
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/administrative-gender
+    :path: gender
+  :references:
+  - :path: Practitioner.qualification.issuer
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Organization|4.0.1
+  :delayed_references: []
+- :name: ph_core_practitionerrole
+  :class_name: PhCorePractitionerroleSequence
+  :version: v0.2.0-ci-build
+  :reformatted_version: v020_ci_build
+  :resource: PractitionerRole
+  :profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+  :profile_name: PH Core PractitionerRole
+  :profile_version: 0.2.0
+  :title: PractitionerRole
+  :short_description: Verify support for the server capabilities required by the PH
+    Core PractitionerRole.
+  :interactions:
+  - :code: read
+    :expectation: SHALL
+  - :code: search-type
+    :expectation: SHALL
+  :operations: []
+  :searches:
+  - :names:
+    - _id
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - practitioner
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - organization
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - specialty
+    :expectation: MAY
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  :search_definitions:
+    :_id:
+      :paths:
+      - id
+      :full_paths:
+      - PractitionerRole.id
+      :comparators: {}
+      :values: []
+      :type: http://hl7.org/fhirpath/System.String
+      :contains_multiple: false
+    :practitioner:
+      :paths:
+      - practitioner
+      :full_paths:
+      - PractitionerRole.practitioner
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Practitioner
+    :organization:
+      :paths:
+      - organization
+      :full_paths:
+      - PractitionerRole.organization
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Organization
+    :specialty:
+      :paths:
+      - specialty
+      :full_paths:
+      - PractitionerRole.specialty
+      :comparators: {}
+      :values: []
+      :type: CodeableConcept
+      :contains_multiple: true
+  :include_params: []
+  :revincludes: []
+  :required_concepts: []
+  :must_supports:
+    :extensions: []
+    :slices: []
+    :elements:
+    - :path: identifier
+    - :path: practitioner
+      :types:
+      - Reference
+      :target_profiles:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - :path: organization
+      :types:
+      - Reference
+      :target_profiles:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    - :path: code
+    - :path: code.coding
+    - :path: code.text
+    - :path: specialty
+    - :path: telecom
+    - :path: telecom.system
+    - :path: telecom.value
+  :mandatory_elements:
+  - PractitionerRole.notAvailable.description
+  :bindings:
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/contact-point-system
+    :path: telecom.system
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/contact-point-use
+    :path: telecom.use
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/days-of-week
+    :path: availableTime.daysOfWeek
+  :references:
+  - :path: PractitionerRole.practitioner
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    :resource_types:
+    - Practitioner
+  - :path: PractitionerRole.organization
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    :resource_types:
+    - Organization
+  - :path: PractitionerRole.location
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+    :resource_types:
+    - Location
+  - :path: PractitionerRole.healthcareService
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/HealthcareService|4.0.1
+  - :path: PractitionerRole.endpoint
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Endpoint|4.0.1
+  :delayed_references:
+  - :path: practitioner
+    :resources:
+    - Practitioner
+  - :path: organization
+    :resources:
+    - Organization
+- :name: ph_core_condition
+  :class_name: PhCoreConditionSequence
+  :version: v0.2.0-ci-build
+  :reformatted_version: v020_ci_build
+  :resource: Condition
+  :profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-condition
+  :profile_name: PH Core Condition
+  :profile_version: 0.2.0
+  :title: Condition
+  :short_description: Verify support for the server capabilities required by the PH
+    Core Condition.
+  :interactions:
+  - :code: read
+    :expectation: SHALL
+  - :code: search-type
+    :expectation: SHALL
+  :operations: []
+  :searches:
+  - :names:
+    - patient
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - _id
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - encounter
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - code
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - clinical-status
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  :search_definitions:
+    :_id:
+      :paths:
+      - id
+      :full_paths:
+      - Condition.id
+      :comparators: {}
+      :values: []
+      :type: http://hl7.org/fhirpath/System.String
+      :contains_multiple: false
+    :patient:
+      :paths:
+      - subject
+      :full_paths:
+      - Condition.subject
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Patient
+    :encounter:
+      :paths:
+      - encounter
+      :full_paths:
+      - Condition.encounter
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Encounter
+    :code:
+      :paths:
+      - code
+      :full_paths:
+      - Condition.code
+      :comparators: {}
+      :values: []
+      :type: CodeableConcept
+      :contains_multiple: false
+    :clinical-status:
+      :paths:
+      - clinicalStatus
+      :full_paths:
+      - Condition.clinicalStatus
+      :comparators: {}
+      :values:
+      - active
+      - recurrence
+      - relapse
+      - inactive
+      - remission
+      - resolved
+      :type: CodeableConcept
+      :contains_multiple: false
+  :include_params: []
+  :revincludes: []
+  :required_concepts:
+  - clinicalStatus
+  - verificationStatus
+  :must_supports:
+    :extensions: []
+    :slices: []
+    :elements:
+    - :path: clinicalStatus
+    - :path: clinicalStatus.coding
+    - :path: clinicalStatus.text
+    - :path: verificationStatus
+    - :path: verificationStatus.coding
+    - :path: verificationStatus.text
+    - :path: category
+    - :path: severity
+    - :path: code
+    - :path: code.coding
+    - :path: code.text
+    - :path: bodySite
+    - :path: bodySite.coding
+    - :path: bodySite.text
+    - :path: subject
+      :types:
+      - Reference
+      :target_profiles:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - :path: encounter
+      :types:
+      - Reference
+      :target_profiles:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+    - :path: stage.summary
+    - :path: stage.summary.coding
+    - :path: stage.summary.text
+    - :path: stage.type
+    - :path: stage.type.coding
+    - :path: stage.type.text
+    - :path: evidence.code
+    - :path: evidence.code.coding
+    - :path: evidence.code.text
+    - :path: note
+  :mandatory_elements:
+  - Condition.subject
+  :bindings:
+  - :type: CodeableConcept
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/condition-clinical
+    :path: clinicalStatus
+  - :type: CodeableConcept
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/condition-ver-status
+    :path: verificationStatus
+  :references:
+  - :path: Condition.subject
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    :resource_types:
+    - Patient
+  - :path: Condition.encounter
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+    :resource_types:
+    - Encounter
+  - :path: Condition.recorder
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    :resource_types:
+    - Practitioner
+    - PractitionerRole
+    - Patient
+    - RelatedPerson
+  - :path: Condition.asserter
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    :resource_types:
+    - Practitioner
+    - PractitionerRole
+    - Patient
+    - RelatedPerson
+  - :path: Condition.stage.assessment
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/ClinicalImpression|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/DiagnosticReport|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Observation|4.0.1
+  - :path: Condition.evidence.detail
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Resource|4.0.1
+  :delayed_references:
+  - :path: recorder
+    :resources:
+    - Practitioner
+    - PractitionerRole
+  - :path: asserter
+    :resources:
+    - Practitioner
+    - PractitionerRole
+- :name: ph_core_encounter
+  :class_name: PhCoreEncounterSequence
+  :version: v0.2.0-ci-build
+  :reformatted_version: v020_ci_build
+  :resource: Encounter
+  :profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+  :profile_name: PH Core Encounter
+  :profile_version: 0.2.0
+  :title: Encounter
+  :short_description: Verify support for the server capabilities required by the PH
+    Core Encounter.
+  :interactions:
+  - :code: read
+    :expectation: SHALL
+  - :code: search-type
+    :expectation: SHALL
+  :operations: []
+  :searches:
+  - :names:
+    - patient
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - _id
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - status
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - class
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - date
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  :search_definitions:
+    :_id:
+      :paths:
+      - id
+      :full_paths:
+      - Encounter.id
+      :comparators: {}
+      :values: []
+      :type: http://hl7.org/fhirpath/System.String
+      :contains_multiple: false
+    :patient:
+      :paths:
+      - subject
+      :full_paths:
+      - Encounter.subject
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Patient
+    :status:
+      :paths:
+      - status
+      :full_paths:
+      - Encounter.status
+      :comparators: {}
+      :values:
+      - planned
+      - arrived
+      - triaged
+      - in-progress
+      - onleave
+      - finished
+      - cancelled
+      - entered-in-error
+      - unknown
+      :type: code
+      :contains_multiple: false
+    :class:
+      :paths:
+      - class
+      :full_paths:
+      - Encounter.class
+      :comparators: {}
+      :values: []
+      :type: Coding
+      :contains_multiple: false
+    :date:
+      :paths:
+      - period
+      :full_paths:
+      - Encounter.period
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
+      :values: []
+      :type: Period
+      :contains_multiple: false
+  :include_params: []
+  :revincludes: []
+  :required_concepts: []
+  :must_supports:
+    :extensions: []
+    :slices: []
+    :elements:
+    - :path: identifier
+    - :path: status
+    - :path: class
+    - :path: type
+    - :path: serviceType
+    - :path: serviceType.coding
+    - :path: serviceType.text
+    - :path: priority
+    - :path: priority.coding
+    - :path: priority.text
+    - :path: subject
+      :types:
+      - Reference
+    - :path: participant
+    - :path: participant.type
+    - :path: period
+    - :path: period.start
+    - :path: reasonCode
+    - :path: reasonReference
+      :types:
+      - Reference
+    - :path: diagnosis.use
+    - :path: diagnosis.use.coding
+    - :path: diagnosis.use.text
+    - :path: hospitalization
+    - :path: hospitalization.origin
+      :types:
+      - Reference
+    - :path: hospitalization.admitSource
+    - :path: hospitalization.admitSource.coding
+    - :path: hospitalization.admitSource.text
+    - :path: hospitalization.reAdmission
+    - :path: hospitalization.reAdmission.coding
+    - :path: hospitalization.reAdmission.text
+    - :path: hospitalization.dietPreference
+    - :path: hospitalization.dietPreference.coding
+    - :path: hospitalization.dietPreference.text
+    - :path: hospitalization.specialCourtesy
+    - :path: hospitalization.specialCourtesy.coding
+    - :path: hospitalization.specialCourtesy.text
+    - :path: hospitalization.specialArrangement
+    - :path: hospitalization.specialArrangement.coding
+    - :path: hospitalization.specialArrangement.text
+    - :path: hospitalization.dischargeDisposition
+    - :path: location
+    - :path: location.location
+      :types:
+      - Reference
+      :target_profiles:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+    - :path: location.physicalType
+    - :path: location.physicalType.coding
+    - :path: location.physicalType.text
+    - :path: serviceProvider
+      :types:
+      - Reference
+      :target_profiles:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+  :mandatory_elements:
+  - Encounter.status
+  - Encounter.statusHistory.status
+  - Encounter.statusHistory.period
+  - Encounter.class
+  - Encounter.classHistory.class
+  - Encounter.classHistory.period
+  - Encounter.subject
+  - Encounter.diagnosis.condition
+  - Encounter.location.location
+  :bindings:
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/encounter-status
+    :path: status
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/encounter-status
+    :path: statusHistory.status
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/encounter-location-status
+    :path: location.status
+  :references:
+  - :path: Encounter.subject
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - http://hl7.org/fhir/StructureDefinition/Group
+    :resource_types:
+    - Patient
+  - :path: Encounter.episodeOfCare
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/EpisodeOfCare|4.0.1
+  - :path: Encounter.basedOn
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1
+  - :path: Encounter.participant.individual
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    :resource_types:
+    - Practitioner
+    - RelatedPerson
+    - PractitionerRole
+  - :path: Encounter.appointment
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Appointment|4.0.1
+  - :path: Encounter.reasonReference
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Condition
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-procedure
+    - http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation
+    :resource_types:
+    - Observation
+    - Procedure
+  - :path: Encounter.diagnosis.condition
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Condition
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-procedure
+    :resource_types:
+    - Procedure
+  - :path: Encounter.account
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Account|4.0.1
+  - :path: Encounter.hospitalization.origin
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    :resource_types:
+    - Location
+    - Organization
+  - :path: Encounter.hospitalization.destination
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Location|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Organization|4.0.1
+  - :path: Encounter.location.location
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+    :resource_types:
+    - Location
+  - :path: Encounter.serviceProvider
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    :resource_types:
+    - Organization
+  - :path: Encounter.partOf
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1
+  :delayed_references:
+  - :path: participant.individual
+    :resources:
+    - Practitioner
+    - PractitionerRole
+  - :path: hospitalization.origin
+    :resources:
+    - Organization
+  - :path: serviceProvider
+    :resources:
+    - Organization
+- :name: ph_core_observation
+  :class_name: PhCoreObservationSequence
+  :version: v0.2.0-ci-build
+  :reformatted_version: v020_ci_build
+  :resource: Observation
+  :profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+  :profile_name: PH Core Observation
+  :profile_version: 0.2.0
+  :title: Observation
+  :short_description: Verify support for the server capabilities required by the PH
+    Core Observation.
+  :interactions:
+  - :code: read
+    :expectation: SHALL
+  - :code: search-type
+    :expectation: SHALL
+  :operations: []
+  :searches:
+  - :names:
+    - patient
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory:
+    - patient
+    :must_support_or_mandatory: false
+  - :names:
+    - _id
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - encounter
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory:
+    - encounter
+    :must_support_or_mandatory: false
+  - :names:
+    - code
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - category
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - date
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory:
+    - date
+    :must_support_or_mandatory: false
+  :search_definitions:
+    :_id:
+      :paths:
+      - id
+      :full_paths:
+      - Observation.id
+      :comparators: {}
+      :values: []
+      :type: http://hl7.org/fhirpath/System.String
+      :contains_multiple: false
+    :patient:
+      :paths:
+      - subject
+      :full_paths:
+      - Observation.subject
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Patient
+    :encounter:
+      :paths:
+      - encounter
+      :full_paths:
+      - Observation.encounter
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Encounter
+    :code:
+      :paths:
+      - code
+      :full_paths:
+      - Observation.code
+      :comparators: {}
+      :values: []
+      :type: CodeableConcept
+      :contains_multiple: false
+    :category:
+      :paths:
+      - category
+      :full_paths:
+      - Observation.category
+      :comparators: {}
+      :values: []
+      :type: CodeableConcept
+      :contains_multiple: true
+    :date:
+      :paths:
+      - effective
+      :full_paths:
+      - Observation.effective
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
+      :values: []
+      :type: date
+      :contains_multiple: false
+  :include_params: []
+  :revincludes: []
+  :required_concepts: []
+  :must_supports:
+    :extensions: []
+    :slices:
+    - :slice_id: Observation.value[x]:valueCodeableConcept
+      :slice_name: valueCodeableConcept
+      :path: value[x]
+      :discriminator:
+        :type: type
+        :code: CodeableConcept
+    - :slice_id: Observation.component.value[x]:valueCodeableConcept
+      :slice_name: valueCodeableConcept
+      :path: component.value[x]
+      :discriminator:
+        :type: type
+        :code: CodeableConcept
+    :elements:
+    - :path: category
+    - :path: category.coding
+    - :path: category.text
+    - :path: code
+    - :path: code.coding
+    - :path: code.text
+    - :path: value[x]:valueCodeableConcept.coding
+    - :path: value[x]:valueCodeableConcept.text
+    - :path: dataAbsentReason
+    - :path: dataAbsentReason.coding
+    - :path: dataAbsentReason.text
+    - :path: interpretation
+    - :path: interpretation.coding
+    - :path: interpretation.text
+    - :path: bodySite
+    - :path: bodySite.coding
+    - :path: bodySite.text
+    - :path: method
+    - :path: method.coding
+    - :path: method.text
+    - :path: referenceRange.type
+    - :path: referenceRange.type.coding
+    - :path: referenceRange.type.text
+    - :path: referenceRange.appliesTo
+    - :path: referenceRange.appliesTo.coding
+    - :path: referenceRange.appliesTo.text
+    - :path: component.code
+    - :path: component.code.coding
+    - :path: component.code.text
+    - :path: component.value[x]:valueCodeableConcept.coding
+    - :path: component.value[x]:valueCodeableConcept.text
+    - :path: component.dataAbsentReason
+    - :path: component.dataAbsentReason.coding
+    - :path: component.dataAbsentReason.text
+    - :path: component.interpretation
+    - :path: component.interpretation.coding
+    - :path: component.interpretation.text
+  :mandatory_elements:
+  - Observation.status
+  - Observation.code
+  - Observation.component.code
+  :bindings:
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/observation-status
+    :path: status
+  :references:
+  - :path: Observation.basedOn
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/CarePlan
+    - http://hl7.org/fhir/StructureDefinition/DeviceRequest
+    - http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation
+    - http://hl7.org/fhir/StructureDefinition/MedicationRequest
+    - http://hl7.org/fhir/StructureDefinition/NutritionOrder
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-serviceRequest
+    :resource_types:
+    - ServiceRequest
+  - :path: Observation.partOf
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medicationadministration
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medicationdispense
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medicationstatement
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-procedure
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-immunization
+    - http://hl7.org/fhir/StructureDefinition/ImagingStudy
+    :resource_types:
+    - MedicationAdministration
+    - MedicationDispense
+    - MedicationStatement
+    - Procedure
+    - Immunization
+  - :path: Observation.subject
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - http://hl7.org/fhir/StructureDefinition/Group
+    - http://hl7.org/fhir/StructureDefinition/Device
+    - http://hl7.org/fhir/StructureDefinition/Location
+    :resource_types:
+    - Patient
+  - :path: Observation.focus
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Resource|4.0.1
+  - :path: Observation.encounter
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+    :resource_types:
+    - Encounter
+  - :path: Observation.performer
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    - http://hl7.org/fhir/StructureDefinition/CareTeam
+    :resource_types:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+    - Patient
+    - RelatedPerson
+  - :path: Observation.specimen
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Specimen|4.0.1
+  - :path: Observation.device
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Device|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/DeviceMetric|4.0.1
+  - :path: Observation.hasMember
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    - http://hl7.org/fhir/StructureDefinition/Observation
+    - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
+    - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+    :resource_types:
+    - Observation
+  - :path: Observation.derivedFrom
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/DocumentReference
+    - http://hl7.org/fhir/StructureDefinition/ImagingStudy
+    - http://hl7.org/fhir/StructureDefinition/Media
+    - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    - http://hl7.org/fhir/StructureDefinition/Observation
+    - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+    :resource_types:
+    - Observation
+  :delayed_references:
+  - :path: performer
+    :resources:
+    - Practitioner
+    - PractitionerRole
+    - Organization

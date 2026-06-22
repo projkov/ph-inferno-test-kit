@@ -1,0 +1,223 @@
+---
+:name: ph_core_condition
+:class_name: PhCoreConditionSequence
+:version: v0.2.0-ci-build
+:reformatted_version: v020_ci_build
+:resource: Condition
+:profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-condition
+:profile_name: PH Core Condition
+:profile_version: 0.2.0
+:title: Condition
+:short_description: Verify support for the server capabilities required by the PH
+  Core Condition.
+:interactions:
+- :code: read
+  :expectation: SHALL
+- :code: search-type
+  :expectation: SHALL
+:operations: []
+:searches:
+- :names:
+  - patient
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - _id
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - encounter
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - code
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - clinical-status
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :_id:
+    :paths:
+    - id
+    :full_paths:
+    - Condition.id
+    :comparators: {}
+    :values: []
+    :type: http://hl7.org/fhirpath/System.String
+    :contains_multiple: false
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - Condition.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :target_resource: Patient
+  :encounter:
+    :paths:
+    - encounter
+    :full_paths:
+    - Condition.encounter
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :target_resource: Encounter
+  :code:
+    :paths:
+    - code
+    :full_paths:
+    - Condition.code
+    :comparators: {}
+    :values: []
+    :type: CodeableConcept
+    :contains_multiple: false
+  :clinical-status:
+    :paths:
+    - clinicalStatus
+    :full_paths:
+    - Condition.clinicalStatus
+    :comparators: {}
+    :values:
+    - active
+    - recurrence
+    - relapse
+    - inactive
+    - remission
+    - resolved
+    :type: CodeableConcept
+    :contains_multiple: false
+:include_params: []
+:revincludes: []
+:required_concepts:
+- clinicalStatus
+- verificationStatus
+:must_supports:
+  :extensions: []
+  :slices: []
+  :elements:
+  - :path: clinicalStatus
+  - :path: clinicalStatus.coding
+  - :path: clinicalStatus.text
+  - :path: verificationStatus
+  - :path: verificationStatus.coding
+  - :path: verificationStatus.text
+  - :path: category
+  - :path: severity
+  - :path: code
+  - :path: code.coding
+  - :path: code.text
+  - :path: bodySite
+  - :path: bodySite.coding
+  - :path: bodySite.text
+  - :path: subject
+    :types:
+    - Reference
+    :target_profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+  - :path: encounter
+    :types:
+    - Reference
+    :target_profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+  - :path: stage.summary
+  - :path: stage.summary.coding
+  - :path: stage.summary.text
+  - :path: stage.type
+  - :path: stage.type.coding
+  - :path: stage.type.text
+  - :path: evidence.code
+  - :path: evidence.code.coding
+  - :path: evidence.code.text
+  - :path: note
+:mandatory_elements:
+- Condition.subject
+:bindings:
+- :type: CodeableConcept
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/condition-clinical
+  :path: clinicalStatus
+- :type: CodeableConcept
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/condition-ver-status
+  :path: verificationStatus
+:references:
+- :path: Condition.subject
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+  :resource_types:
+  - Patient
+- :path: Condition.encounter
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+  :resource_types:
+  - Encounter
+- :path: Condition.recorder
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+  :resource_types:
+  - Practitioner
+  - PractitionerRole
+  - Patient
+  - RelatedPerson
+- :path: Condition.asserter
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+  :resource_types:
+  - Practitioner
+  - PractitionerRole
+  - Patient
+  - RelatedPerson
+- :path: Condition.stage.assessment
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/ClinicalImpression|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/DiagnosticReport|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/Observation|4.0.1
+- :path: Condition.evidence.detail
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Resource|4.0.1
+:tests:
+- :id: ph_core_v020_ci_build_condition_patient_search_test
+  :file_name: condition_patient_search_test.rb
+- :id: ph_core_v020_ci_build_condition__id_search_test
+  :file_name: condition_id_search_test.rb
+- :id: ph_core_v020_ci_build_condition_encounter_search_test
+  :file_name: condition_encounter_search_test.rb
+- :id: ph_core_v020_ci_build_condition_code_search_test
+  :file_name: condition_code_search_test.rb
+- :id: ph_core_v020_ci_build_condition_clinical_status_search_test
+  :file_name: condition_clinical_status_search_test.rb
+- :id: ph_core_v020_ci_build_condition_read_test
+  :file_name: condition_read_test.rb
+- :id: ph_core_v020_ci_build_condition_validation_test
+  :file_name: condition_validation_test.rb
+- :id: ph_core_v020_ci_build_condition_must_support_test
+  :file_name: condition_must_support_test.rb
+- :id: ph_core_v020_ci_build_condition_reference_resolution_test
+  :file_name: condition_reference_resolution_test.rb
+:id: ph_core_v020_ci_build_condition
+:file_name: condition_group.rb
+:delayed_references:
+- :path: recorder
+  :resources:
+  - Practitioner
+  - PractitionerRole
+- :path: asserter
+  :resources:
+  - Practitioner
+  - PractitionerRole

@@ -1,0 +1,153 @@
+---
+:name: ph_core_organization
+:class_name: PhCoreOrganizationSequence
+:version: v0.2.0-ci-build
+:reformatted_version: v020_ci_build
+:resource: Organization
+:profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+:profile_name: PH Core Organization
+:profile_version: 0.2.0
+:title: Organization
+:short_description: Verify support for the server capabilities required by the PH
+  Core Organization.
+:interactions:
+- :code: read
+  :expectation: SHALL
+- :code: search-type
+  :expectation: SHALL
+:operations: []
+:searches:
+- :names:
+  - _id
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - identifier
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory:
+  - identifier
+  :must_support_or_mandatory: false
+- :names:
+  - name
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - active
+  :expectation: MAY
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :_id:
+    :paths:
+    - id
+    :full_paths:
+    - Organization.id
+    :comparators: {}
+    :values: []
+    :type: http://hl7.org/fhirpath/System.String
+    :contains_multiple: false
+  :identifier:
+    :paths:
+    - identifier
+    :full_paths:
+    - Organization.identifier
+    :comparators: {}
+    :values: []
+    :type: Identifier
+    :contains_multiple: true
+  :name:
+    :paths:
+    - name
+    - alias
+    :full_paths:
+    - Organization.name
+    - Organization.alias
+    :comparators: {}
+    :values: []
+    :type: string
+    :contains_multiple: false
+  :active:
+    :paths:
+    - active
+    :full_paths:
+    - Organization.active
+    :comparators: {}
+    :values: []
+    :type: boolean
+    :contains_multiple: false
+:include_params: []
+:revincludes: []
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices:
+  - :slice_id: Organization.identifier:NhfrCode
+    :slice_name: NhfrCode
+    :path: identifier
+    :discriminator:
+      :type: value
+      :values: []
+  - :slice_id: Organization.identifier:HcpnCode
+    :slice_name: HcpnCode
+    :path: identifier
+    :discriminator:
+      :type: value
+      :values: []
+  - :slice_id: Organization.identifier:PAN
+    :slice_name: PAN
+    :path: identifier
+    :discriminator:
+      :type: value
+      :values: []
+  - :slice_id: Organization.identifier:PEN
+    :slice_name: PEN
+    :path: identifier
+    :discriminator:
+      :type: value
+      :values: []
+  :elements:
+  - :path: active
+  - :path: type
+  - :path: type.coding
+  - :path: type.text
+  - :path: name
+  - :path: telecom
+  - :path: address
+  - :path: contact.purpose
+  - :path: contact.purpose.coding
+  - :path: contact.purpose.text
+  - :path: contact.address
+:mandatory_elements: []
+:bindings: []
+:references:
+- :path: Organization.partOf
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+  :resource_types:
+  - Organization
+- :path: Organization.endpoint
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Endpoint|4.0.1
+:tests:
+- :id: ph_core_v020_ci_build_organization_read_test
+  :file_name: organization_read_test.rb
+- :id: ph_core_v020_ci_build_organization__id_search_test
+  :file_name: organization_id_search_test.rb
+- :id: ph_core_v020_ci_build_organization_identifier_search_test
+  :file_name: organization_identifier_search_test.rb
+- :id: ph_core_v020_ci_build_organization_name_search_test
+  :file_name: organization_name_search_test.rb
+- :id: ph_core_v020_ci_build_organization_active_search_test
+  :file_name: organization_active_search_test.rb
+- :id: ph_core_v020_ci_build_organization_validation_test
+  :file_name: organization_validation_test.rb
+- :id: ph_core_v020_ci_build_organization_must_support_test
+  :file_name: organization_must_support_test.rb
+:id: ph_core_v020_ci_build_organization
+:file_name: organization_group.rb
+:delayed_references:
+- :path: partOf
+  :resources:
+  - Organization

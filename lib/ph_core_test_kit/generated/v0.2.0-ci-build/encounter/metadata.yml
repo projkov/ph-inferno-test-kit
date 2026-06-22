@@ -1,0 +1,296 @@
+---
+:name: ph_core_encounter
+:class_name: PhCoreEncounterSequence
+:version: v0.2.0-ci-build
+:reformatted_version: v020_ci_build
+:resource: Encounter
+:profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+:profile_name: PH Core Encounter
+:profile_version: 0.2.0
+:title: Encounter
+:short_description: Verify support for the server capabilities required by the PH
+  Core Encounter.
+:interactions:
+- :code: read
+  :expectation: SHALL
+- :code: search-type
+  :expectation: SHALL
+:operations: []
+:searches:
+- :names:
+  - patient
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - _id
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - status
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - class
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - date
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+:search_definitions:
+  :_id:
+    :paths:
+    - id
+    :full_paths:
+    - Encounter.id
+    :comparators: {}
+    :values: []
+    :type: http://hl7.org/fhirpath/System.String
+    :contains_multiple: false
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - Encounter.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :target_resource: Patient
+  :status:
+    :paths:
+    - status
+    :full_paths:
+    - Encounter.status
+    :comparators: {}
+    :values:
+    - planned
+    - arrived
+    - triaged
+    - in-progress
+    - onleave
+    - finished
+    - cancelled
+    - entered-in-error
+    - unknown
+    :type: code
+    :contains_multiple: false
+  :class:
+    :paths:
+    - class
+    :full_paths:
+    - Encounter.class
+    :comparators: {}
+    :values: []
+    :type: Coding
+    :contains_multiple: false
+  :date:
+    :paths:
+    - period
+    :full_paths:
+    - Encounter.period
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: MAY
+      :ge: MAY
+      :lt: MAY
+      :le: MAY
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: Period
+    :contains_multiple: false
+:include_params: []
+:revincludes: []
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices: []
+  :elements:
+  - :path: identifier
+  - :path: status
+  - :path: class
+  - :path: type
+  - :path: serviceType
+  - :path: serviceType.coding
+  - :path: serviceType.text
+  - :path: priority
+  - :path: priority.coding
+  - :path: priority.text
+  - :path: subject
+    :types:
+    - Reference
+  - :path: participant
+  - :path: participant.type
+  - :path: period
+  - :path: period.start
+  - :path: reasonCode
+  - :path: reasonReference
+    :types:
+    - Reference
+  - :path: diagnosis.use
+  - :path: diagnosis.use.coding
+  - :path: diagnosis.use.text
+  - :path: hospitalization
+  - :path: hospitalization.origin
+    :types:
+    - Reference
+  - :path: hospitalization.admitSource
+  - :path: hospitalization.admitSource.coding
+  - :path: hospitalization.admitSource.text
+  - :path: hospitalization.reAdmission
+  - :path: hospitalization.reAdmission.coding
+  - :path: hospitalization.reAdmission.text
+  - :path: hospitalization.dietPreference
+  - :path: hospitalization.dietPreference.coding
+  - :path: hospitalization.dietPreference.text
+  - :path: hospitalization.specialCourtesy
+  - :path: hospitalization.specialCourtesy.coding
+  - :path: hospitalization.specialCourtesy.text
+  - :path: hospitalization.specialArrangement
+  - :path: hospitalization.specialArrangement.coding
+  - :path: hospitalization.specialArrangement.text
+  - :path: hospitalization.dischargeDisposition
+  - :path: location
+  - :path: location.location
+    :types:
+    - Reference
+    :target_profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+  - :path: location.physicalType
+  - :path: location.physicalType.coding
+  - :path: location.physicalType.text
+  - :path: serviceProvider
+    :types:
+    - Reference
+    :target_profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+:mandatory_elements:
+- Encounter.status
+- Encounter.statusHistory.status
+- Encounter.statusHistory.period
+- Encounter.class
+- Encounter.classHistory.class
+- Encounter.classHistory.period
+- Encounter.subject
+- Encounter.diagnosis.condition
+- Encounter.location.location
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/encounter-status
+  :path: status
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/encounter-status
+  :path: statusHistory.status
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/encounter-location-status
+  :path: location.status
+:references:
+- :path: Encounter.subject
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+  - http://hl7.org/fhir/StructureDefinition/Group
+  :resource_types:
+  - Patient
+- :path: Encounter.episodeOfCare
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/EpisodeOfCare|4.0.1
+- :path: Encounter.basedOn
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1
+- :path: Encounter.participant.individual
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+  :resource_types:
+  - Practitioner
+  - RelatedPerson
+  - PractitionerRole
+- :path: Encounter.appointment
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Appointment|4.0.1
+- :path: Encounter.reasonReference
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Condition
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-procedure
+  - http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation
+  :resource_types:
+  - Observation
+  - Procedure
+- :path: Encounter.diagnosis.condition
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Condition
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-procedure
+  :resource_types:
+  - Procedure
+- :path: Encounter.account
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Account|4.0.1
+- :path: Encounter.hospitalization.origin
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+  :resource_types:
+  - Location
+  - Organization
+- :path: Encounter.hospitalization.destination
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Location|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/Organization|4.0.1
+- :path: Encounter.location.location
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+  :resource_types:
+  - Location
+- :path: Encounter.serviceProvider
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+  :resource_types:
+  - Organization
+- :path: Encounter.partOf
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Encounter|4.0.1
+:tests:
+- :id: ph_core_v020_ci_build_encounter_patient_search_test
+  :file_name: encounter_patient_search_test.rb
+- :id: ph_core_v020_ci_build_encounter__id_search_test
+  :file_name: encounter_id_search_test.rb
+- :id: ph_core_v020_ci_build_encounter_status_search_test
+  :file_name: encounter_status_search_test.rb
+- :id: ph_core_v020_ci_build_encounter_class_search_test
+  :file_name: encounter_class_search_test.rb
+- :id: ph_core_v020_ci_build_encounter_date_search_test
+  :file_name: encounter_date_search_test.rb
+- :id: ph_core_v020_ci_build_encounter_read_test
+  :file_name: encounter_read_test.rb
+- :id: ph_core_v020_ci_build_encounter_validation_test
+  :file_name: encounter_validation_test.rb
+- :id: ph_core_v020_ci_build_encounter_must_support_test
+  :file_name: encounter_must_support_test.rb
+- :id: ph_core_v020_ci_build_encounter_reference_resolution_test
+  :file_name: encounter_reference_resolution_test.rb
+:id: ph_core_v020_ci_build_encounter
+:file_name: encounter_group.rb
+:delayed_references:
+- :path: participant.individual
+  :resources:
+  - Practitioner
+  - PractitionerRole
+- :path: hospitalization.origin
+  :resources:
+  - Organization
+- :path: serviceProvider
+  :resources:
+  - Organization

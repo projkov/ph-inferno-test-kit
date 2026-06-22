@@ -1,0 +1,291 @@
+---
+:name: ph_core_observation
+:class_name: PhCoreObservationSequence
+:version: v0.2.0-ci-build
+:reformatted_version: v020_ci_build
+:resource: Observation
+:profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+:profile_name: PH Core Observation
+:profile_version: 0.2.0
+:title: Observation
+:short_description: Verify support for the server capabilities required by the PH
+  Core Observation.
+:interactions:
+- :code: read
+  :expectation: SHALL
+- :code: search-type
+  :expectation: SHALL
+:operations: []
+:searches:
+- :names:
+  - patient
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory:
+  - patient
+  :must_support_or_mandatory: false
+- :names:
+  - _id
+  :expectation: SHALL
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - encounter
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory:
+  - encounter
+  :must_support_or_mandatory: false
+- :names:
+  - code
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - category
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory: []
+  :must_support_or_mandatory: true
+- :names:
+  - date
+  :expectation: SHOULD
+  :names_not_must_support_or_mandatory:
+  - date
+  :must_support_or_mandatory: false
+:search_definitions:
+  :_id:
+    :paths:
+    - id
+    :full_paths:
+    - Observation.id
+    :comparators: {}
+    :values: []
+    :type: http://hl7.org/fhirpath/System.String
+    :contains_multiple: false
+  :patient:
+    :paths:
+    - subject
+    :full_paths:
+    - Observation.subject
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :target_resource: Patient
+  :encounter:
+    :paths:
+    - encounter
+    :full_paths:
+    - Observation.encounter
+    :comparators: {}
+    :values: []
+    :type: Reference
+    :contains_multiple: false
+    :target_resource: Encounter
+  :code:
+    :paths:
+    - code
+    :full_paths:
+    - Observation.code
+    :comparators: {}
+    :values: []
+    :type: CodeableConcept
+    :contains_multiple: false
+  :category:
+    :paths:
+    - category
+    :full_paths:
+    - Observation.category
+    :comparators: {}
+    :values: []
+    :type: CodeableConcept
+    :contains_multiple: true
+  :date:
+    :paths:
+    - effective
+    :full_paths:
+    - Observation.effective
+    :comparators:
+      :eq: MAY
+      :ne: MAY
+      :gt: MAY
+      :ge: MAY
+      :lt: MAY
+      :le: MAY
+      :sa: MAY
+      :eb: MAY
+      :ap: MAY
+    :values: []
+    :type: date
+    :contains_multiple: false
+:include_params: []
+:revincludes: []
+:required_concepts: []
+:must_supports:
+  :extensions: []
+  :slices:
+  - :slice_id: Observation.value[x]:valueCodeableConcept
+    :slice_name: valueCodeableConcept
+    :path: value[x]
+    :discriminator:
+      :type: type
+      :code: CodeableConcept
+  - :slice_id: Observation.component.value[x]:valueCodeableConcept
+    :slice_name: valueCodeableConcept
+    :path: component.value[x]
+    :discriminator:
+      :type: type
+      :code: CodeableConcept
+  :elements:
+  - :path: category
+  - :path: category.coding
+  - :path: category.text
+  - :path: code
+  - :path: code.coding
+  - :path: code.text
+  - :path: value[x]:valueCodeableConcept.coding
+  - :path: value[x]:valueCodeableConcept.text
+  - :path: dataAbsentReason
+  - :path: dataAbsentReason.coding
+  - :path: dataAbsentReason.text
+  - :path: interpretation
+  - :path: interpretation.coding
+  - :path: interpretation.text
+  - :path: bodySite
+  - :path: bodySite.coding
+  - :path: bodySite.text
+  - :path: method
+  - :path: method.coding
+  - :path: method.text
+  - :path: referenceRange.type
+  - :path: referenceRange.type.coding
+  - :path: referenceRange.type.text
+  - :path: referenceRange.appliesTo
+  - :path: referenceRange.appliesTo.coding
+  - :path: referenceRange.appliesTo.text
+  - :path: component.code
+  - :path: component.code.coding
+  - :path: component.code.text
+  - :path: component.value[x]:valueCodeableConcept.coding
+  - :path: component.value[x]:valueCodeableConcept.text
+  - :path: component.dataAbsentReason
+  - :path: component.dataAbsentReason.coding
+  - :path: component.dataAbsentReason.text
+  - :path: component.interpretation
+  - :path: component.interpretation.coding
+  - :path: component.interpretation.text
+:mandatory_elements:
+- Observation.status
+- Observation.code
+- Observation.component.code
+:bindings:
+- :type: code
+  :strength: required
+  :system: http://hl7.org/fhir/ValueSet/observation-status
+  :path: status
+:references:
+- :path: Observation.basedOn
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/CarePlan
+  - http://hl7.org/fhir/StructureDefinition/DeviceRequest
+  - http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation
+  - http://hl7.org/fhir/StructureDefinition/MedicationRequest
+  - http://hl7.org/fhir/StructureDefinition/NutritionOrder
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-serviceRequest
+  :resource_types:
+  - ServiceRequest
+- :path: Observation.partOf
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medicationadministration
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medicationdispense
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medicationstatement
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-procedure
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-immunization
+  - http://hl7.org/fhir/StructureDefinition/ImagingStudy
+  :resource_types:
+  - MedicationAdministration
+  - MedicationDispense
+  - MedicationStatement
+  - Procedure
+  - Immunization
+- :path: Observation.subject
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+  - http://hl7.org/fhir/StructureDefinition/Group
+  - http://hl7.org/fhir/StructureDefinition/Device
+  - http://hl7.org/fhir/StructureDefinition/Location
+  :resource_types:
+  - Patient
+- :path: Observation.focus
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Resource|4.0.1
+- :path: Observation.encounter
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+  :resource_types:
+  - Encounter
+- :path: Observation.performer
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+  - http://hl7.org/fhir/StructureDefinition/CareTeam
+  :resource_types:
+  - Practitioner
+  - PractitionerRole
+  - Organization
+  - Patient
+  - RelatedPerson
+- :path: Observation.specimen
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Specimen|4.0.1
+- :path: Observation.device
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/Device|4.0.1
+  - http://hl7.org/fhir/StructureDefinition/DeviceMetric|4.0.1
+- :path: Observation.hasMember
+  :profiles:
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+  - http://hl7.org/fhir/StructureDefinition/Observation
+  - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
+  - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  :resource_types:
+  - Observation
+- :path: Observation.derivedFrom
+  :profiles:
+  - http://hl7.org/fhir/StructureDefinition/DocumentReference
+  - http://hl7.org/fhir/StructureDefinition/ImagingStudy
+  - http://hl7.org/fhir/StructureDefinition/Media
+  - http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse
+  - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+  - http://hl7.org/fhir/StructureDefinition/Observation
+  - http://hl7.org/fhir/StructureDefinition/MolecularSequence
+  :resource_types:
+  - Observation
+:tests:
+- :id: ph_core_v020_ci_build_observation_patient_search_test
+  :file_name: observation_patient_search_test.rb
+- :id: ph_core_v020_ci_build_observation__id_search_test
+  :file_name: observation_id_search_test.rb
+- :id: ph_core_v020_ci_build_observation_encounter_search_test
+  :file_name: observation_encounter_search_test.rb
+- :id: ph_core_v020_ci_build_observation_code_search_test
+  :file_name: observation_code_search_test.rb
+- :id: ph_core_v020_ci_build_observation_category_search_test
+  :file_name: observation_category_search_test.rb
+- :id: ph_core_v020_ci_build_observation_date_search_test
+  :file_name: observation_date_search_test.rb
+- :id: ph_core_v020_ci_build_observation_read_test
+  :file_name: observation_read_test.rb
+- :id: ph_core_v020_ci_build_observation_validation_test
+  :file_name: observation_validation_test.rb
+- :id: ph_core_v020_ci_build_observation_must_support_test
+  :file_name: observation_must_support_test.rb
+:id: ph_core_v020_ci_build_observation
+:file_name: observation_group.rb
+:delayed_references:
+- :path: performer
+  :resources:
+  - Practitioner
+  - PractitionerRole
+  - Organization

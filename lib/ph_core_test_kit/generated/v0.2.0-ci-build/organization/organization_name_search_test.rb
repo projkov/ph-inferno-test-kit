@@ -1,0 +1,59 @@
+# frozen_string_literal: true
+
+require 'inferno_suite_generator/test_modules/search_test'
+require 'inferno_suite_generator/core/group_metadata'
+require 'inferno_suite_generator/utils/helpers'
+
+module PHCoreTestKit
+  module PHCoreV020_CI_BUILD
+    class OrganizationNameSearchTest < Inferno::Test
+      include InfernoSuiteGenerator::SearchTest
+
+      title '(SHOULD) Server returns valid results for Organization search by name'
+      description %(
+A server SHOULD support searching by
+name on the Organization resource. This test
+will pass if resources are returned and match the search criteria. If
+none are returned, the test is skipped.
+
+[PH Core Server CapabilityStatement](https://fhir.doh.gov.ph/phcore/CapabilityStatement/ph-core-server)
+
+      )
+
+      id :ph_core_v020_ci_build_organization_name_search_test
+      optional
+
+      def self.demodata
+        @demodata ||= InfernoSuiteGenerator::Generator::IGDemodata.new(
+          YAML.load_file(File.join(File.dirname(__dir__), 'demodata.yml'), aliases: true)
+        )
+      end
+
+      def self.properties
+        @properties ||= InfernoSuiteGenerator::SearchTestProperties.new(
+          resource_type: 'Organization',
+          search_param_names: ['name']
+        )
+      end
+
+      def self.metadata
+        @metadata ||= InfernoSuiteGenerator::Generator::GroupMetadata.new(YAML.load_file(
+                                                                            File.join(__dir__,
+                                                                                      'metadata.yml'), aliases: true
+                                                                          ))
+      end
+
+      def scratch_resources
+        scratch[:organization_resources] ||= {}
+      end
+
+      def keep_all_search_results?
+        false
+      end
+
+      run do
+        run_search_test
+      end
+    end
+  end
+end
