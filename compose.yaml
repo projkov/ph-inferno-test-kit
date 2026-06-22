@@ -44,7 +44,7 @@ services:
     environment:
       SESSION_CACHE_DURATION: -1
     volumes:
-      - ./lib/my_test_kit/igs:/home/igs
+      - ./lib/ph_core_test_kit/igs:/home/igs
   nginx:
     image: nginx
     ports:

@@ -19,7 +19,7 @@ namespace :db do
   end
 end
 
-namespace :my_test_kit do
+namespace :ph_core_test_kit do
   desc 'Generate tests'
   task :generate do
     require 'inferno_suite_generator'
