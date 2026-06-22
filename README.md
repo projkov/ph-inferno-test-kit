@@ -127,6 +127,10 @@ If you update the IG package or `config.json`, regenerate the test suite:
 - [Source code](https://github.com/projkov/ph-inferno-test-kit)
 - [PH Core Implementation Guide](https://fhir.doh.gov.ph/phcore/ImplementationGuide/fhir.ph.core)
 
+## Based on
+
+This kit was scaffolded from the [inferno-suite-template](https://github.com/beda-software/inferno-suite-template) — a starter template for building Inferno test kits against any FHIR Implementation Guide. The template ships with a configuration wizard and a code-generation pipeline powered by the [InfernoSuiteGenerator](https://github.com/hl7au/inferno_suite_generator) gem.
+
 ## License
 
 [Apache-2.0](LICENSE)
