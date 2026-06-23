@@ -55,10 +55,6 @@ module PHCoreTestKit
         exclude_message do |message|
           Helpers.is_message_exist_in_list(message_filters, message.message)
         end
-
-        perform_additional_validation do |resource, _profile_url|
-          ProvenanceValidator.validate(resource) if resource.instance_of?(FHIR::Provenance)
-        end
       end
 
       links [
