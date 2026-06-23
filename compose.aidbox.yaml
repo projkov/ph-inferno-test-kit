@@ -1,5 +1,17 @@
 version: "3"
 services:
+  ig-downloader:
+    image: curlimages/curl:latest
+    volumes:
+      - ./resources/ig:/output/ig
+      - ./lib/ph_core_test_kit/igs:/output/igs
+    entrypoint: >
+      sh -c "
+        curl -fsSL -o /tmp/package.tgz https://build.fhir.org/ig/UP-Manila-SILab/ph-core/package.tgz &&
+        cp /tmp/package.tgz /output/ig/0.2.0-ci-build.tgz &&
+        cp /tmp/package.tgz /output/igs/0.2.0-ci-build.tgz
+      "
+
   inferno:
     build:
       context: ./
@@ -60,6 +72,8 @@ services:
   validator-api:
     image: docker.io/healthsamurai/aidboxone:2605
     depends_on:
+      ig-downloader:
+        condition: service_completed_successfully
       postgres:
         condition: service_healthy
     links:

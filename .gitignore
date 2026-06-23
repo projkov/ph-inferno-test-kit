@@ -20,3 +20,5 @@
 node_modules
 .env
 package_archive_bundle.json
+/resources/ig/*.tgz
+/lib/ph_core_test_kit/igs/*.tgz

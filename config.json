@@ -12,7 +12,8 @@
     "title": "PH Core",
     "rewrite_igs": "/home/igs/0.2.0-ci-build.tgz",
     "extra_json_paths": [
-      "search-params.json"
+      "search-params.json",
+      "CapabilityStatement-ph-core-server.json"
     ],
     "tx_server_url": "https://tx.fhir.org/r4",
     "extra_imports": [
