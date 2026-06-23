@@ -1,461 +1,606 @@
 {
-  "resourceType" : "CapabilityStatement",
-  "id" : "ph-core-server",
-  "text" : {
-    "status" : "extensions",
-    "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CapabilityStatement ph-core-server</b></p><a name=\"ph-core-server\"> </a><a name=\"hcph-core-server\"> </a><h2 id=\"title\">PH Core Server Capability Statement</h2><ul><li>Implementation Guide Version: 0.2.0 </li><li>FHIR Version: 4.0.1 </li><li>Supported Formats: <code>json</code>, <code>xml</code></li><li>Published on: 2025-01-01 </li><li>Published by: UP Manila National TeleHealth Center </li></ul><blockquote class=\"impl-note\"><p><strong>Note to Implementers: FHIR Capabilities</strong></p><p>Any FHIR capability may be 'allowed' by the system unless explicitly marked as 'SHALL NOT'. A few items are marked as MAY in the Implementation Guide to highlight their potential relevance to the use case.</p></blockquote><h2 id=\"rest\">FHIR RESTful Capabilities</h2><div class=\"panel panel-default\"><div class=\"panel-heading\"><h3 id=\"mode1\" class=\"panel-title\">Mode: <code>server</code></h3></div><div class=\"panel-body\"><div><p>PH Core Server REST capabilities. Conformance verbs (SHALL, SHOULD, MAY) apply to each listed interaction and search parameter.</p>\n</div></div></div><h3 id=\"resourcesCap1\">Capabilities by Resource/Profile</h3><h4 id=\"resourcesSummary1\">Summary</h4><p>The summary table lists the resources that are part of this configuration, and for each resource it lists:</p><ul><li>The relevant profiles (if any)</li><li>The interactions supported by each resource (<b><span class=\"bg-info\">R</span></b>ead, <b><span class=\"bg-info\">S</span></b>earch, <b><span class=\"bg-info\">U</span></b>pdate, and <b><span class=\"bg-info\">C</span></b>reate, are always shown, while <b><span class=\"bg-info\">VR</span></b>ead, <b><span class=\"bg-info\">P</span></b>atch, <b><span class=\"bg-info\">D</span></b>elete, <b><span class=\"bg-info\">H</span></b>istory on <b><span class=\"bg-info\">I</span></b>nstance, or <b><span class=\"bg-info\">H</span></b>istory on <b><span class=\"bg-info\">T</span></b>ype are only present if at least one of the resources has support for them.</li><li><span>The required, recommended, and some optional search parameters (if any). </span></li><li>The linked resources enabled for <code>_include</code></li><li>The other resources enabled for <code>_revinclude</code></li><li>The operations on the resource (if any)</li></ul><div class=\"table-responsive\"><table class=\"table table-condensed table-hover\"><thead><tr><th><b>Resource Type</b></th><th><b>Profile</b></th><th class=\"text-center\"><b title=\"GET a resource (read interaction)\">R</b></th><th class=\"text-center\"><b title=\"GET all set of resources of the type (search interaction)\">S</b></th><th class=\"text-center\"><b title=\"PUT a new resource version (update interaction)\">U</b></th><th class=\"text-center\"><b title=\"POST a new resource (create interaction)\">C</b></th><th><b title=\"Required and recommended search parameters\">Searches</b></th><th><code><b>_include</b></code></th><th><code><b>_revinclude</b></code></th><th><b>Operations</b></th></tr></thead><tbody><tr><td><a href=\"#Patient1-1\">Patient</a></td><td><a href=\"StructureDefinition-ph-core-patient.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, identifier, name, birthdate, gender</td><td/><td/><td/></tr><tr><td><a href=\"#Organization1-2\">Organization</a></td><td><a href=\"StructureDefinition-ph-core-organization.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, identifier, name, active</td><td/><td/><td/></tr><tr><td><a href=\"#Practitioner1-3\">Practitioner</a></td><td><a href=\"StructureDefinition-ph-core-practitioner.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, identifier, name, active</td><td/><td/><td/></tr><tr><td><a href=\"#PractitionerRole1-4\">PractitionerRole</a></td><td><a href=\"StructureDefinition-ph-core-practitionerrole.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, practitioner, organization, specialty</td><td/><td/><td/></tr><tr><td><a href=\"#Condition1-5\">Condition</a></td><td><a href=\"StructureDefinition-ph-core-condition.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-condition</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, patient, encounter, code, clinical-status</td><td/><td/><td/></tr><tr><td><a href=\"#Encounter1-6\">Encounter</a></td><td><a href=\"StructureDefinition-ph-core-encounter.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, patient, status, class, date</td><td/><td/><td/></tr><tr><td><a href=\"#Observation1-7\">Observation</a></td><td><a href=\"StructureDefinition-ph-core-observation.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, patient, encounter, code, category, date</td><td/><td/><td/></tr></tbody></table></div><hr/><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"Patient1-1\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>Patient</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-patient.html\">PH Core Patient</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/patient.html#search\">identifier</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/patient.html#search\">name</a></td><td><code>string</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/patient.html#search\">birthdate</a></td><td><code>date</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/patient.html#search\">gender</a></td><td><code>token</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"Organization1-2\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>Organization</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-organization.html\">PH Core Organization</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/organization.html#search\">identifier</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/organization.html#search\">name</a></td><td><code>string</code></td><td><div/></td></tr><tr><td><b>MAY</b></td><td><a href=\"http://hl7.org/fhir/R4/organization.html#search\">active</a></td><td><code>token</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"Practitioner1-3\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>Practitioner</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-practitioner.html\">PH Core Practitioner</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/practitioner.html#search\">identifier</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/practitioner.html#search\">name</a></td><td><code>string</code></td><td><div/></td></tr><tr><td><b>MAY</b></td><td><a href=\"http://hl7.org/fhir/R4/practitioner.html#search\">active</a></td><td><code>token</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"PractitionerRole1-4\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>PractitionerRole</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-practitionerrole.html\">PH Core PractitionerRole</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/practitionerrole.html#search\">practitioner</a></td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/practitionerrole.html#search\">organization</a></td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>MAY</b></td><td><a href=\"http://hl7.org/fhir/R4/practitionerrole.html#search\">specialty</a></td><td><code>token</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"Condition1-5\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>Condition</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-condition.html\">PH Core Condition</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/condition.html#search\">patient</a></td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/condition.html#search\">encounter</a></td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/condition.html#search\">code</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/condition.html#search\">clinical-status</a></td><td><code>token</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"Encounter1-6\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>Encounter</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-encounter.html\">PH Core Encounter</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/encounter.html#search\">patient</a></td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/encounter.html#search\">status</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/encounter.html#search\">class</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/encounter.html#search\">date</a></td><td><code>date</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"Observation1-7\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>Observation</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-observation.html\">PH Core Observation</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/observation.html#search\">patient</a></td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td>encounter</td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/observation.html#search\">code</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/observation.html#search\">category</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/observation.html#search\">date</a></td><td><code>date</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div></div>"
-  },
-  "url" : "https://fhir.doh.gov.ph/phcore/CapabilityStatement/ph-core-server",
-  "version" : "0.2.0",
-  "name" : "PHCoreServerCapabilityStatement",
-  "title" : "PH Core Server Capability Statement",
-  "status" : "draft",
-  "experimental" : false,
-  "date" : "2025-01-01",
-  "publisher" : "UP Manila National TeleHealth Center",
-  "contact" : [{
-    "name" : "UP Manila National TeleHealth Center",
-    "telecom" : [{
-      "system" : "url",
-      "value" : "https://github.com/UP-NTHC"
-    }]
-  }],
-  "description" : "Defines the expected capabilities of a PH Core FHIR server. A conformant PH Core Server SHALL implement all required capabilities and SHOULD implement all recommended capabilities.",
-  "jurisdiction" : [{
-    "coding" : [{
-      "system" : "urn:iso:std:iso:3166",
-      "code" : "PH",
-      "display" : "Philippines"
-    }]
-  }],
-  "kind" : "requirements",
-  "fhirVersion" : "4.0.1",
-  "format" : ["json",
-  "xml"],
-  "rest" : [{
-    "mode" : "server",
-    "documentation" : "PH Core Server REST capabilities. Conformance verbs (SHALL, SHOULD, MAY) apply to each listed interaction and search parameter.",
-    "resource" : [{
-      "type" : "Patient",
-      "profile" : "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient",
-      "interaction" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "read"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "search-type"
-      }],
-      "searchParam" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "_id",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Resource-id",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "identifier",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Patient-identifier",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "name",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Patient-name",
-        "type" : "string"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "birthdate",
-        "definition" : "http://hl7.org/fhir/SearchParameter/individual-birthdate",
-        "type" : "date"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "gender",
-        "definition" : "http://hl7.org/fhir/SearchParameter/individual-gender",
-        "type" : "token"
-      }]
-    },
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
     {
-      "type" : "Organization",
-      "profile" : "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization",
-      "interaction" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "read"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "search-type"
-      }],
-      "searchParam" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "_id",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Resource-id",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "identifier",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Organization-identifier",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "name",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Organization-name",
-        "type" : "string"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "MAY"
-        }],
-        "name" : "active",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Organization-active",
-        "type" : "token"
-      }]
-    },
-    {
-      "type" : "Practitioner",
-      "profile" : "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner",
-      "interaction" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "read"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "search-type"
-      }],
-      "searchParam" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "_id",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Resource-id",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "identifier",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Practitioner-identifier",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "name",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Practitioner-name",
-        "type" : "string"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "MAY"
-        }],
-        "name" : "active",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Practitioner-active",
-        "type" : "token"
-      }]
-    },
-    {
-      "type" : "PractitionerRole",
-      "profile" : "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole",
-      "interaction" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "read"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "search-type"
-      }],
-      "searchParam" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "_id",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Resource-id",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "practitioner",
-        "definition" : "http://hl7.org/fhir/SearchParameter/PractitionerRole-practitioner",
-        "type" : "reference"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "organization",
-        "definition" : "http://hl7.org/fhir/SearchParameter/PractitionerRole-organization",
-        "type" : "reference"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "MAY"
-        }],
-        "name" : "specialty",
-        "definition" : "http://hl7.org/fhir/SearchParameter/PractitionerRole-specialty",
-        "type" : "token"
-      }]
-    },
-    {
-      "type" : "Condition",
-      "profile" : "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-condition",
-      "interaction" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "read"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "search-type"
-      }],
-      "searchParam" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "_id",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Resource-id",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "patient",
-        "definition" : "http://hl7.org/fhir/SearchParameter/clinical-patient",
-        "type" : "reference"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "encounter",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Condition-encounter",
-        "type" : "reference"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "code",
-        "definition" : "http://hl7.org/fhir/SearchParameter/clinical-code",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "clinical-status",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Condition-clinical-status",
-        "type" : "token"
-      }]
-    },
-    {
-      "type" : "Encounter",
-      "profile" : "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter",
-      "interaction" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "read"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "search-type"
-      }],
-      "searchParam" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "_id",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Resource-id",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "patient",
-        "definition" : "http://hl7.org/fhir/SearchParameter/clinical-patient",
-        "type" : "reference"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "status",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Encounter-status",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "class",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Encounter-class",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "date",
-        "definition" : "http://hl7.org/fhir/SearchParameter/clinical-date",
-        "type" : "date"
-      }]
-    },
-    {
-      "type" : "Observation",
-      "profile" : "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation",
-      "interaction" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "read"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "code" : "search-type"
-      }],
-      "searchParam" : [{
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "_id",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Resource-id",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHALL"
-        }],
-        "name" : "patient",
-        "definition" : "http://hl7.org/fhir/SearchParameter/clinical-patient",
-        "type" : "reference"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "encounter",
-        "type" : "reference"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "code",
-        "definition" : "http://hl7.org/fhir/SearchParameter/clinical-code",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "category",
-        "definition" : "http://hl7.org/fhir/SearchParameter/Observation-category",
-        "type" : "token"
-      },
-      {
-        "extension" : [{
-          "url" : "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-          "valueCode" : "SHOULD"
-        }],
-        "name" : "date",
-        "definition" : "http://hl7.org/fhir/SearchParameter/clinical-date",
-        "type" : "date"
-      }]
-    }]
-  }]
+      "fullUrl": "https://fhir.doh.gov.ph/phcore/CapabilityStatement/ph-core-server",
+      "resource": {
+        "resourceType": "CapabilityStatement",
+        "id": "ph-core-server",
+        "text": {
+          "status": "extensions",
+          "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p class=\"res-header-id\"><b>Generated Narrative: CapabilityStatement ph-core-server</b></p><a name=\"ph-core-server\"> </a><a name=\"hcph-core-server\"> </a><h2 id=\"title\">PH Core Server Capability Statement</h2><ul><li>Implementation Guide Version: 0.2.0 </li><li>FHIR Version: 4.0.1 </li><li>Supported Formats: <code>json</code>, <code>xml</code></li><li>Published on: 2025-01-01 </li><li>Published by: UP Manila National TeleHealth Center </li></ul><blockquote class=\"impl-note\"><p><strong>Note to Implementers: FHIR Capabilities</strong></p><p>Any FHIR capability may be 'allowed' by the system unless explicitly marked as 'SHALL NOT'. A few items are marked as MAY in the Implementation Guide to highlight their potential relevance to the use case.</p></blockquote><h2 id=\"rest\">FHIR RESTful Capabilities</h2><div class=\"panel panel-default\"><div class=\"panel-heading\"><h3 id=\"mode1\" class=\"panel-title\">Mode: <code>server</code></h3></div><div class=\"panel-body\"><div><p>PH Core Server REST capabilities. Conformance verbs (SHALL, SHOULD, MAY) apply to each listed interaction and search parameter.</p>\n</div></div></div><h3 id=\"resourcesCap1\">Capabilities by Resource/Profile</h3><h4 id=\"resourcesSummary1\">Summary</h4><p>The summary table lists the resources that are part of this configuration, and for each resource it lists:</p><ul><li>The relevant profiles (if any)</li><li>The interactions supported by each resource (<b><span class=\"bg-info\">R</span></b>ead, <b><span class=\"bg-info\">S</span></b>earch, <b><span class=\"bg-info\">U</span></b>pdate, and <b><span class=\"bg-info\">C</span></b>reate, are always shown, while <b><span class=\"bg-info\">VR</span></b>ead, <b><span class=\"bg-info\">P</span></b>atch, <b><span class=\"bg-info\">D</span></b>elete, <b><span class=\"bg-info\">H</span></b>istory on <b><span class=\"bg-info\">I</span></b>nstance, or <b><span class=\"bg-info\">H</span></b>istory on <b><span class=\"bg-info\">T</span></b>ype are only present if at least one of the resources has support for them.</li><li><span>The required, recommended, and some optional search parameters (if any). </span></li><li>The linked resources enabled for <code>_include</code></li><li>The other resources enabled for <code>_revinclude</code></li><li>The operations on the resource (if any)</li></ul><div class=\"table-responsive\"><table class=\"table table-condensed table-hover\"><thead><tr><th><b>Resource Type</b></th><th><b>Profile</b></th><th class=\"text-center\"><b title=\"GET a resource (read interaction)\">R</b></th><th class=\"text-center\"><b title=\"GET all set of resources of the type (search interaction)\">S</b></th><th class=\"text-center\"><b title=\"PUT a new resource version (update interaction)\">U</b></th><th class=\"text-center\"><b title=\"POST a new resource (create interaction)\">C</b></th><th><b title=\"Required and recommended search parameters\">Searches</b></th><th><code><b>_include</b></code></th><th><code><b>_revinclude</b></code></th><th><b>Operations</b></th></tr></thead><tbody><tr><td><a href=\"#Patient1-1\">Patient</a></td><td><a href=\"StructureDefinition-ph-core-patient.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, identifier, name, birthdate, gender</td><td/><td/><td/></tr><tr><td><a href=\"#Organization1-2\">Organization</a></td><td><a href=\"StructureDefinition-ph-core-organization.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, identifier, name, active</td><td/><td/><td/></tr><tr><td><a href=\"#Practitioner1-3\">Practitioner</a></td><td><a href=\"StructureDefinition-ph-core-practitioner.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, identifier, name, active</td><td/><td/><td/></tr><tr><td><a href=\"#PractitionerRole1-4\">PractitionerRole</a></td><td><a href=\"StructureDefinition-ph-core-practitionerrole.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, practitioner, organization, specialty</td><td/><td/><td/></tr><tr><td><a href=\"#Condition1-5\">Condition</a></td><td><a href=\"StructureDefinition-ph-core-condition.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-condition</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, patient, encounter, code, clinical-status</td><td/><td/><td/></tr><tr><td><a href=\"#Encounter1-6\">Encounter</a></td><td><a href=\"StructureDefinition-ph-core-encounter.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, patient, status, class, date</td><td/><td/><td/></tr><tr><td><a href=\"#Observation1-7\">Observation</a></td><td><a href=\"StructureDefinition-ph-core-observation.html\">https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation</a></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"><span title=\"SHALL\"><b>Y</b></span></td><td class=\"text-center\"/><td class=\"text-center\"/><td>_id, patient, encounter, code, category, date</td><td/><td/><td/></tr></tbody></table></div><hr/><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"Patient1-1\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>Patient</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-patient.html\">PH Core Patient</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/patient.html#search\">identifier</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/patient.html#search\">name</a></td><td><code>string</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/patient.html#search\">birthdate</a></td><td><code>date</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/patient.html#search\">gender</a></td><td><code>token</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"Organization1-2\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>Organization</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-organization.html\">PH Core Organization</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/organization.html#search\">identifier</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/organization.html#search\">name</a></td><td><code>string</code></td><td><div/></td></tr><tr><td><b>MAY</b></td><td><a href=\"http://hl7.org/fhir/R4/organization.html#search\">active</a></td><td><code>token</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"Practitioner1-3\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>Practitioner</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-practitioner.html\">PH Core Practitioner</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/practitioner.html#search\">identifier</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/practitioner.html#search\">name</a></td><td><code>string</code></td><td><div/></td></tr><tr><td><b>MAY</b></td><td><a href=\"http://hl7.org/fhir/R4/practitioner.html#search\">active</a></td><td><code>token</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"PractitionerRole1-4\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>PractitionerRole</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-practitionerrole.html\">PH Core PractitionerRole</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/practitionerrole.html#search\">practitioner</a></td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/practitionerrole.html#search\">organization</a></td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>MAY</b></td><td><a href=\"http://hl7.org/fhir/R4/practitionerrole.html#search\">specialty</a></td><td><code>token</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"Condition1-5\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>Condition</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-condition.html\">PH Core Condition</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/condition.html#search\">patient</a></td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/condition.html#search\">encounter</a></td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/condition.html#search\">code</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/condition.html#search\">clinical-status</a></td><td><code>token</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"Encounter1-6\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>Encounter</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-encounter.html\">PH Core Encounter</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/encounter.html#search\">patient</a></td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/encounter.html#search\">status</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/encounter.html#search\">class</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/encounter.html#search\">date</a></td><td><code>date</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div><div class=\"panel panel-default\"><div class=\"panel-heading\"><h4 id=\"Observation1-7\" class=\"panel-title\"><span style=\"float: right;\">Resource Conformance: unspecified </span>Observation</h4></div><div class=\"panel-body\"><div class=\"container\"><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Base System Profile</span><br/><a href=\"StructureDefinition-ph-core-observation.html\">PH Core Observation</a></div><div class=\"col-lg-3\"><span class=\"lead\">Profile Conformance</span><br/><b>SHALL</b></div><div class=\"col-lg-3\"><span class=\"lead\">Reference Policy</span><br/></div></div><p/><div class=\"row\"><div class=\"col-lg-6\"><span class=\"lead\">Interaction summary</span><br/><ul><li><strong>SHALL</strong> support <code>read</code>, <code>search-type</code>.</li></ul></div></div><p/><div class=\"row\"><div class=\"col-lg-7\"><span class=\"lead\">Search Parameters</span><table class=\"table table-condensed table-hover\"><thead><tr><th>Conformance</th><th>Parameter</th><th>Type</th><th>Documentation</th></tr></thead><tbody><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/resource.html#search\">_id</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHALL</b></td><td><a href=\"http://hl7.org/fhir/R4/observation.html#search\">patient</a></td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td>encounter</td><td><code>reference</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/observation.html#search\">code</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/observation.html#search\">category</a></td><td><code>token</code></td><td><div/></td></tr><tr><td><b>SHOULD</b></td><td><a href=\"http://hl7.org/fhir/R4/observation.html#search\">date</a></td><td><code>date</code></td><td><div/></td></tr></tbody></table></div><div class=\"col-lg-5\">\u00a0</div></div></div></div></div></div>"
+        },
+        "url": "https://fhir.doh.gov.ph/phcore/CapabilityStatement/ph-core-server",
+        "version": "0.2.0",
+        "name": "PHCoreServerCapabilityStatement",
+        "title": "PH Core Server Capability Statement",
+        "status": "draft",
+        "experimental": false,
+        "date": "2025-01-01",
+        "publisher": "UP Manila National TeleHealth Center",
+        "contact": [
+          {
+            "name": "UP Manila National TeleHealth Center",
+            "telecom": [
+              {
+                "system": "url",
+                "value": "https://github.com/UP-NTHC"
+              }
+            ]
+          }
+        ],
+        "description": "Defines the expected capabilities of a PH Core FHIR server. A conformant PH Core Server SHALL implement all required capabilities and SHOULD implement all recommended capabilities.",
+        "jurisdiction": [
+          {
+            "coding": [
+              {
+                "system": "urn:iso:std:iso:3166",
+                "code": "PH",
+                "display": "Philippines"
+              }
+            ]
+          }
+        ],
+        "kind": "requirements",
+        "fhirVersion": "4.0.1",
+        "format": [
+          "json",
+          "xml"
+        ],
+        "rest": [
+          {
+            "mode": "server",
+            "documentation": "PH Core Server REST capabilities. Conformance verbs (SHALL, SHOULD, MAY) apply to each listed interaction and search parameter.",
+            "resource": [
+              {
+                "type": "Patient",
+                "profile": "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient",
+                "interaction": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "read"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "search-type"
+                  }
+                ],
+                "searchParam": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "_id",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Resource-id",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "identifier",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Patient-identifier",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "name",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Patient-name",
+                    "type": "string"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "birthdate",
+                    "definition": "http://hl7.org/fhir/SearchParameter/individual-birthdate",
+                    "type": "date"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "gender",
+                    "definition": "http://hl7.org/fhir/SearchParameter/individual-gender",
+                    "type": "token"
+                  }
+                ]
+              },
+              {
+                "type": "Organization",
+                "profile": "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization",
+                "interaction": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "read"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "search-type"
+                  }
+                ],
+                "searchParam": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "_id",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Resource-id",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "identifier",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Organization-identifier",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "name",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Organization-name",
+                    "type": "string"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "MAY"
+                      }
+                    ],
+                    "name": "active",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Organization-active",
+                    "type": "token"
+                  }
+                ]
+              },
+              {
+                "type": "Practitioner",
+                "profile": "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner",
+                "interaction": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "read"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "search-type"
+                  }
+                ],
+                "searchParam": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "_id",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Resource-id",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "identifier",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Practitioner-identifier",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "name",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Practitioner-name",
+                    "type": "string"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "MAY"
+                      }
+                    ],
+                    "name": "active",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Practitioner-active",
+                    "type": "token"
+                  }
+                ]
+              },
+              {
+                "type": "PractitionerRole",
+                "profile": "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole",
+                "interaction": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "read"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "search-type"
+                  }
+                ],
+                "searchParam": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "_id",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Resource-id",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "practitioner",
+                    "definition": "http://hl7.org/fhir/SearchParameter/PractitionerRole-practitioner",
+                    "type": "reference"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "organization",
+                    "definition": "http://hl7.org/fhir/SearchParameter/PractitionerRole-organization",
+                    "type": "reference"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "MAY"
+                      }
+                    ],
+                    "name": "specialty",
+                    "definition": "http://hl7.org/fhir/SearchParameter/PractitionerRole-specialty",
+                    "type": "token"
+                  }
+                ]
+              },
+              {
+                "type": "Condition",
+                "profile": "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-condition",
+                "interaction": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "read"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "search-type"
+                  }
+                ],
+                "searchParam": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "_id",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Resource-id",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "patient",
+                    "definition": "http://hl7.org/fhir/SearchParameter/clinical-patient",
+                    "type": "reference"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "encounter",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Condition-encounter",
+                    "type": "reference"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "code",
+                    "definition": "http://hl7.org/fhir/SearchParameter/clinical-code",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "clinical-status",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Condition-clinical-status",
+                    "type": "token"
+                  }
+                ]
+              },
+              {
+                "type": "Encounter",
+                "profile": "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter",
+                "interaction": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "read"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "search-type"
+                  }
+                ],
+                "searchParam": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "_id",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Resource-id",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "patient",
+                    "definition": "http://hl7.org/fhir/SearchParameter/clinical-patient",
+                    "type": "reference"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "status",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Encounter-status",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "class",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Encounter-class",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "date",
+                    "definition": "http://hl7.org/fhir/SearchParameter/clinical-date",
+                    "type": "date"
+                  }
+                ]
+              },
+              {
+                "type": "Observation",
+                "profile": "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation",
+                "interaction": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "read"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "code": "search-type"
+                  }
+                ],
+                "searchParam": [
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "_id",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Resource-id",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHALL"
+                      }
+                    ],
+                    "name": "patient",
+                    "definition": "http://hl7.org/fhir/SearchParameter/clinical-patient",
+                    "type": "reference"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "encounter",
+                    "type": "reference"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "code",
+                    "definition": "http://hl7.org/fhir/SearchParameter/clinical-code",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "category",
+                    "definition": "http://hl7.org/fhir/SearchParameter/Observation-category",
+                    "type": "token"
+                  },
+                  {
+                    "extension": [
+                      {
+                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
+                        "valueCode": "SHOULD"
+                      }
+                    ],
+                    "name": "date",
+                    "definition": "http://hl7.org/fhir/SearchParameter/clinical-date",
+                    "type": "date"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }
