@@ -10,6 +10,12 @@ module PHCoreTestKit
       title '(SHALL) Server returns correct PractitionerRole resource from PractitionerRole read interaction'
       description 'A server SHALL support the PractitionerRole read interaction.'
 
+      input :practitioner_role_ids,
+            title: 'PractitionerRole IDs',
+            description: 'Comma separated list of practitioner role IDs that in sum contain all MUST SUPPORT elements',
+            default: '',
+            optional: true
+
       id :ph_core_v020_ci_build_practitioner_role_read_test
 
       def self.demodata

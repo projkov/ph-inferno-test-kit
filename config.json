@@ -39,7 +39,6 @@
   "constants": {
     "default_fhir_server": "https://hapi.fhir.org/baseR4",
     "read_ids.patient": "example-patient-id",
-    "read_ids.encounter": "example-encounter-id",
     "read_ids.practitioner": "example-practitioner-id"
   },
   "configs": {
@@ -58,6 +57,15 @@
     "profiles": {
       "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient": {
         "first_class_profile": "search"
+      },
+      "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization": {
+        "first_class_profile": "read"
+      },
+      "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner": {
+        "first_class_profile": "read"
+      },
+      "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole": {
+        "first_class_profile": "read"
       }
     },
     "resources": {

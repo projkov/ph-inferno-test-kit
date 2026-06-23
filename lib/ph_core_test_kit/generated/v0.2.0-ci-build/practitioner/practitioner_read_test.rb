@@ -10,6 +10,12 @@ module PHCoreTestKit
       title '(SHALL) Server returns correct Practitioner resource from Practitioner read interaction'
       description 'A server SHALL support the Practitioner read interaction.'
 
+      input :practitioner_ids,
+            title: 'Practitioner IDs',
+            description: 'Comma separated list of practitioner IDs that in sum contain all MUST SUPPORT elements',
+            default: 'example-practitioner-id',
+            optional: true
+
       id :ph_core_v020_ci_build_practitioner_read_test
 
       def self.demodata
