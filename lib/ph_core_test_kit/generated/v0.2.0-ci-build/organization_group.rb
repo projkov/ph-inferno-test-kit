@@ -5,7 +5,6 @@ require_relative 'organization/organization_read_test'
 require_relative 'organization/organization_id_search_test'
 require_relative 'organization/organization_identifier_search_test'
 require_relative 'organization/organization_name_search_test'
-require_relative 'organization/organization_active_search_test'
 require_relative 'organization/organization_validation_test'
 require_relative 'organization/organization_must_support_test'
 
@@ -82,7 +81,6 @@ read succeeds.
       test from: :ph_core_v020_ci_build_organization__id_search_test
       test from: :ph_core_v020_ci_build_organization_identifier_search_test
       test from: :ph_core_v020_ci_build_organization_name_search_test
-      test from: :ph_core_v020_ci_build_organization_active_search_test
       test from: :ph_core_v020_ci_build_organization_validation_test
       test from: :ph_core_v020_ci_build_organization_must_support_test
     end

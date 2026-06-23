@@ -5,7 +5,6 @@ require_relative 'practitioner/practitioner_read_test'
 require_relative 'practitioner/practitioner_id_search_test'
 require_relative 'practitioner/practitioner_identifier_search_test'
 require_relative 'practitioner/practitioner_name_search_test'
-require_relative 'practitioner/practitioner_active_search_test'
 require_relative 'practitioner/practitioner_validation_test'
 require_relative 'practitioner/practitioner_must_support_test'
 
@@ -82,7 +81,6 @@ read succeeds.
       test from: :ph_core_v020_ci_build_practitioner__id_search_test
       test from: :ph_core_v020_ci_build_practitioner_identifier_search_test
       test from: :ph_core_v020_ci_build_practitioner_name_search_test
-      test from: :ph_core_v020_ci_build_practitioner_active_search_test
       test from: :ph_core_v020_ci_build_practitioner_validation_test
       test from: :ph_core_v020_ci_build_practitioner_must_support_test
     end

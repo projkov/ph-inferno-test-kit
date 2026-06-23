@@ -33,12 +33,6 @@
   :expectation: SHOULD
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :names:
-  - active
-  :expectation: MAY
-  :names_not_must_support_or_mandatory:
-  - active
-  :must_support_or_mandatory: false
 :search_definitions:
   :_id:
     :paths:
@@ -67,15 +61,6 @@
     :values: []
     :type: HumanName
     :contains_multiple: true
-  :active:
-    :paths:
-    - active
-    :full_paths:
-    - Practitioner.active
-    :comparators: {}
-    :values: []
-    :type: boolean
-    :contains_multiple: false
 :include_params: []
 :revincludes: []
 :required_concepts: []
@@ -120,8 +105,6 @@
   :file_name: practitioner_identifier_search_test.rb
 - :id: ph_core_v020_ci_build_practitioner_name_search_test
   :file_name: practitioner_name_search_test.rb
-- :id: ph_core_v020_ci_build_practitioner_active_search_test
-  :file_name: practitioner_active_search_test.rb
 - :id: ph_core_v020_ci_build_practitioner_validation_test
   :file_name: practitioner_validation_test.rb
 - :id: ph_core_v020_ci_build_practitioner_must_support_test

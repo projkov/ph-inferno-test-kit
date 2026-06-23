@@ -277,11 +277,6 @@
     :expectation: SHOULD
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - active
-    :expectation: MAY
-    :names_not_must_support_or_mandatory: []
-    :must_support_or_mandatory: true
   :search_definitions:
     :_id:
       :paths:
@@ -311,15 +306,6 @@
       :comparators: {}
       :values: []
       :type: string
-      :contains_multiple: false
-    :active:
-      :paths:
-      - active
-      :full_paths:
-      - Organization.active
-      :comparators: {}
-      :values: []
-      :type: boolean
       :contains_multiple: false
   :include_params: []
   :revincludes: []
@@ -412,12 +398,6 @@
     :expectation: SHOULD
     :names_not_must_support_or_mandatory: []
     :must_support_or_mandatory: true
-  - :names:
-    - active
-    :expectation: MAY
-    :names_not_must_support_or_mandatory:
-    - active
-    :must_support_or_mandatory: false
   :search_definitions:
     :_id:
       :paths:
@@ -446,15 +426,6 @@
       :values: []
       :type: HumanName
       :contains_multiple: true
-    :active:
-      :paths:
-      - active
-      :full_paths:
-      - Practitioner.active
-      :comparators: {}
-      :values: []
-      :type: boolean
-      :contains_multiple: false
   :include_params: []
   :revincludes: []
   :required_concepts: []

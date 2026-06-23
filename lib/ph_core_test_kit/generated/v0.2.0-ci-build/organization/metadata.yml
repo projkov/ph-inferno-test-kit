@@ -33,11 +33,6 @@
   :expectation: SHOULD
   :names_not_must_support_or_mandatory: []
   :must_support_or_mandatory: true
-- :names:
-  - active
-  :expectation: MAY
-  :names_not_must_support_or_mandatory: []
-  :must_support_or_mandatory: true
 :search_definitions:
   :_id:
     :paths:
@@ -67,15 +62,6 @@
     :comparators: {}
     :values: []
     :type: string
-    :contains_multiple: false
-  :active:
-    :paths:
-    - active
-    :full_paths:
-    - Organization.active
-    :comparators: {}
-    :values: []
-    :type: boolean
     :contains_multiple: false
 :include_params: []
 :revincludes: []
@@ -139,8 +125,6 @@
   :file_name: organization_identifier_search_test.rb
 - :id: ph_core_v020_ci_build_organization_name_search_test
   :file_name: organization_name_search_test.rb
-- :id: ph_core_v020_ci_build_organization_active_search_test
-  :file_name: organization_active_search_test.rb
 - :id: ph_core_v020_ci_build_organization_validation_test
   :file_name: organization_validation_test.rb
 - :id: ph_core_v020_ci_build_organization_must_support_test
