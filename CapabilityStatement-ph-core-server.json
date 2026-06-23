@@ -186,17 +186,6 @@
                     "name": "name",
                     "definition": "http://hl7.org/fhir/SearchParameter/Organization-name",
                     "type": "string"
-                  },
-                  {
-                    "extension": [
-                      {
-                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-                        "valueCode": "MAY"
-                      }
-                    ],
-                    "name": "active",
-                    "definition": "http://hl7.org/fhir/SearchParameter/Organization-active",
-                    "type": "token"
                   }
                 ]
               },
@@ -256,17 +245,6 @@
                     "name": "name",
                     "definition": "http://hl7.org/fhir/SearchParameter/Practitioner-name",
                     "type": "string"
-                  },
-                  {
-                    "extension": [
-                      {
-                        "url": "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation",
-                        "valueCode": "MAY"
-                      }
-                    ],
-                    "name": "active",
-                    "definition": "http://hl7.org/fhir/SearchParameter/Practitioner-active",
-                    "type": "token"
                   }
                 ]
               },
