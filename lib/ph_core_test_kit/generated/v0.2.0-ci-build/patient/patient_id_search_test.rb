@@ -33,7 +33,7 @@ requirement of PH Core v0.2.0-ci-build.
       input :patient_ids,
             title: 'Patient IDs',
             description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',
-            default: '131896579, 131264605, 125244970, 131264031'
+            default: ''
 
       def self.demodata
         @demodata ||= InfernoSuiteGenerator::Generator::IGDemodata.new(

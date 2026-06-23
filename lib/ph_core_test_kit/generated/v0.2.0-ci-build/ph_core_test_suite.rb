@@ -77,7 +77,7 @@ module PHCoreTestKit
       input :url,
             title: 'FHIR Endpoint',
             description: 'URL of the FHIR endpoint',
-            default: 'https://hapi.fhir.org/baseR4'
+            default: 'https://cdr.phcore.fhirlab.net/fhir'
       input :smart_credentials,
             title: 'OAuth Credentials',
             type: :oauth_credentials,

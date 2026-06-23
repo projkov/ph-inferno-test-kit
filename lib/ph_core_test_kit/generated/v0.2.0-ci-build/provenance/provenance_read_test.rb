@@ -13,7 +13,7 @@ module PHCoreTestKit
       input :provenance_ids,
             title: 'Provenance IDs',
             description: 'Comma separated list of provenance IDs that in sum contain all MUST SUPPORT elements',
-            default: '131289491',
+            default: '',
             optional: true
 
       id :ph_core_v020_ci_build_provenance_read_test

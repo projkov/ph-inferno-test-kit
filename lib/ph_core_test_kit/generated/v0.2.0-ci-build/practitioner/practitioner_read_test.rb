@@ -13,7 +13,7 @@ module PHCoreTestKit
       input :practitioner_ids,
             title: 'Practitioner IDs',
             description: 'Comma separated list of practitioner IDs that in sum contain all MUST SUPPORT elements',
-            default: 'user-82f66f52-14d0-4339-84f1-82b9e5682aa1',
+            default: '',
             optional: true
 
       id :ph_core_v020_ci_build_practitioner_read_test

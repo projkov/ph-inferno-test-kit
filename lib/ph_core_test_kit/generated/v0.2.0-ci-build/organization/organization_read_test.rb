@@ -13,7 +13,7 @@ module PHCoreTestKit
       input :organization_ids,
             title: 'Organization IDs',
             description: 'Comma separated list of organization IDs that in sum contain all MUST SUPPORT elements',
-            default: '131273014',
+            default: '',
             optional: true
 
       id :ph_core_v020_ci_build_organization_read_test

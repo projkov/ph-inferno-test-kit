@@ -13,7 +13,7 @@ module PHCoreTestKit
       input :practitioner_role_ids,
             title: 'PractitionerRole IDs',
             description: 'Comma separated list of practitioner role IDs that in sum contain all MUST SUPPORT elements',
-            default: '99605289',
+            default: '',
             optional: true
 
       id :ph_core_v020_ci_build_practitioner_role_read_test
