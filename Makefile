@@ -8,12 +8,23 @@ inferno = run inferno
 rm_generated = rm -rf lib/ph_core_test_kit/generated/
 ber_generate = bundle exec rake ph_core_test_kit:generate
 lint_generated = rubocop -A lib/ph_core_test_kit/
+ig_url = https://build.fhir.org/ig/UP-Manila-SILab/ph-core/package.tgz
+ig_filename = 0.2.0-ci-build.tgz
 
 .PHONY: setup generate summary new_release tests run pull build up stop down rubocop migrate clean_generated ig_download uploadfig_generate_local
 
 setup: pull build migrate
 
-generate:
+ig_download:
+	if [ "$(MODE)" = "local" ]; then \
+		curl -fsSL -o /tmp/$(ig_filename) $(ig_url) && \
+		cp /tmp/$(ig_filename) resources/ig/$(ig_filename) && \
+		cp /tmp/$(ig_filename) lib/ph_core_test_kit/igs/$(ig_filename); \
+	else \
+		$(compose) run --rm ig-downloader; \
+	fi
+
+generate: ig_download
 	if [ "$(MODE)" = "local" ]; then \
 		$(ber_generate); \
 		$(lint_generated); \
