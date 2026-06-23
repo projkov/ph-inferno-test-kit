@@ -3097,3 +3097,5 @@
 - MedicationDispense
 - MedicationStatement
 - Immunization
+- Task
+- Medication

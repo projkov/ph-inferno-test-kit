@@ -6,34 +6,22 @@ require 'inferno_suite_generator/utils/helpers'
 
 module PHCoreTestKit
   module PHCoreV020_CI_BUILD
-    class PatientIdSearchTest < Inferno::Test
+    class TaskStatusSearchTest < Inferno::Test
       include InfernoSuiteGenerator::SearchTest
 
-      title '(SHALL) Server returns valid results for Patient search by _id'
+      title '(SHOULD) Server returns valid results for Task search by status'
       description %(
-A server SHALL support searching by
-_id on the Patient resource. This test
+A server SHOULD support searching by
+status on the Task resource. This test
 will pass if resources are returned and match the search criteria. If
 none are returned, the test is skipped.
-
-Because this is the first search of the sequence, resources in the
-response will be used for subsequent tests.
-
-Additionally, this test will check that GET and POST search methods
-return the same number of results. Search by POST is required by the
-FHIR R4 specification, and these tests interpret search by GET as a
-requirement of PH Core v0.2.0-ci-build.
 
 [PH Core Server CapabilityStatement](https://fhir.doh.gov.ph/phcore/CapabilityStatement/ph-core-server)
 
       )
 
-      id :ph_core_v020_ci_build_patient__id_search_test
-
-      input :patient_ids,
-            title: 'Patient IDs',
-            description: 'Comma separated list of patient IDs that in sum contain all MUST SUPPORT elements',
-            default: '131896579, 131264605, 125244970, 131264031'
+      id :ph_core_v020_ci_build_task_status_search_test
+      optional
 
       def self.demodata
         @demodata ||= InfernoSuiteGenerator::Generator::IGDemodata.new(
@@ -43,12 +31,8 @@ requirement of PH Core v0.2.0-ci-build.
 
       def self.properties
         @properties ||= InfernoSuiteGenerator::SearchTestProperties.new(
-          first_search: true,
-          resource_type: 'Patient',
-          search_param_names: ['_id'],
-          saves_delayed_references: true,
-          test_post_search: true,
-          first_search_for_patient_by_patient_id: true
+          resource_type: 'Task',
+          search_param_names: ['status']
         )
       end
 
@@ -60,7 +44,7 @@ requirement of PH Core v0.2.0-ci-build.
       end
 
       def scratch_resources
-        scratch[:patient_resources] ||= {}
+        scratch[:task_resources] ||= {}
       end
 
       def keep_all_search_results?

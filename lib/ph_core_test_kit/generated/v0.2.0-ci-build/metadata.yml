@@ -1381,3 +1381,1072 @@
     - Practitioner
     - PractitionerRole
     - Organization
+- :name: ph_core_serviceRequest
+  :class_name: PhCoreServicerequestSequence
+  :version: v0.2.0-ci-build
+  :reformatted_version: v020_ci_build
+  :resource: ServiceRequest
+  :profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-serviceRequest
+  :profile_name: PH Core ServiceRequest
+  :profile_version: 0.2.0
+  :title: ServiceRequest
+  :short_description: Verify support for the server capabilities required by the PH
+    Core ServiceRequest.
+  :interactions:
+  - :code: read
+    :expectation: SHALL
+  - :code: search-type
+    :expectation: SHALL
+  :operations: []
+  :searches:
+  - :names:
+    - patient
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - _id
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - status
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - encounter
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - code
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - category
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  :search_definitions:
+    :_id:
+      :paths:
+      - id
+      :full_paths:
+      - ServiceRequest.id
+      :comparators: {}
+      :values: []
+      :type: http://hl7.org/fhirpath/System.String
+      :contains_multiple: false
+    :patient:
+      :paths:
+      - subject
+      :full_paths:
+      - ServiceRequest.subject
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Patient
+    :status:
+      :paths:
+      - status
+      :full_paths:
+      - ServiceRequest.status
+      :comparators: {}
+      :values:
+      - draft
+      - active
+      - on-hold
+      - revoked
+      - completed
+      - entered-in-error
+      - unknown
+      :type: code
+      :contains_multiple: false
+    :encounter:
+      :paths:
+      - encounter
+      :full_paths:
+      - ServiceRequest.encounter
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Encounter
+    :code:
+      :paths:
+      - code
+      :full_paths:
+      - ServiceRequest.code
+      :comparators: {}
+      :values: []
+      :type: CodeableConcept
+      :contains_multiple: false
+    :category:
+      :paths:
+      - category
+      :full_paths:
+      - ServiceRequest.category
+      :comparators: {}
+      :values: []
+      :type: CodeableConcept
+      :contains_multiple: true
+  :include_params: []
+  :revincludes: []
+  :required_concepts: []
+  :must_supports:
+    :extensions: []
+    :slices:
+    - :slice_id: ServiceRequest.occurrence[x]:occurrenceDateTime
+      :slice_name: occurrenceDateTime
+      :path: occurrence[x]
+      :discriminator:
+        :type: type
+        :code: DateTime
+    - :slice_id: ServiceRequest.asNeeded[x]:asNeededCodeableConcept
+      :slice_name: asNeededCodeableConcept
+      :path: asNeeded[x]
+      :discriminator:
+        :type: type
+        :code: CodeableConcept
+    :elements:
+    - :path: status
+    - :path: category
+    - :path: code
+    - :path: code.coding
+    - :path: code.text
+    - :path: orderDetail
+    - :path: orderDetail.coding
+    - :path: orderDetail.text
+    - :path: subject
+      :types:
+      - Reference
+    - :path: encounter
+      :types:
+      - Reference
+      :target_profiles:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+    - :path: occurrence[x]
+    - :path: asNeeded[x]:asNeededCodeableConcept.coding
+    - :path: asNeeded[x]:asNeededCodeableConcept.text
+    - :path: authoredOn
+    - :path: requester
+      :types:
+      - Reference
+    - :path: performerType
+    - :path: performerType.coding
+    - :path: performerType.text
+    - :path: locationCode
+    - :path: locationCode.coding
+    - :path: locationCode.text
+    - :path: reasonCode
+    - :path: reasonCode.coding
+    - :path: reasonCode.text
+    - :path: supportingInfo
+      :types:
+      - Reference
+    - :path: bodySite
+    - :path: bodySite.coding
+    - :path: bodySite.text
+  :mandatory_elements:
+  - ServiceRequest.status
+  - ServiceRequest.intent
+  - ServiceRequest.subject
+  :bindings:
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/request-status
+    :path: status
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/request-intent
+    :path: intent
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/request-priority
+    :path: priority
+  :references:
+  - :path: ServiceRequest.basedOn
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/CarePlan|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/MedicationRequest|4.0.1
+  - :path: ServiceRequest.replaces
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1
+  - :path: ServiceRequest.subject
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - http://hl7.org/fhir/StructureDefinition/Group
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+    - http://hl7.org/fhir/StructureDefinition/Device
+    :resource_types:
+    - Patient
+    - Location
+  - :path: ServiceRequest.encounter
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+    :resource_types:
+    - Encounter
+  - :path: ServiceRequest.requester
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    - http://hl7.org/fhir/StructureDefinition/Device
+    :resource_types:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+    - Patient
+    - RelatedPerson
+  - :path: ServiceRequest.performer
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/PractitionerRole|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Organization|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/CareTeam|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/HealthcareService|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Patient|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Device|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/RelatedPerson|4.0.1
+  - :path: ServiceRequest.locationReference
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Location|4.0.1
+  - :path: ServiceRequest.reasonReference
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Condition|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Observation|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/DiagnosticReport|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1
+  - :path: ServiceRequest.insurance
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Coverage|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/ClaimResponse|4.0.1
+  - :path: ServiceRequest.supportingInfo
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Resource|4.0.1
+  - :path: ServiceRequest.specimen
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Specimen|4.0.1
+  - :path: ServiceRequest.relevantHistory
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Provenance|4.0.1
+  :delayed_references:
+  - :path: requester
+    :resources:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+- :name: ph_core_task
+  :class_name: PhCoreTaskSequence
+  :version: v0.2.0-ci-build
+  :reformatted_version: v020_ci_build
+  :resource: Task
+  :profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-task
+  :profile_name: PH Core Task
+  :profile_version: 0.2.0
+  :title: Task
+  :short_description: Verify support for the server capabilities required by the PH
+    Core Task.
+  :interactions:
+  - :code: read
+    :expectation: SHALL
+  - :code: search-type
+    :expectation: SHALL
+  :operations: []
+  :searches:
+  - :names:
+    - patient
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - _id
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - status
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - focus
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory:
+    - focus
+    :must_support_or_mandatory: false
+  :search_definitions:
+    :_id:
+      :paths:
+      - id
+      :full_paths:
+      - Task.id
+      :comparators: {}
+      :values: []
+      :type: http://hl7.org/fhirpath/System.String
+      :contains_multiple: false
+    :patient:
+      :paths:
+      - for
+      :full_paths:
+      - Task.for
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Patient
+    :status:
+      :paths:
+      - status
+      :full_paths:
+      - Task.status
+      :comparators: {}
+      :values:
+      - draft
+      - requested
+      - received
+      - accepted
+      - rejected
+      - ready
+      - cancelled
+      - in-progress
+      - on-hold
+      - failed
+      - completed
+      - entered-in-error
+      :type: code
+      :contains_multiple: false
+    :focus:
+      :paths:
+      - focus
+      :full_paths:
+      - Task.focus
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Account
+  :include_params: []
+  :revincludes: []
+  :required_concepts: []
+  :must_supports:
+    :extensions: []
+    :slices:
+    - :slice_id: Task.input.value[x]:valueCodeableConcept
+      :slice_name: valueCodeableConcept
+      :path: input.value[x]
+      :discriminator:
+        :type: type
+        :code: CodeableConcept
+    - :slice_id: Task.output.value[x]:valueCodeableConcept
+      :slice_name: valueCodeableConcept
+      :path: output.value[x]
+      :discriminator:
+        :type: type
+        :code: CodeableConcept
+    :elements:
+    - :path: status
+    - :path: statusReason
+    - :path: statusReason.coding
+    - :path: statusReason.text
+    - :path: businessStatus
+    - :path: businessStatus.coding
+    - :path: businessStatus.text
+    - :path: code
+    - :path: code.coding
+    - :path: code.text
+    - :path: for
+      :types:
+      - Reference
+      :target_profiles:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - :path: executionPeriod
+    - :path: performerType
+    - :path: performerType.coding
+    - :path: performerType.text
+    - :path: reasonCode
+    - :path: reasonCode.coding
+    - :path: reasonCode.text
+    - :path: note
+    - :path: input.type
+    - :path: input.type.coding
+    - :path: input.type.text
+    - :path: input.value[x]:valueCodeableConcept.coding
+    - :path: input.value[x]:valueCodeableConcept.text
+    - :path: output.type
+    - :path: output.type.coding
+    - :path: output.type.text
+    - :path: output.value[x]:valueCodeableConcept.coding
+    - :path: output.value[x]:valueCodeableConcept.text
+  :mandatory_elements:
+  - Task.status
+  - Task.intent
+  - Task.input.type
+  - Task.input.value[x]
+  - Task.output.type
+  - Task.output.value[x]
+  :bindings:
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/task-status
+    :path: status
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/task-intent
+    :path: intent
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/request-priority
+    :path: priority
+  :references:
+  - :path: Task.basedOn
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Resource|4.0.1
+  - :path: Task.partOf
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-task
+    :resource_types:
+    - Task
+  - :path: Task.focus
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Resource|4.0.1
+  - :path: Task.for
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    :resource_types:
+    - Patient
+  - :path: Task.encounter
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+    :resource_types:
+    - Encounter
+  - :path: Task.requester
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - http://hl7.org/fhir/StructureDefinition/Device
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    :resource_types:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+    - Patient
+    - RelatedPerson
+  - :path: Task.owner
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    - http://hl7.org/fhir/StructureDefinition/CareTeam
+    - http://hl7.org/fhir/StructureDefinition/HealthcareService
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - http://hl7.org/fhir/StructureDefinition/Device
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    :resource_types:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+    - Patient
+    - RelatedPerson
+  - :path: Task.location
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+    :resource_types:
+    - Location
+  - :path: Task.reasonReference
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Resource|4.0.1
+  - :path: Task.insurance
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Coverage|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/ClaimResponse|4.0.1
+  - :path: Task.relevantHistory
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Provenance|4.0.1
+  - :path: Task.restriction.recipient
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    - http://hl7.org/fhir/StructureDefinition/Group
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    :resource_types:
+    - Patient
+    - Practitioner
+    - PractitionerRole
+    - RelatedPerson
+    - Organization
+  :delayed_references:
+  - :path: requester
+    :resources:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+  - :path: owner
+    :resources:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+  - :path: restriction.recipient
+    :resources:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+- :name: ph_core_provenance
+  :class_name: PhCoreProvenanceSequence
+  :version: v0.2.0-ci-build
+  :reformatted_version: v020_ci_build
+  :resource: Provenance
+  :profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-provenance
+  :profile_name: PH Core Provenance
+  :profile_version: 0.2.0
+  :title: Provenance
+  :short_description: Verify support for the server capabilities required by the PH
+    Core Provenance.
+  :interactions:
+  - :code: read
+    :expectation: SHALL
+  - :code: search-type
+    :expectation: SHALL
+  :operations: []
+  :searches:
+  - :names:
+    - _id
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - patient
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - target
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - recorded
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  :search_definitions:
+    :_id:
+      :paths:
+      - id
+      :full_paths:
+      - Provenance.id
+      :comparators: {}
+      :values: []
+      :type: http://hl7.org/fhirpath/System.String
+      :contains_multiple: false
+    :patient:
+      :paths:
+      - target
+      :full_paths:
+      - Provenance.target
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: true
+      :target_resource: Patient
+    :target:
+      :paths:
+      - target
+      :full_paths:
+      - Provenance.target
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: true
+      :target_resource: Account
+    :recorded:
+      :paths:
+      - recorded
+      :full_paths:
+      - Provenance.recorded
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
+      :values: []
+      :type: instant
+      :contains_multiple: false
+  :include_params: []
+  :revincludes: []
+  :required_concepts: []
+  :must_supports:
+    :extensions: []
+    :slices:
+    - :slice_id: Provenance.agent:ProvenanceAuthor
+      :slice_name: ProvenanceAuthor
+      :path: agent
+      :discriminator:
+        :type: value
+        :values:
+        - :path: type
+          :value:
+    - :slice_id: Provenance.agent:ProvenanceTransmitter
+      :slice_name: ProvenanceTransmitter
+      :path: agent
+      :discriminator:
+        :type: value
+        :values:
+        - :path: type
+          :value:
+    :elements:
+    - :path: target
+      :types:
+      - Reference
+    - :path: target.reference
+    - :path: recorded
+    - :path: reason
+    - :path: reason.coding
+    - :path: reason.text
+    - :path: activity
+    - :path: activity.coding
+    - :path: activity.text
+    - :path: agent.type
+    - :path: agent.role
+    - :path: agent.role.coding
+    - :path: agent.role.text
+    - :path: agent.who
+      :types:
+      - Reference
+    - :path: agent.onBehalfOf
+      :types:
+      - Reference
+    - :path: agent:ProvenanceAuthor.type
+    - :path: agent:ProvenanceAuthor.role
+    - :path: agent:ProvenanceAuthor.role.coding
+    - :path: agent:ProvenanceAuthor.role.text
+    - :path: agent:ProvenanceAuthor.who
+      :types:
+      - Reference
+    - :path: agent:ProvenanceAuthor.onBehalfOf
+      :types:
+      - Reference
+      :target_profiles:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    - :path: agent:ProvenanceTransmitter.type
+    - :path: agent:ProvenanceTransmitter.role
+    - :path: agent:ProvenanceTransmitter.role.coding
+    - :path: agent:ProvenanceTransmitter.role.text
+    - :path: agent:ProvenanceTransmitter.who
+      :types:
+      - Reference
+    - :path: agent:ProvenanceTransmitter.onBehalfOf
+      :types:
+      - Reference
+      :target_profiles:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+  :mandatory_elements:
+  - Provenance.target
+  - Provenance.recorded
+  - Provenance.agent
+  - Provenance.agent.who
+  - Provenance.agent.type
+  - Provenance.entity.role
+  - Provenance.entity.what
+  :bindings:
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/provenance-entity-role
+    :path: entity.role
+  :references:
+  - :path: Provenance.target
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Resource|4.0.1
+  - :path: Provenance.location
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+    :resource_types:
+    - Location
+  - :path: Provenance.agent.who
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/PractitionerRole|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/RelatedPerson|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Patient|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Device|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Organization|4.0.1
+  - :path: Provenance.agent.onBehalfOf
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Practitioner|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/PractitionerRole|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/RelatedPerson|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Patient|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Device|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Organization|4.0.1
+  - :path: Provenance.agent.who
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    - http://hl7.org/fhir/StructureDefinition/Device
+    :resource_types:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+    - Patient
+    - RelatedPerson
+  - :path: Provenance.agent.onBehalfOf
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    :resource_types:
+    - Organization
+  - :path: Provenance.agent.who
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    - http://hl7.org/fhir/StructureDefinition/Device
+    :resource_types:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+    - Patient
+    - RelatedPerson
+  - :path: Provenance.agent.onBehalfOf
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    :resource_types:
+    - Organization
+  - :path: Provenance.entity.what
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Resource|4.0.1
+  :delayed_references:
+  - :path: agent.who
+    :resources:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+  - :path: agent.onBehalfOf
+    :resources:
+    - Organization
+  - :path: agent.who
+    :resources:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+  - :path: agent.onBehalfOf
+    :resources:
+    - Organization
+- :name: ph_core_procedure
+  :class_name: PhCoreProcedureSequence
+  :version: v0.2.0-ci-build
+  :reformatted_version: v020_ci_build
+  :resource: Procedure
+  :profile_url: https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-procedure
+  :profile_name: PH Core Procedure
+  :profile_version: 0.2.0
+  :title: Procedure
+  :short_description: Verify support for the server capabilities required by the PH
+    Core Procedure.
+  :interactions:
+  - :code: read
+    :expectation: SHALL
+  - :code: search-type
+    :expectation: SHALL
+  :operations: []
+  :searches:
+  - :names:
+    - patient
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - _id
+    :expectation: SHALL
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - status
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - encounter
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - code
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  - :names:
+    - date
+    :expectation: SHOULD
+    :names_not_must_support_or_mandatory: []
+    :must_support_or_mandatory: true
+  :search_definitions:
+    :_id:
+      :paths:
+      - id
+      :full_paths:
+      - Procedure.id
+      :comparators: {}
+      :values: []
+      :type: http://hl7.org/fhirpath/System.String
+      :contains_multiple: false
+    :patient:
+      :paths:
+      - subject
+      :full_paths:
+      - Procedure.subject
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Patient
+    :status:
+      :paths:
+      - status
+      :full_paths:
+      - Procedure.status
+      :comparators: {}
+      :values:
+      - preparation
+      - in-progress
+      - not-done
+      - on-hold
+      - stopped
+      - completed
+      - entered-in-error
+      - unknown
+      :type: code
+      :contains_multiple: false
+    :encounter:
+      :paths:
+      - encounter
+      :full_paths:
+      - Procedure.encounter
+      :comparators: {}
+      :values: []
+      :type: Reference
+      :contains_multiple: false
+      :target_resource: Encounter
+    :code:
+      :paths:
+      - code
+      :full_paths:
+      - Procedure.code
+      :comparators: {}
+      :values: []
+      :type: CodeableConcept
+      :contains_multiple: false
+    :date:
+      :paths:
+      - performed
+      :full_paths:
+      - Procedure.performed
+      :comparators:
+        :eq: MAY
+        :ne: MAY
+        :gt: MAY
+        :ge: MAY
+        :lt: MAY
+        :le: MAY
+        :sa: MAY
+        :eb: MAY
+        :ap: MAY
+      :values: []
+      :type: date
+      :contains_multiple: false
+  :include_params: []
+  :revincludes: []
+  :required_concepts: []
+  :must_supports:
+    :extensions: []
+    :slices: []
+    :elements:
+    - :path: status
+    - :path: statusReason
+    - :path: statusReason.coding
+    - :path: statusReason.text
+    - :path: category
+    - :path: category.coding
+    - :path: category.text
+    - :path: code
+    - :path: code.coding
+    - :path: code.text
+    - :path: subject
+      :types:
+      - Reference
+    - :path: encounter
+      :types:
+      - Reference
+      :target_profiles:
+      - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+    - :path: performed[x]
+    - :path: performer.function
+    - :path: performer.function.coding
+    - :path: performer.function.text
+    - :path: reasonCode
+    - :path: reasonCode.coding
+    - :path: reasonCode.text
+    - :path: reasonReference
+      :types:
+      - Reference
+    - :path: bodySite
+    - :path: bodySite.coding
+    - :path: bodySite.text
+    - :path: outcome
+    - :path: outcome.coding
+    - :path: outcome.text
+    - :path: complication
+    - :path: complication.coding
+    - :path: complication.text
+    - :path: followUp
+    - :path: followUp.coding
+    - :path: followUp.text
+    - :path: focalDevice.action
+    - :path: focalDevice.action.coding
+    - :path: focalDevice.action.text
+    - :path: usedCode
+    - :path: usedCode.coding
+    - :path: usedCode.text
+  :mandatory_elements:
+  - Procedure.status
+  - Procedure.subject
+  - Procedure.performer.actor
+  - Procedure.focalDevice.manipulated
+  :bindings:
+  - :type: code
+    :strength: required
+    :system: http://hl7.org/fhir/ValueSet/event-status
+    :path: status
+  :references:
+  - :path: Procedure.basedOn
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/CarePlan|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/ServiceRequest|4.0.1
+  - :path: Procedure.partOf
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-procedure
+    - http://hl7.org/fhir/StructureDefinition/Observation
+    - http://hl7.org/fhir/StructureDefinition/MedicationAdministration
+    :resource_types:
+    - Procedure
+  - :path: Procedure.subject
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - http://hl7.org/fhir/StructureDefinition/Group
+    :resource_types:
+    - Patient
+  - :path: Procedure.encounter
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-encounter
+    :resource_types:
+    - Encounter
+  - :path: Procedure.recorder
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    :resource_types:
+    - Patient
+    - RelatedPerson
+    - Practitioner
+    - PractitionerRole
+  - :path: Procedure.asserter
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    :resource_types:
+    - Patient
+    - RelatedPerson
+    - Practitioner
+    - PractitionerRole
+  - :path: Procedure.performer.actor
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitioner
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-patient
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-relatedperson
+    - http://hl7.org/fhir/StructureDefinition/Device
+    :resource_types:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+    - Patient
+    - RelatedPerson
+  - :path: Procedure.performer.onBehalfOf
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-organization
+    :resource_types:
+    - Organization
+  - :path: Procedure.location
+    :profiles:
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-location
+    :resource_types:
+    - Location
+  - :path: Procedure.reasonReference
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Condition
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-observation
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-procedure
+    - http://hl7.org/fhir/StructureDefinition/DiagnosticReport
+    - http://hl7.org/fhir/StructureDefinition/DocumentReference
+    :resource_types:
+    - Observation
+    - Procedure
+  - :path: Procedure.report
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/DiagnosticReport|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/DocumentReference|4.0.1
+    - http://hl7.org/fhir/StructureDefinition/Composition|4.0.1
+  - :path: Procedure.complicationDetail
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Condition|4.0.1
+  - :path: Procedure.focalDevice.manipulated
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Device|4.0.1
+  - :path: Procedure.usedReference
+    :profiles:
+    - http://hl7.org/fhir/StructureDefinition/Device
+    - https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-medication
+    - http://hl7.org/fhir/StructureDefinition/Substance
+    :resource_types:
+    - Medication
+  :delayed_references:
+  - :path: recorder
+    :resources:
+    - Practitioner
+    - PractitionerRole
+  - :path: asserter
+    :resources:
+    - Practitioner
+    - PractitionerRole
+  - :path: performer.actor
+    :resources:
+    - Practitioner
+    - PractitionerRole
+    - Organization
+  - :path: performer.onBehalfOf
+    :resources:
+    - Organization

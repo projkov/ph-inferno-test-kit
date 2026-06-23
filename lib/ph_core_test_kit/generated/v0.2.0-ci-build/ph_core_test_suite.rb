@@ -9,6 +9,10 @@ require_relative 'patient_group'
 require_relative 'condition_group'
 require_relative 'encounter_group'
 require_relative 'observation_group'
+require_relative 'service_request_group'
+require_relative 'task_group'
+require_relative 'provenance_group'
+require_relative 'procedure_group'
 require_relative 'organization_group'
 require_relative 'practitioner_group'
 require_relative 'practitioner_role_group'
@@ -106,6 +110,14 @@ module PHCoreTestKit
         group from: :ph_core_v020_ci_build_encounter
 
         group from: :ph_core_v020_ci_build_observation
+
+        group from: :ph_core_v020_ci_build_service_request
+
+        group from: :ph_core_v020_ci_build_task
+
+        group from: :ph_core_v020_ci_build_provenance
+
+        group from: :ph_core_v020_ci_build_procedure
 
         group from: :ph_core_v020_ci_build_organization
 
