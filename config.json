@@ -42,8 +42,7 @@
     "read_ids.patient": "",
     "read_ids.practitioner": "",
     "read_ids.organization": "",
-    "read_ids.practitioner_role": "",
-    "read_ids.provenance": ""
+    "read_ids.practitioner_role": ""
   },
   "configs": {
     "generic": {
@@ -69,9 +68,6 @@
         "first_class_profile": "read"
       },
       "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-practitionerrole": {
-        "first_class_profile": "read"
-      },
-      "https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-provenance": {
         "first_class_profile": "read"
       }
     },
